@@ -8,7 +8,6 @@
         mysqli_set_charset($con,"uft8");
         if(!$con){
             echo "Ket noi khong thanh cong";
-            echo "dit me may";
         }
         else{
             mysqli_select_db($con, $dbname);
