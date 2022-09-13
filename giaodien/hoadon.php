@@ -51,9 +51,9 @@ require '../giaodien/header.php';
 
 <?php
 $con = ketnoi();
-$encrypt = new encrypt();
+//$encrypt = new encrypt();
 $user_id = $_SESSION['id'];
-$sql = "select * from bill where user=$user_id";
+$sql = "select * from don_hang where user_id=$user_id";
 $query = mysqli_query($con, $sql);
 $i = 1;
 while ($row = mysqli_fetch_assoc($query)) {
@@ -61,10 +61,10 @@ while ($row = mysqli_fetch_assoc($query)) {
                                 <tr id="a1">     
 
                                     <td><?php echo $i++; ?></td>
-                                    <td><?php echo $row['bill_id']; ?></td>
-                                    <td><?php echo $row['date']; ?></td>
-                                    <td><?php echo $encrypt->giaimathongke($row['total']); ?></td>
-                                    <td><a href="../giaodien/chitiethd.php?billid=<?php echo $row['bill_id']; ?>">Detail</a></td>
+                                    <td><?php echo $row['ma_don_hang']; ?></td>
+                                    <td><?php echo $row['ngay_gio_thanh_toan']; ?></td>
+                                    <td><?php echo $row['tong_tien']; ?></td>
+                                    <td><a href="../giaodien/chitiethd.php?billid=<?php echo $row['ma_don_hang']; ?>">Detail</a></td>
 
                                 </tr>
 <?php } ?>

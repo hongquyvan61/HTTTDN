@@ -5,25 +5,48 @@
             $this->con = ketnoi();
         }
         public function getAllProducts(){
-            $query = "select * from shoes";
+            $query = "select * from giay as g join nha_cung_cap as ncc on g.ma_nha_cung_cap = ncc.ma_nha_cung_cap";
             $result = mysqli_query($this->con, $query);
             return $result;
         }
+        public function getMotaProductbyid($id){
+            $query = "select mo_ta
+                    from giay
+                    where id_giay=$id";
+             $result = mysqli_query($this->con, $query);
+            return $result;
+        }
+        public function getQtyProductbyid($id){
+            $query = "select size, kc.so_luong_ton_kho_ban, kc.so_luong_ton_kho_tong
+                    from giay as g join kich_co as kc
+                    on g.id_giay = kc.id_giay
+                    where g.id_giay = $id";
+             $result = mysqli_query($this->con, $query);
+            return $result;
+        }
         public function getProductbyid($id){
-           $query = "select qty38,qty39,qty40,qty41,image,image2,image3,name,price,mota from shoes where shoe_id=?";
+           $query = "select ten,don_gia,hinh1,hinh2,hinh3
+                    from giay
+                    where id_giay=?";
            $stmt = mysqli_prepare($this->con, $query);
            mysqli_stmt_bind_param($stmt, "i", $id);
            mysqli_stmt_execute($stmt);
            return $stmt;
         }
         public function getProductsbybrand($brand){
-            $query ="select * from shoes where brand='$brand'";
+            $query ="select *
+                    from giay as g join nha_cung_cap as ncc
+                    on g.ma_nha_cung_cap = ncc.ma_nha_cung_cap
+                    where ncc.ten_nha_cung_cap='$brand'";
             $result = mysqli_query($this->con, $query);
             return $result;
         }
         public function getProductsbyKey($key){
             $keyword = mysqli_real_escape_string($this->con, $key);
-            $query ="select * from shoes where (name like '% $keyword') or (brand='$keyword') or (name like '$keyword') or (shoe_id='".$keyword."')";
+            $query ="select *
+                    from giay as g join nha_cung_cap as ncc
+                    on g.ma_nha_cung_cap = ncc.ma_nha_cung_cap
+                    where (ten like '% $keyword') or (ncc.ten_nha_cung_cap='$keyword') or (ten like '$keyword') or (id_giay='$keyword')";
             $result = mysqli_query($this->con,$query);
             return $result;
         }

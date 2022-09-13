@@ -54,10 +54,13 @@ require '../giaodien/header.php';
 $con = ketnoi();
 $encrypt = new encrypt();
 $billid = $_GET['billid'];
-$sql = "SELECT s.name,s.brand,d.quantity,d.price
-FROM detailbill as d join shoes as s
-on d.shoe_id=s.shoe_id
-where d.bill_id=$billid";
+$sql = "select g.ten, ncc.ten_nha_cung_cap, ct.so_luong, ct.don_gia
+        from chi_tiet_don_hang as ct 
+        join giay as g
+        on ct.id_giay = g.id_giay
+        join nha_cung_cap as ncc
+        on g.ma_nha_cung_cap = ncc.ma_nha_cung_cap
+        where ma_don_hang=$billid";
 $query = mysqli_query($con, $sql);
 $i = 1;
 while ($row = mysqli_fetch_assoc($query)) {
@@ -65,10 +68,10 @@ while ($row = mysqli_fetch_assoc($query)) {
                                 <tr id="a1">     
 
                                     <td><?php echo $i++; ?></td>
-                                    <td><?php echo $row['name']; ?></td>
-                                    <td><?php echo $row['brand']; ?></td>
-                                    <td><?php echo $row['quantity']; ?></td>
-                                    <td><?php echo $encrypt->giaimathongke($row['price']); ?></td>
+                                    <td><?php echo $row['ten']; ?></td>
+                                    <td><?php echo $row['ten_nha_cung_cap']; ?></td>
+                                    <td><?php echo $row['so_luong']; ?></td>
+                                    <td><?php echo $row['don_gia']; ?></td>
                                     
 
                                 </tr>

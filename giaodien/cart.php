@@ -7,10 +7,15 @@
         header('location: login.php');
     }
     $user_id=$_SESSION['id'];
-    $user_products_query="select c.shoe_id,s.name,s.brand,c.size,s.price,c.quantity
-                        from cart as c join shoes as s 
-                        on c.shoe_id=s.shoe_id 
-                        where c.user_id=$user_id and c.status='Added to cart'";
+    $user_products_query="select ct.id_giay,g.ten, ncc.ten_nha_cung_cap,ct.size,ct.so_luong,g.don_gia
+                        from chi_tiet_gio_hang as ct 
+                        join giay as g
+                        on ct.id_giay = g.id_giay
+                        join nha_cung_cap as ncc
+                        on g.ma_nha_cung_cap = ncc.ma_nha_cung_cap
+                        join gio_hang as gio
+                        on ct.id_gio_hang = gio.id_gio_hang
+                        where gio.user_id =$user_id";
     $user_products_result=mysqli_query($con,$user_products_query) or die(mysqli_error($con));
     $no_of_user_products= mysqli_num_rows($user_products_result);
     $sum=0;
@@ -25,7 +30,7 @@
     <?php
     
         while($row=mysqli_fetch_array($user_products_result)){
-            $sum=$sum+$row['price']*$row['quantity']; 
+            $sum=$sum+$row['don_gia']*$row['so_luong']; 
        }
     }
 ?>

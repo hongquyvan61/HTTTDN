@@ -7,14 +7,20 @@
                                     header('location: login.php');
                                 }
                                 $user_id=$_SESSION['id'];
-                                $user_products_query="select s.name,c.quantity,c.size,c.add_date,c.status,s.price
-                                                        from cart as c join shoes as s 
-                                                        on c.shoe_id=s.shoe_id 
-                                                        where c.user_id=$user_id and status not like 'Added to cart'";
+                                $user_products_query="select don.ma_don_hang,g.ten, ct.size, ct.so_luong, ct.don_gia, don.ngay_gio_thanh_toan, don.tinh_trang
+                                                    from don_hang as don
+                                                    join gio_hang as gio
+                                                    on don.user_id = gio.user_id
+                                                    join chi_tiet_don_hang as ct
+                                                    on don.ma_don_hang = ct.ma_don_hang
+                                                    join giay as g
+                                                    on ct.id_giay = g.id_giay
+                                                    where (don.user_id=$user_id) and (tinh_trang='Paid' or tinh_trang='Shipped')";
                             $user_products_result=mysqli_query($con,$user_products_query) or die(mysqli_error($con));
                             if(mysqli_num_rows($user_products_result)!=0){
                                 ?>
                                 <tr>
+                                    <th>Bill_id</th>
                                     <th>Name</th>
                                     <th>Size</th>
                                     <th>Quantity</th>
@@ -28,13 +34,13 @@
 
                              ?>
                             <tr>
-                                
-                                <th><?php echo $row['name']?></th>
+                                <th><?php echo $row['ma_don_hang']?></th>
+                                <th><?php echo $row['ten']?></th>
                                 <th><?php echo $row['size']?></th>
-                                <th><?php echo $row['quantity']?></th>
-                                <th><?php echo $row['price']?></th>
-                                <th><?php echo $row['add_date']?></th>
-                                <th style="color:#92f200;"><?php echo $row['status']?></th>
+                                <th><?php echo $row['so_luong']?></th>
+                                <th><?php echo $row['don_gia']?></th>
+                                <th><?php echo $row['ngay_gio_thanh_toan']?></th>
+                                <th style="color:#92f200;"><?php echo $row['tinh_trang']?></th>
                             </tr>
                            <?php }
                             }
