@@ -25,8 +25,8 @@
                              ?>
                             <tr>
                                 <th><?php echo $counter ?></th>
-                                <th><?php echo $row['name']?></th>
-                                <th><?php echo $row['brand']?></th>
+                                <th><?php echo $row['ten']?></th>
+                                <th><?php echo $row['ten_nha_cung_cap']?></th>
                                 <th><?php echo $row['size']?></th>
                                 <th>
                                      <input type="button" value="-" class="btntru tru" onclick="var qtyid = <?php echo $counter;?>;
@@ -38,15 +38,15 @@
                                                val=val-1;
                                                $('#qty-' +qtyid).attr('value',val);
                                            }">
-                                     <input name="qty-<?php echo $counter;?>" id="qty-<?php echo $counter;?>" type="text" value="<?php echo $row['quantity']?>" min="1">
+                                     <input name="qty-<?php echo $counter;?>" id="qty-<?php echo $counter;?>" type="text" value="<?php echo $row['so_luong']?>" min="1">
 
                                      <input type="button" value="+" class="btncong cong" onclick="var qtyid = <?php echo $counter;?>;
                                            var val = document.getElementById('qty-' + qtyid).value;
                                            val=parseInt(val)+1;
                                                  $('#qty-' +qtyid).attr('value',val);" >
                                 </th>
-                                <th><?php echo $row['price']?></th>
-                                <th><a href='../xuly/cart_remove.php?id=<?php echo $row['shoe_id'] ?>'>Remove</a></th>
+                                <th><?php echo $row['don_gia']?></th>
+                                <th><a href='../xuly/cart_remove.php?id=<?php echo $row['id_giay'] ?>&size=<?php echo $row['size']?>'>Remove</a></th>
                             </tr>
                            <?php $counter=$counter+1;}?>
                             <tr>

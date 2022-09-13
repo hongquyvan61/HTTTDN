@@ -15,13 +15,13 @@
                             <div class="col-md-3 col-sm-6 box">
                                 <?php 
                                 if(!isset($_SESSION['email'])){?>
-                                    <a href="../giaodien/thongtinsp.php?shoeid=<?php echo $row["shoe_id"]?>">
-                                        <img src="../<?php echo $row["image"];?>" >
+                                    <a href="../giaodien/thongtinsp.php?shoeid=<?php echo $row["id_giay"]?>">
+                                        <img src="../<?php echo $row["hinh1"];?>" >
                                     </a>
                                     <center>
                                         <div class="caption">
-                                            <h3><?php echo $row["name"];?></h3>
-                                            <p>Price: <?php echo $row["price"];?> Brand: <?php echo $row["brand"]?></p>
+                                            <h3><?php echo $row["ten"];?></h3>
+                                            <p>Price: <?php echo $row["don_gia"];?> Brand: <?php echo $row["ten_nha_cung_cap"]?></p>
 
                                             <?php /*if(!isset($_SESSION['email'])){  ?>
                                             <p><a href="../giaodien/login.php" role="button" class="btn btn-primary btn-block">Buy Now</a></p>
@@ -42,13 +42,13 @@
                                     </center>
                                 <?php }
                                 else {?>
-                                    <a href="../giaodien/thongtinsp.php?shoeid=<?php echo $row["shoe_id"]?>">
-                                        <img src="../<?php echo $row["image"];?>" >
+                                    <a href="../giaodien/thongtinsp.php?shoeid=<?php echo $row["id_giay"]?>">
+                                        <img src="../<?php echo $row["hinh1"];?>" >
                                     </a>
                                     <center>
                                         <div class="caption">
-                                            <h3><?php echo $row["name"];?></h3>
-                                            <p>Price: <?php echo $row["price"];?> Brand: <?php echo $row["brand"]?></p>
+                                            <h3><?php echo $row["ten"];?></h3>
+                                            <p>Price: <?php echo $row["don_gia"];?> Brand: <?php echo $row["ten_nha_cung_cap"]?></p>
 
                                             <?php /*if(!isset($_SESSION['email'])){  ?>
                                             <p><a href="../giaodien/login.php" role="button" class="btn btn-primary btn-block">Buy Now</a></p>

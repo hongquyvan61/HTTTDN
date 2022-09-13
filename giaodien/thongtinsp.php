@@ -28,8 +28,8 @@
         <p>– Chất lượng: Riêng về mặt chất lượng sẽ không bao giờ phải lo lắng khi lựa chọn. Nổi tiếng với sự gia công tinh xảo từ đường kim mũi chỉ đem lại cho người dùng trải nghiệm rất tốt. Sản phẩm này được sử dụng với khá nhiều mục đích như chơi thể thao, dạo phố….</p>-->
 
 
-
     </div>
+    
     <div class="spkhac">
         <p id="c2">Sản phẩm liên quan</p><br><br>
         <table border="2" id="table">
@@ -59,7 +59,9 @@
 <script type="text/javascript">
             
             $(document).ready(function(){
-                var sizemacdinh = parseInt(document.getElementById('sizegiay').value,10);
+                var mySelect = document.getElementById('sizegiay');
+                mySelect.selectedIndex = 0; 
+                var sizemacdinh = parseInt(mySelect.value,10);
                 guiajax(sizemacdinh);
                 function guiajax(sizedachon){
                     var shoeid = '<?php echo $_GET['shoeid'];?>';
@@ -85,7 +87,7 @@
                     var userid = '<?php echo $user;?>';
                    
                     if(userid == ""){
-                        window.location="http://localhost/DOAN/giaodien/login.php";
+                        window.location="http://localhost/HTTTDN/giaodien/login.php";
                     }
                     else{
                         
@@ -107,11 +109,8 @@
                 }
                 function checksize(){
                     var sizedachon = parseInt(document.getElementById('sizegiay').value,10);
-                    const arr = [38,39,40,41];
-                    for(var i=0;i<arr.length;i++){
-                        if(sizedachon == arr[i]) guiajax(sizedachon);
+                    guiajax(sizedachon);
                         //document.getElementById('slconlai').innerHTML = "Số lượng còn lại: "
-                    }
                 }
             document.getElementById("a4").onclick = addcart;
             document.getElementById("sizegiay").onchange = checksize;

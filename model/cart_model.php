@@ -1,20 +1,22 @@
 <?php
     
             require '../connectdb/connect.php';
-            
             function getspdaco(){
                 $con = ketnoi();
                 $user = (int)$_POST['user'];
                 $shoe = (int)$_POST['shoe'];
                 $quantity = (int)$_POST['quantity'];
                 $size = (int)$_POST['size'];
-                $query2 = "select * from cart where user_id=$user and shoe_id=$shoe and size=$size and status='Added to cart'";
+                $query2 = "select *
+                            from gio_hang as gio join chi_tiet_gio_hang as ct
+                            on gio.id_gio_hang = ct.id_gio_hang
+                            where user_id=$user and ct.id_giay =$shoe and ct.size=$size";
                 $result = mysqli_query($con, $query2);
                 $num_row = mysqli_num_rows($result);
                 
                 if($num_row!= 0){
                     while($row = mysqli_fetch_assoc($result)){
-                        $qty = (int)$row["quantity"];
+                        $qty = (int)$row["so_luong"];
                         break;
                     }
                     return $qty;
@@ -22,17 +24,31 @@
                 
                 return 0;
             }
+            function getIDgiohangbyUserID($userid){
+                $con = ketnoi();
+                $query = "select id_gio_hang from gio_hang where user_id=$userid";
+                $result = mysqli_query($con, $query);
+                $num_row = mysqli_num_rows($result);
+                if($num_row!= 0){
+                    while($row = mysqli_fetch_assoc($result)){
+                       $idgiohang = $row["id_gio_hang"];
+                       return $idgiohang;
+                    }
+                }
+                return 0;
+            }
             function updatecart(){
                 $con = ketnoi();
                 $user = (int)$_POST['user'];
+                $idgiohang = getIDgiohangbyUserID($user);
                     $shoe = (int)$_POST['shoe'];
                     $quantity = (int)$_POST['quantity'];
                     $size = (int)$_POST['size'];
                     $newqty = getspdaco()+$quantity;
                     
-                $query1 = "update cart set quantity=? where user_id=? and shoe_id=? and size=?";
+                $query1 = "update chi_tiet_gio_hang set so_luong=? where id_gio_hang=? and id_giay=? and size=?";
                 $stmt = mysqli_prepare($con, $query1);
-                mysqli_stmt_bind_param($stmt,"iiii", $newqty,$user,$shoe,$size);
+                mysqli_stmt_bind_param($stmt,"iiii", $newqty,$idgiohang,$shoe,$size);
                 mysqli_stmt_execute($stmt);
             }
             if(getspdaco() != 0){
@@ -41,13 +57,14 @@
             else{
                 $con = ketnoi();
                 $user = (int)$_POST['user'];
+                $idgiohang = getIDgiohangbyUserID($user);
                     $shoe = (int)$_POST['shoe'];
                     $quantity = (int)$_POST['quantity'];
                     $size = (int)$_POST['size'];
                     date_default_timezone_set('Asia/Ho_Chi_Minh');
                     $date = date("Y-m-d H:i:s");
-                $query = "insert into cart(user_id,shoe_id,size,quantity,status,add_date)"
-                        . "values($user,$shoe,$size,$quantity,'Added to cart','$date')";
+                $query = "insert into chi_tiet_gio_hang(id_gio_hang,id_giay,size,so_luong,ngay_gio_them_vao_gio)"
+                        . "values($idgiohang,$shoe,$size,$quantity,'$date')";
                 mysqli_query($con, $query);
                 /*$stmt = mysqli_prepare($con, $query);
                 mysqli_stmt_bind_param($stmt, "iiiis", $user,$shoe,$quantity,$date);

@@ -4,17 +4,18 @@
         public function __construct() {
             $this->con = ketnoi();
         }
-        public function insertdetailbill(){
+        public function insertdetailbill($userid){
             $bill = new bill_model();
-            $encrypt = new encrypt();
-            $result = $bill->getinfo();
+            //$encrypt = new encrypt();
+            $result = $bill->getinfo($userid);
             while ($row = mysqli_fetch_assoc($result)) {
-                $bill_id = $row['bill_id'];
-                $shoe_id = $row['shoe_id'];
-                $quantity = $row['quantity'];
-                $price = $encrypt->mahoathongke($row['price']);
-                $query ="insert into detailbill(bill_id,shoe_id,quantity,price)"
-                        . "values($bill_id,$shoe_id,$quantity,'$price')";
+                $bill_id = $row['ma_don_hang'];
+                $shoe_id = $row['id_giay'];
+                $sizegiay = $row['size'];
+                $quantity = $row['so_luong'];
+                $price = $row['don_gia'];
+                $query ="insert into chi_tiet_don_hang(ma_don_hang,id_giay,size,so_luong,don_gia)"
+                        . "values($bill_id,$shoe_id,$sizegiay,$quantity,$price)";
                 mysqli_query($this->con, $query);
                 
             }

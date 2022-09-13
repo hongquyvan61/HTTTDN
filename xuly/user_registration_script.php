@@ -1,6 +1,7 @@
 <?php
     require '../connectdb/connect.php';
     require '../model/encrypt.php';
+    require '../model/user_model.php';
     session_start();
     /*$name= mysqli_real_escape_string($con,$_POST['name']);*/
     $con = ketnoi();
@@ -21,6 +22,7 @@
     }
     $contact=$_POST['contact'];
     $encryptmodel = new encrypt();
+    $usermodel = new user_model();
     $truoc = explode("@", $email);
     $mahoatruoc = $encryptmodel->apphin_mahoa($truoc[0]);
     $encrypttruoc = $mahoatruoc."@".$truoc[1];
@@ -51,13 +53,15 @@
 //        var_dump($tam);
 //        var_dump($encryptmodel->giaimathongke($tam));
         $encryptsdt = $encryptmodel->apphin_mahoa($contact);
-        $user_registration_query="insert into user(pass,email,sdt,role) values ('$encryptpass','$encryptemail','$encryptsdt','guest')";
+        $user_registration_query="insert into user(email,pass,sdt,role) values ('$encryptemail','$encryptpass','$encryptsdt','guest')";
 //        //die($user_registration_query);
-        $abc = 1;
 
         $user_registration_result=mysqli_query($con,$user_registration_query) or die(mysqli_error($con));
-        
-        
+        $latestuser = $usermodel->getLatestUser();
+        $row = mysqli_fetch_assoc($latestuser);
+        $latestuserid = intval($row["latestuser"]);
+        $create_cart = "insert into gio_hang(user_id) values($latestuserid)";
+        $create_cart_result = mysqli_query($con,$create_cart) or die(mysqli_error($con));
         //$_SESSION['email']=$email;
         //The mysqli_insert_id() function returns the id (generated with AUTO_INCREMENT) used in the last query.
         //$_SESSION['id']=mysqli_insert_id($con); 
