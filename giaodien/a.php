@@ -18,6 +18,7 @@
             }
         }
         else{
+            echo "bu";
               require_once '../giaodien/admin.php';
         }
         ?>
