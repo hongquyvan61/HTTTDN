@@ -19,6 +19,7 @@
         }
         else{
             echo "bu";
+            echo"di truong";
               require_once '../giaodien/admin.php';
         }
         ?>
