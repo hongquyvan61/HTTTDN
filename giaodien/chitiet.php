@@ -35,13 +35,10 @@
                        
                         <th>id</th>
                         <th>Tên mặt hàng</th>
-                        <th>Giá</th>
                         <th>Size</th>
                         <th>Số lượng</th>
-                        <th>Ngày giờ thanh toán</th>
-                        <th>Tên người nhận</th>
-                        <th>SĐT người nhận</th>
-                        <th>Địa chỉ giao hàng</th>
+                        <th>Giá</th>
+                        
                     </tr>
                     <tbody>
 
@@ -51,30 +48,28 @@
                           $encryptmodel = new encrypt();
                         $con = ketnoi();
                          $user_id=$_GET['user_id'];
-                        $sql = "SELECT shoes.shoe_id,cart.size,cart.quantity,cart.payment_time,cart.ten_nguoinhan,cart.sdt_nguoinhan,cart.diachi_giaohang,shoes.name,shoes.price
-                                FROM cart,shoes 
-                                WHERE cart.shoe_id=shoes.shoe_id AND user_id=$user_id and status='Paid'";
+                         $don=$_GET['don'];
+                        $sql = "select ct.id_giay,g.ten, ct.size, ct.so_luong, ct.don_gia, don.ngay_gio_thanh_toan, don.ten_nguoinhan, don.sdt_nguoinhan, don.diachi_giaohang
+                                from don_hang as don 
+                                join chi_tiet_don_hang as ct
+                                on don.ma_don_hang = ct.ma_don_hang
+                                join giay as g
+                                on ct.id_giay = g.id_giay
+                                where don.ma_don_hang=$don and don.user_id=$user_id";
                         $query = mysqli_query($con, $sql);
 
                         $i = 1;
                         while ($row = mysqli_fetch_assoc($query)) {
-                              $giaima_name = $encryptmodel->apphin_giaima($row['ten_nguoinhan']);
-                                $giaima_sdt=$encryptmodel->apphin_giaima($row['sdt_nguoinhan']);
-                                 $giaima_diachi=$encryptmodel->diachi_giaima($row['diachi_giaohang']);
                             ?>
                             <tr id="a1">     
                                
 
                                 <td><?php echo $i++; ?></td>
-                                <td><?php echo $row['shoe_id']; ?></td>
-                                <td><?php echo $row['name']; ?></td>
-                                <td><?php echo $row['price']; ?></td>
+                                <td><?php echo $row['id_giay']; ?></td>
+                                <td><?php echo $row['ten']; ?></td>
                                 <td><?php echo $row['size']; ?></td>
-                                 <td><?php echo $row['quantity']; ?></td>
-                                 <td><?php echo $row['payment_time']; ?></td>
-                                 <td><?php echo $giaima_name; ?></td>
-                                 <td><?php echo $giaima_sdt; ?></td>
-                                 <td><?php echo $giaima_diachi; ?></td>
+                                 <td><?php echo $row['so_luong']; ?></td>
+                                 <td><?php echo $row['don_gia']; ?></td>
                             </tr>
                         <?php } ?>
 

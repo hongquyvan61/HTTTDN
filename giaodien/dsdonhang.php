@@ -19,6 +19,7 @@ $con = ketnoi();
         <script type="text/javascript" src="../bootstrap/js/jquery-3.2.1.min.js"></script>
         <!-- Latest compiled and minified javascript -->
         <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <!-- External CSS -->
         <link rel="stylesheet" href="../css/style.css" type="text/css">
         <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
@@ -33,41 +34,50 @@ require '../giaodien/header.php';
             <div class="container">
 
                 <div class="aa">
-                    <h2 class="a0">List of bill</h2>
+                    <h2 class="a0">Danh sách đơn hàng</h2>
                     <!--<div class="a00">
                         <p>Mã hóa đơn:</p>
                         <p>Email khách hàng:</p> 
                         <p>Số điện thoai:</p>
                     </div>-->
-                    <table class="aa1"  > 
-                        <tr class="aa2">
-                            <th>#</th>
-                            <th>Bill ID</th>
-                            <th>Payment Date</th>
-                            <th>Total</th> 
-                            <th>Detail</th>
-                        </tr>
-                        <tbody>
-
+                    
 <?php
 $con = ketnoi();
 //$encrypt = new encrypt();
 $user_id = $_SESSION['id'];
-$sql = "select * from don_hang where user_id=$user_id and tinh_trang='Paid'";
+$sql = "select * from don_hang where user_id=$user_id and tinh_trang='Processing'";
 $query = mysqli_query($con, $sql);
-$i = 1;
-while ($row = mysqli_fetch_assoc($query)) {
+if(mysqli_num_rows($query) != 0){
+
     ?>
+                    <table class="aa1"  > 
+                        <tr class="aa2">
+                            <th>#</th>
+                            <th>Order ID</th>
+                            <th>Total</th> 
+                            <th>Detail</th>
+                            <th>Payment</th>
+                            <th>Cancel</th>
+                        </tr>
+                        <tbody>
+                                <?php $i = 1;
+    while ($row = mysqli_fetch_assoc($query)) {?>
                                 <tr id="a1">     
 
                                     <td><?php echo $i++; ?></td>
                                     <td><?php echo $row['ma_don_hang']; ?></td>
-                                    <td><?php echo $row['ngay_gio_thanh_toan']; ?></td>
                                     <td><?php echo $row['tong_tien']; ?></td>
-                                    <td><a href="../giaodien/chitiethd.php?billid=<?php echo $row['ma_don_hang']; ?>">Detail</a></td>
-
+                                    <td><a href="../giaodien/chitietdonhang.php?orderid=<?php echo $row['ma_don_hang']; ?>">Detail</a></td>
+                                    <td><a class="btn btn-primary" href="../giaodien/success.php?orderid=<?php echo $row['ma_don_hang'];?>">Confirm Order</a></td>
+                                    <td><a class="btn btn-danger" href="../xuly/xulyhuydonhang.php?orderid=<?php echo $row['ma_don_hang'];?>">Cancel Order</a></td>
                                 </tr>
-<?php } ?>
+<?php } 
+
+    }
+else{
+    echo "<h3>No order at the moment!</h3>";
+}
+?>
 
                         </tbody>  
                     </table>
@@ -85,5 +95,4 @@ while ($row = mysqli_fetch_assoc($query)) {
            </footer>
         </div>
     </body>
-
 </html>

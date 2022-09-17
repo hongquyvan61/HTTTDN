@@ -56,7 +56,8 @@
                                 <th>Rs <?php echo $sum;
                                         $_SESSION['total'] = $sum;?></th>
                                 <th><input id="cfchange" type="submit" name="submit" class="btn btn-primary change" value="Confirm Change"></th>
-                                <th><a class ="btn btn-primary" href="../giaodien/success.php?id=<?php echo $user_id?>">Confirm Order</a></th>
+                                <!--<th><a class ="btn btn-primary" href="../giaodien/success.php?id=<?php //echo $user_id?>">Confirm Order</a></th>-->
+                                <th><input type="button" id="createorder" class="btn btn-primary" value="Create Order"></th>
                             </tr>
                         </tbody>
                     </table>

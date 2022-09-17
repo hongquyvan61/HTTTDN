@@ -75,6 +75,16 @@
         function thongbao(){
             alert("Thay đổi thành công!");
         }
+        function xacnhantaodonhang(){
+            var r= confirm("Bạn có muốn tạo đơn hàng?");
+                if (r==true)
+                  {
+                      location="../xuly/xulytaodonhang.php";
+                    <?php //header('location:../xuly/xulytaodonhang/php');?>
+                    //alert("Đơn hàng của bạn đã được tạo!");
+                  }
+        }
         document.getElementById("cfchange").onclick = thongbao;
+        document.getElementById("createorder").onclick = xacnhantaodonhang;
         </script>
 </html>

@@ -10,6 +10,7 @@
     }else{
         $con = ketnoi();
         $user_id = $_SESSION['id'];
+        $orderid = $_SESSION['orderid'];
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $_SESSION['paymenttime'] = date("Y-m-d H:i:s");
         $payment_time = $_SESSION['paymenttime'];
@@ -24,14 +25,11 @@
    // $mahoa_sdt=$encryptmodel->apphin_mahoa($rccontact);
     //$mahoa_diachi=$encryptmodel->diachi_mahoa($tam2);
         
-        $total = $_SESSION['total'];
         //$total=$encryptmodel->mahoathongke($total_tam);
        //  $tam = $encryptmodel->mahoathongke(1800);
       
         $bill = new bill_model();
-        $bill->insertbill($user_id, $payment_time, $total,$rcname,$rccontact,$rcadd);
-        $detailbill = new detailbill_model();
-        $detailbill->insertdetailbill($user_id);
+        $bill->payorder($orderid, $payment_time,$rcname,$rccontact,$rcadd);
         if(mysqli_affected_rows($con) != 0){
             
     
@@ -42,8 +40,6 @@
                      </script> 
                        
     <?php 
-            $model = new cart_model1();
-            $model->emptycart($user_id);
         }
         else{
           

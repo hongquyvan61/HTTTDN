@@ -16,9 +16,20 @@
                 $price = $row['don_gia'];
                 $query ="insert into chi_tiet_don_hang(ma_don_hang,id_giay,size,so_luong,don_gia)"
                         . "values($bill_id,$shoe_id,$sizegiay,$quantity,$price)";
-                mysqli_query($this->con, $query);
-                
+                $result = mysqli_query($this->con, $query);
+                if(mysqli_affected_rows($this->con) != 0){
+                    return 1;
+                }
+                return 0;
             }
+        }
+        public function deletedetailbyID($orderid){
+            $query2 = "delete from chi_tiet_don_hang where ma_don_hang=$orderid";
+            $result2 = mysqli_query($this->con, $query2);
+            if(mysqli_affected_rows($this->con) != 0){
+                return 1;
+            }
+            return 0;
         }
      }
 ?>

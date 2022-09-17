@@ -26,14 +26,18 @@
         <div class="main">
 
             <div class="aa">
-                <h2 class="a0">Thông tin giao hàng</h2>
+                <h2 class="a0">Thông tin đơn hàng</h2>
               
                 <table class="aa1"  > 
                     <tr class="aa2">
                         <th>#</th>
+                        <th>Mã đơn hàng</th>
                         <th>user_id</th>
-                        <th>email</th>
                         <th>SDT</th>
+                        <th>Ngày giờ thanh toán</th>
+                        <th>Tên người nhận</th>
+                        <th>SĐT người nhận</th>
+                        <th>Địa chỉ giao hàng</th>
                         <th>Chi tiết</th>
                         <th>Giao</th>
 
@@ -46,7 +50,11 @@
                         include '../model/encrypt.php';
                         $con = ketnoi();
                         $model = new encrypt();
-                        $sql = "select u.user_id,u.email,u.sdt,c.status from user as u, cart as c where u.user_id=c.user_id and c.status='Paid' group by c.user_id";
+                        $sql = "select don.ma_don_hang, u.user_id, u.email, u.sdt, don.ngay_gio_thanh_toan, don.ten_nguoinhan
+                            ,don.sdt_nguoinhan, don.diachi_giaohang
+                                from don_hang as don join user as u
+                                on don.user_id = u.user_id
+                                where tinh_trang='Paid'";
                         $query = mysqli_query($con, $sql);
 
                         $i = 1;
@@ -56,18 +64,23 @@
                               
                                 
                                 <td><?php echo $i++; ?></td>
+                                <td><?php echo $row['ma_don_hang'];?></td>
                                 <td><?php echo $row['user_id']; ?></td>
-                                <td>
+<!--                                <td>
                                         <?php 
-                                            $tiento = explode("@", $row['email']);
-                                            $decryptemail = $model->apphin_giaima($tiento[0])."@".$tiento[1];
-                                            echo $decryptemail; 
+                                            //$tiento = explode("@", $row['email']);
+                                            //$decryptemail = $model->apphin_giaima($tiento[0])."@".$tiento[1];
+                                            //echo $decryptemail; 
                                         ?>
-                                </td>
+                                </td>-->
                                 <td><?php $decryptsdt = $model->apphin_giaima($row['sdt']);
                                             echo $decryptsdt; ?></td>
-                                <td><a href="../giaodien/chitiet.php?user_id=<?php echo $row['user_id']; ?>"><button class="x1"> Chi tiết</button></a></td>
-                                <td><a onclick="return giao()" href="../giaodien/giaohang.php?userid=<?php echo $row['user_id']; ?>"><input type="button" name="giao" id="giao" class="x1" value="Giao hàng"></button></a></td>
+                                <td><?php echo $row['ngay_gio_thanh_toan']?></td>
+                                <td><?php echo $row['ten_nguoinhan']?></td>
+                                <td><?php echo $row['sdt_nguoinhan']?></td>
+                                <td><?php echo $row['diachi_giaohang']?></td>
+                                <td><a href="../giaodien/chitiet.php?user_id=<?php echo $row['user_id']; ?>&don=<?php echo $row['ma_don_hang']; ?>"><button class="x1"> Chi tiết</button></a></td>
+                                <td><a onclick="return giao()" href="../giaodien/giaohang.php?userid=<?php echo $row['user_id']; ?>&don=<?php echo $row['ma_don_hang']; ?>"><input type="button" name="giao" id="giao" class="x1" value="Giao hàng"></a></td>
 
                             </tr>
                         <?php } ?>

@@ -44,20 +44,20 @@
                         $encryptmodel = new encrypt();
                         $con = ketnoi();
                         //$sql = "SELECT shoes.shoe_id,SUM(cart.quantity),shoes.name,shoes.price FROM cart,shoes WHERE cart.shoe_id=shoes.shoe_id AND (cart.status='Paid' or cart.status='Shipped') GROUP BY shoe_id order by sum(cart.quantity) desc";
-                        $sql = "select * from bill";
+                        $sql = "select * from don_hang";
                         $query = mysqli_query($con, $sql);
                         $test = "";
                         $i = 1;
                         while ($row = mysqli_fetch_assoc($query)) {
-                              $giaima_total = $encryptmodel->giaimathongke($row['total']);
+                              $giaima_total = $row['tong_tien'];
                             ?>
                             <tr id="a1">     
 
                                 <td><?php echo $i++; ?></td>
-                                <td><?php echo $row['user']; ?></td>
-                                <td><?php echo $row['bill_id']; ?></td>
+                                <td><?php echo $row['user_id']; ?></td>
+                                <td><?php echo $row['ma_don_hang']; ?></td>
                                 <td><?php //echo $row['SUM(cart.quantity']; 
-                                        echo $row['date'];?>
+                                        echo $row['ngay_gio_thanh_toan'];?>
                                 </td>
                                  <td><?php echo $giaima_total;?></td>
                              
@@ -71,12 +71,9 @@
                 <?php require '../model/bill_model.php';
                     $bill = new bill_model();
                     $result = $bill->gettotalprice();
-                    $total = 0;
                     while ($row = mysqli_fetch_assoc($result)) {
-                        $totaldecrypt = (int)$encryptmodel->giaimathongke($row['total']);
-                        $total+=$totaldecrypt;
+                       echo "Tổng doanh thu:".$row['tong']." VNĐ";
                     }
-                    echo "Tổng doanh thu:$total VNĐ";
                 ?>
             </h4>
 
