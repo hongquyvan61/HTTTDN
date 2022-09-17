@@ -33,27 +33,34 @@ require '../giaodien/header.php';
             <div class="container">
 
                 <div class="aa">
-                    <h2 class="a0">List of bill</h2>
-                    <!--<div class="a00">
+                    <!--<h2 class="a0">Phiếu thanh toán</h2>
+                    <div class="a00">
                         <p>Mã hóa đơn:</p>
                         <p>Email khách hàng:</p> 
                         <p>Số điện thoai:</p>
                     </div>-->
+                    <h2 class="a0">Chi tiết đơn hàng</h2>
                     <table class="aa1"  > 
                         <tr class="aa2">
-                            <th>#</th>
-                            <th>Bill ID</th>
-                            <th>Payment Date</th>
-                            <th>Total</th> 
-                            <th>Detail</th>
+                            <th>STT</th>
+                            <th>Name</th>
+                            <th>Brand</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
                         </tr>
                         <tbody>
 
 <?php
 $con = ketnoi();
-//$encrypt = new encrypt();
-$user_id = $_SESSION['id'];
-$sql = "select * from don_hang where user_id=$user_id and tinh_trang='Paid'";
+$encrypt = new encrypt();
+$billid = $_GET['orderid'];
+$sql = "select g.ten, ncc.ten_nha_cung_cap, ct.so_luong, ct.don_gia
+        from chi_tiet_don_hang as ct 
+        join giay as g
+        on ct.id_giay = g.id_giay
+        join nha_cung_cap as ncc
+        on g.ma_nha_cung_cap = ncc.ma_nha_cung_cap
+        where ma_don_hang=$billid";
 $query = mysqli_query($con, $sql);
 $i = 1;
 while ($row = mysqli_fetch_assoc($query)) {
@@ -61,10 +68,11 @@ while ($row = mysqli_fetch_assoc($query)) {
                                 <tr id="a1">     
 
                                     <td><?php echo $i++; ?></td>
-                                    <td><?php echo $row['ma_don_hang']; ?></td>
-                                    <td><?php echo $row['ngay_gio_thanh_toan']; ?></td>
-                                    <td><?php echo $row['tong_tien']; ?></td>
-                                    <td><a href="../giaodien/chitiethd.php?billid=<?php echo $row['ma_don_hang']; ?>">Detail</a></td>
+                                    <td><?php echo $row['ten']; ?></td>
+                                    <td><?php echo $row['ten_nha_cung_cap']; ?></td>
+                                    <td><?php echo $row['so_luong']; ?></td>
+                                    <td><?php echo $row['don_gia']; ?></td>
+                                    
 
                                 </tr>
 <?php } ?>
@@ -87,3 +95,5 @@ while ($row = mysqli_fetch_assoc($query)) {
     </body>
 
 </html>
+
+

@@ -19,7 +19,9 @@
     <body>
         <div>
             <?php
+                session_start();
                 require '../giaodien/header.php';
+                $_SESSION['orderid'] = $_GET['orderid'];
             ?>
             <br>
             <div class="container">

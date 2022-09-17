@@ -35,7 +35,7 @@
                                 <tr>  
                                     <td ><a href="../giaodien/a.php?layout=them" id="def1">Thêm sản phẩm</a></td>
                                     <td><a href="../giaodien/qlkh.php">Quản lí khách hàng</a></td>
-                                    <td><a href="../giaodien/ttgh.php">Thông tin giao hàng</a> </td>
+                                    <td><a href="../giaodien/ttgh.php">Thông tin đơn hàng</a> </td>
                                     <td><a href="../giaodien/thongke.php">Thống kê </a></td>
                                     
                                 </tr>

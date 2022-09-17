@@ -41,6 +41,7 @@
                                    </div>
                                    
                            </li>
+                           <li><a href="../giaodien/dsdonhang.php">Orders</a></li>
                            <li><a href="../giaodien/hoadon.php">Bill</a></li>
                            <li><a href="../giaodien/lichsu.php"><span class="glyphicon glyphicon-time"></span> History</a></li>
                            <li><a href="../giaodien/cart.php"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>

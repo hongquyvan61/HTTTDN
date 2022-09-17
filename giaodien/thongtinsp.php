@@ -59,6 +59,7 @@
 <script type="text/javascript">
             
             $(document).ready(function(){
+                
                 var mySelect = document.getElementById('sizegiay');
                 mySelect.selectedIndex = 0; 
                 var sizemacdinh = parseInt(mySelect.value,10);

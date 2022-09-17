@@ -4,6 +4,11 @@
         public function __construct() {
             $this->con = ketnoi();
         }
+        public function giamslspbyUserID($userid){
+            $bill = new bill_model();
+            $result = $bill->getinfo($userid);
+            
+        }
         public function getAllProducts(){
             $query = "select * from giay as g join nha_cung_cap as ncc on g.ma_nha_cung_cap = ncc.ma_nha_cung_cap";
             $result = mysqli_query($this->con, $query);
