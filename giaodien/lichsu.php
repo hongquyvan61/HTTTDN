@@ -43,6 +43,45 @@
            </footer>
         </div>
     </body>
-   
+   <script type="text/javascript">
+            
+            $(document).ready(function(){
+                function statusmacdinh(){
+                    var macdinh = document.getElementById('slboxsort').value;
+                    guiajax(macdinh);
+                }
+                function guiajax(status){
+                    var user = <?php echo $_SESSION['id'];?>;
+                    $.ajax({
+                            method: 'post',
+                            url: '../model/ajax_loctinhtrang.php',
+                            datatype: "JSON",
+                            data: {userid: user,tinhtrang: status},
+                            success: function(response){
+                                var arrayObj = JSON.parse(response);
+                                $("#tablelichsu").find('tbody').empty();
+                                arrayObj.forEach(function (item,index){
+                                    var row = $('<tr>');
+                                    row.append('<td>' + item.billid+ '</td>');
+                                    row.append('<td>' + item.name + '</td>');
+                                    row.append('<td>' + item.size + '</td>');
+                                    row.append('<td>' + item.soluong + '</td>');
+                                    row.append('<td>' + item.ngaythanhtoan + '</td>');
+                                    row.append('<td style="color:#92f200; font-weight: bold;">' + item.tinhtrang + '</td>');
+                                    row.append('</tr>');
+                                    $("#tablelichsu").find('tbody').append(row);
+                                });
+                            }
+                    });
+                }
+                function checkselect(){
+                    var statusdachon = document.getElementById('slboxsort').value;
+                    guiajax(statusdachon);
+                }
+                statusmacdinh();
+                document.getElementById("slboxsort").onchange = checkselect;
+            });
+            
+   </script>
 </html>
 
