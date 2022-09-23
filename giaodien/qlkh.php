@@ -28,7 +28,7 @@
             
             <div class="aa">
                 <h3 class="a0">Quản lý tài khoản khách hàng</h3>
-                <!--<p class="aa0"><a href="../giaodien/themuser.php">Thêm tài khoản</a></p>-->
+                <p class="aa0"><a href="../giaodien/themuser.php">Thêm tài khoản</a></p>
                 <div class="header_search">
                     <form action="qlkh.php" method="post" id="header-search-form">
                         <input type="text" name="keyword" class="form-control searchbar" id="searchbox" placeholder="Search..">
@@ -45,7 +45,7 @@
                        
                         <th>Email</th>  
                         <th>SDT</th>
-                         <!--<th>Sửa</th>-->
+                         <th>Sửa</th>
                         <th>Xóa</th>
                         </tr>
                     </thead>
@@ -84,7 +84,7 @@
                                                 echo $decryptsdt; 
                                                 ?>
                                         </td>  
-                                        <!--<td><a href="../giaodien/sua_user.php?user_id=<?php //echo $row['user_id']; ?>">Sửa</a></td>-->
+                                        <td><a href="../giaodien/sua_user.php?user_id=<?php echo $row['user_id']; ?>">Sửa</a></td>
                                         <td><a onclick="return Del('<?php echo $decryptemail; ?>')" href="../giaodien/xoa_user.php?user_id=<?php echo $row['user_id']; ?>">Xóa</a></td>
                                     </tr>
                                 <?php 
@@ -115,7 +115,7 @@
                                                 $decryptsdt = $model->apphin_giaima($row['sdt']);
                                                 echo $decryptsdt;
                                         ?></td>  
-                                        <!--<td><a href="../giaodien/sua_user.php?user_id=<?php //echo $row['user_id']; ?>">Sửa</a></td>-->
+                                        <td><a href="../giaodien/sua_user.php?user_id=<?php echo $row['user_id']; ?>">Sửa</a></td>
                                         <td><a onclick="return Del('<?php echo $decryptemail; ?>')" href="../giaodien/xoa_user.php?user_id=<?php echo $row['user_id']; ?>">Xóa</a></td>
                                     </tr>
                             <?php }
@@ -144,7 +144,7 @@
                                             echo $decryptsdt; 
                                             ?>
                                     </td>  
-                                    <!--<td><a href="../giaodien/sua_user.php?user_id=<?php //echo $row['user_id']; ?>">Sửa</a></td>-->
+                                    <td><a href="../giaodien/sua_user.php?user_id=<?php echo $row['user_id']; ?>">Sửa</a></td>
                                     <td><a onclick="return Del('<?php echo $decryptemail; ?>')" href="../giaodien/xoa_user.php?user_id=<?php echo $row['user_id']; ?>">Xóa</a></td>
                                 </tr>
                         <?php 
