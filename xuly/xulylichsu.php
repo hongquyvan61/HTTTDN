@@ -33,8 +33,8 @@
                                     <th>Quantity</th>
                                     <th>Date of payment</th>
                                     <th>Status</th>
-
-                           </tr>
+                                    <th>Print bill</th>
+                           </tr>    
                         </thead>
                         <tbody>
                            <?php
@@ -54,19 +54,22 @@
                             $user_products_result=mysqli_query($con,$user_products_query) or die(mysqli_error($con));
                             if(mysqli_num_rows($user_products_result)!=0){
                                 ?>
-                                
+                
                            <?php 
                                 while($row=mysqli_fetch_assoc($user_products_result)){
 
                              ?>
+                               
                             <tr>
-                                <td><?php echo $row['ma_don_hang']?></td>
-                                <td><?php echo $row['ten']?></td>
-                                <td><?php echo $row['size']?></td
-                                <td><?php echo $row['so_luong']?></td>
-                                <td><?php echo $row['don_gia']?></td>
-                                <td><?php echo $row['ngay_gio_thanh_toan']?></td>
-                                <td style="color:#92f200; font-weight: bold;"><?php echo $row['tinh_trang']?></td>
+                                <th><?php echo $row['ma_don_hang']?></th>
+                                <th><?php echo $row['ten']?></th>
+                                <th><?php echo $row['size']?></th>
+                                <th><?php echo $row['so_luong']?></th>
+                                <th><?php echo $row['don_gia']?></th>
+                                <th><?php echo $row['ngay_gio_thanh_toan']?></th>
+                                <th style="color:#92f200;"><?php echo $row['tinh_trang']?></th>
+                                <th><a href="../giaodien/in_pdf.php?ma_don_hang=<?php echo $row['ma_don_hang']; ?>">Print</a></th
+
                             </tr>
                            <?php }
                             }
