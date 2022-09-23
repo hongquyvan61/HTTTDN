@@ -42,7 +42,6 @@
                         <tr>
                         <th>STT</th>
                         <th>user_id</th>
-                       
                         <th>Email</th>  
                         <th>SDT</th>
                          <th>Sửa</th>
