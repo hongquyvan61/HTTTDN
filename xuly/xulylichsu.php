@@ -1,12 +1,46 @@
-<table class="table table-bordered table-striped">
+<?php 
+    require '../connectdb/connect.php';
+    $con = ketnoi();
+    $user_id=$_SESSION['id'];
+    $statusquery = "select tinh_trang from don_hang where user_id=$user_id and tinh_trang='Paid' or tinh_trang='Shipped' GROUP BY tinh_trang";
+    $statusres = mysqli_query($con,$statusquery);
+    ?>
+    <select id="slboxsort">
+        <option selected="true">All</option>
+<?php
+    if(mysqli_num_rows($statusres) != 0){
+        
+?>
+        
+            <?php while($statusrow = mysqli_fetch_assoc($statusres))
+            {
+                ?>
+                <option><?php echo $statusrow['tinh_trang'];?></option>
+            <?php 
+            }
+       ?>
+<?php 
+     }
+?>
+    </select>
+<table id="tablelichsu" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                    <th>Bill_id</th>
+                                    <th>Name</th>
+                                    <th>Size</th>
+                                    <th>Quantity</th>
+                                    <th>Date of payment</th>
+                                    <th>Status</th>
+                                    <th>Print bill</th>
+                           </tr>    
+                        </thead>
                         <tbody>
-                           <?php 
-                             require '../connectdb/connect.php';
-                                $con = ketnoi();
+                           <?php
                                 if(!isset($_SESSION['email'])){
                                     header('location: login.php');
                                 }
-                                $user_id=$_SESSION['id'];
+                                
                                 $user_products_query="select don.ma_don_hang,g.ten, ct.size, ct.so_luong, ct.don_gia, don.ngay_gio_thanh_toan, don.tinh_trang
                                                     from don_hang as don
                                                     join gio_hang as gio
@@ -19,17 +53,7 @@
                             $user_products_result=mysqli_query($con,$user_products_query) or die(mysqli_error($con));
                             if(mysqli_num_rows($user_products_result)!=0){
                                 ?>
-                                <tr>
-                                    <th>Bill_id</th>
-                                    <th>Name</th>
-                                    <th>Size</th>
-                                    <th>Quantity</th>
-                                    <th>Price</th>
-                                    <th>Add Cart Date</th>
-                                    <th>Status</th>
-                                    <th>Print bill</th>
-
-                                </tr>
+                
                            <?php 
                                 while($row=mysqli_fetch_assoc($user_products_result)){
 
@@ -44,6 +68,7 @@
                                 <th><?php echo $row['ngay_gio_thanh_toan']?></th>
                                 <th style="color:#92f200;"><?php echo $row['tinh_trang']?></th>
                                 <th><a href="../giaodien/in_pdf.php?ma_don_hang=<?php echo $row['ma_don_hang']; ?>">Print</a></th
+
                             </tr>
                            <?php }
                             }

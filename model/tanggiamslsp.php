@@ -39,7 +39,7 @@ class tanggiamsl{
             $slkhobanmoigiay = $slkhobancugiay - $arrsoluong[$i];
             $sql4 = "update giay set so_luong_ton_kho_ban=$slkhobanmoigiay where id_giay=$arridgiay[$i]";
             $result4 = mysqli_query($this->con, $sql4);
-            $i += 1;
+            $i+=1;
         }
         if(mysqli_affected_rows($this->con) != 0){
             return 1;
@@ -90,5 +90,5 @@ class tanggiamsl{
     }
 }
     
- 
+ abcxyzzzzz
 ?>
