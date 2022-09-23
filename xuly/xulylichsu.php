@@ -23,6 +23,7 @@
      }
 ?>
     </select>
+
 <table id="tablelichsu" class="table table-bordered table-striped">
                         <thead>
                             <tr>
