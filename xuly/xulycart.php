@@ -3,7 +3,7 @@
                         }
                         else {?>
                 <form action="../xuly/cart_change.php" method="post">
-                    <table class="table table-bordered table-striped">
+                    <table id="tablecart" class="table table-bordered table-striped">
                         <tbody>
                             <tr>
                                 <th>Item Number</th>
