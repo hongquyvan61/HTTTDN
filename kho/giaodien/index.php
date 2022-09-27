@@ -93,7 +93,6 @@ and open the template in the editor.
                             data: {nhanhang: brand},
                             success: function(response){
                                 var arrayObj = JSON.parse(response);
-                                console.log(arrayObj);
                                 $("#tablehienthi").find('tbody').empty();
                                 arrayObj.forEach(function (item,index){
                                     var row = $('<tr>');
