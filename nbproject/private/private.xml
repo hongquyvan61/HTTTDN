@@ -12,19 +12,18 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-
+            <file>file:/C:/xampp/htdocs/HTTTDN/kho/model/ajaxnhapkho.php</file>
             <file>file:/C:/xampp/htdocs/HTTTDN/model/detailbill_model.php</file>
             <file>file:/C:/xampp/htdocs/HTTTDN/giaodien/dsdonhang.php</file>
             <file>file:/C:/xampp/htdocs/HTTTDN/giaodien/chitietdonhang.php</file>
-            <file>file:/C:/xampp/htdocs/HTTTDN/xuly/xulytaodonhang.php</file>
-            <file>file:/C:/xampp/htdocs/HTTTDN/xuly/cart_change.php</file>
-            <file>file:/C:/xampp/htdocs/HTTTDN/xuly/xulycart.php</file>
-            <file>file:/C:/xampp/htdocs/HTTTDN/xuly/xulysuccess.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/kho/model/ajaxloctrangchu.php</file>
             <file>file:/C:/xampp/htdocs/HTTTDN/giaodien/hoadon.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/giaodien/lichsu.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/kho/xuly/xulinhapkho.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/kho/giaodien/index.php</file>
             <file>file:/C:/xampp/htdocs/HTTTDN/model/bill_model.php</file>
-            <file>file:/C:/xampp/htdocs/HTTTDN/giaodien/thongke.php</file>
             <file>file:/C:/xampp/htdocs/HTTTDN/model/tanggiamslsp.php</file>
-
+            <file>file:/C:/xampp/htdocs/HTTTDN/kho/giaodien/nhapkho.php</file>
         </group>
     </open-files>
 </project-private>
