@@ -3,6 +3,7 @@
             require '../../connectdb/connect.php';
             $con = ketnoi();
             $tabledata = $_POST['tabledata'];
+            
             $tenncc = $_POST['ncc'];
             $tongslnhap = 0;
             $tongtiennhap = 0;
@@ -41,6 +42,16 @@
                     $insertchitiet = "insert into chi_tiet_nhap_kho(ma_nhap_kho,id_giay,size,so_luong_cua_size,don_gia) "
                     . "values($manhapkho,$idsp,$sizesp,$slnhapthem,$dongiasp)";
                     mysqli_query($con, $insertchitiet);
+                    $querytangsl = "select so_luong_ton_kho_tong from giay where id_giay='$idsp'";
+                $tangslresult = mysqli_query($con, $querytangsl);
+                $sl = 0;
+                    while($row = mysqli_fetch_assoc($tangslresult)){
+                    $sl = (int)$row['so_luong_ton_kho_tong'];
+                    break;
+            }
+            
+                $updatesl="UPDATE giay SET so_luong_ton_kho_tong=$sl+$slnhapthem WHERE id_giay ='$idsp' ;";
+                mysqli_query($con, $updatesl);
                 }
                 if(mysqli_affected_rows($con) != 0){
                     $checkinsert = 1;
