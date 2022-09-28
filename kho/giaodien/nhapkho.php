@@ -95,6 +95,7 @@
                             success: function(response){
                                 var result = JSON.parse(response);
                                 document.getElementById("dongia").value = result[0];
+                                
                                 var arrayObj = result[1];
                                 var slboxsize = document.getElementById('size');
                                 while (slboxsize.options.length > 0) {                
@@ -128,12 +129,13 @@
                     var headers = $table.find('thead th').map(function(){
                       return $(this).text().replace(' ', '');
                     });
-
+                  
                     var rows = $table.find('tbody tr').map(function(){
                       var result = {};
                       var values = $(this).find('>td').map(function(){
                         return $(this).text();
                       });
+                      
                       // use the headers for keys and td values for values
                       for (var i = 0; i < headers.length; i++) {
                           if(values[i] != "Xoá"){
@@ -151,6 +153,7 @@
 
                     // just for demo purposes
                     var tableresult = JSON.stringify(rows);
+                   
                     var tabledatajson = JSON.parse(tableresult);
                     var tenncc = $("#slboxsort").val();
                     guiajaxnhapkho(tabledatajson,tenncc);
@@ -165,6 +168,7 @@
                                 var result = JSON.parse(response);
                                 if(result == 1){
                                     alert("Tạo đơn nhập kho thành công!");
+                                   
                                 }
                                 else{
                                     alert("Xảy ra sự cố! Xin thử lại");
@@ -200,8 +204,8 @@
                     row.append('<td>' + size + '</td>');
                     row.append('<td>' + sl + '</td>');
                     row.append('<td>' + dongia + '</td>');
-                    row.append('<td>' + dongia*sl +'</td>')
-                    row.append('<td><button class="btn btn-danger" style="font-size: 13px;">Xoá</button></td>');
+                    row.append('<td>' + dongia*sl +'</td>');
+                    row.append('<td><button class="btn btn-danger" style="font-size: 13px;" onclick="SomeDeleteRowFunction(this)">Xoá</button></td>');
                     row.append('</tr>');
                     $("#tablenhapkho").find('tbody').append(row);
                 }
@@ -216,6 +220,10 @@
                 document.getElementById("getdatatable").onclick = getrowvaluetable;
                 document.getElementById("khoabtn").onclick = locknhacungcap;
             });
-            
+           function SomeDeleteRowFunction(o) {
+     //no clue what to put here?
+     var p=o.parentNode.parentNode;
+         p.parentNode.removeChild(p);
+    }
    </script>
 </html>
