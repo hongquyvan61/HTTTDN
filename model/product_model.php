@@ -61,9 +61,9 @@
             mysqli_query($this->con,$sql);
           
     }
-     function Them_user($user_id,$email,$pass,$sdt){
-         $sql="INSERT INTO user(user_id,pass,email,sdt)
-                   VALUES($user_id,'$pass','$email','$sdt')";
+     function Them_user($email,$pass,$sdt,$role){
+         $sql="INSERT INTO user(pass,email,sdt,role)
+                   VALUES('$pass','$email','$sdt','$role')";
             mysqli_query($this->con,$sql);
             
     }
@@ -75,8 +75,8 @@
       return $query2;
       }
       
-     function Sua_user($email,$sdt,$id){
-     $sql2="UPDATE user SET email='$email', sdt='$sdt' WHERE user_id =$id";
+     function Sua_user($email,$sdt,$id,$role){
+     $sql2="UPDATE user SET email='$email', sdt='$sdt',role='$role' WHERE user_id =$id";
             $query=mysqli_query($this->con,$sql2);
             return $query;
     }

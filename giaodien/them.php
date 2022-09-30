@@ -13,7 +13,7 @@
        
      
         $con = ketnoi();
-        $sql="SELECT brand FROM `shoes` GROUP BY brand";
+        $sql="SELECT phan_loai FROM `giay` GROUP BY phan_loai";
         $query=mysqli_query($con,$sql);      
         ?>
 <div class="them">
@@ -34,7 +34,7 @@
         <select class="form-controll" name="brand_id">
             <?php
             while($row_brand=mysqli_fetch_assoc($query)){ ?>
-            <option ><?php echo $row_brand['brand']?></option>
+            <option ><?php echo $row_brand['phan_loai']?></option>
            <?php } ?>
         </select>
         <br>

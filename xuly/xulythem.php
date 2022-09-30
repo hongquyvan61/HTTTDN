@@ -2,7 +2,7 @@
 <?php
        
         include '../connectdb/connect.php';
-      
+       include '../model/encrypt.php';
         ?>
  <script>
      
@@ -18,7 +18,7 @@
 
  function def(){
         
-        alert("User_id này đã tồn tại");
+        alert("Email này đã tồn tại");
             
     window.location='../giaodien/themuser.php';
            
@@ -107,23 +107,30 @@ if (isset($_POST['sub'])) {
 
 if (isset($_POST['sub2'])) {
 
-        $user_id = $_POST['user_id'];
+    
     $email = $_POST['email'];
     $pass = $_POST['pass'];
     $pass2 = $_POST['pass2'];
     $sdt = $_POST['sdt'];
+     $role=$_POST['role'];
     if($pass != $pass2){
         echo '<script type="text/javascript">','jqka();','</script>';
     }
     else{
-        $where = "SELECT * from user WHERE user_id=".$user_id."";
-    $product = mysqli_query($con, $where);
-    $num = mysqli_num_rows($product);
-    if (mysqli_num_rows($product)== 0) {
-        $b->Them_user($user_id, $email, $pass, $sdt);
+     $tiento = explode("@", $email);
+     $model = new encrypt();
+   $mahoatiento = $model->apphin_mahoa($tiento[0]);
+   $encryptemail = $mahoatiento."@".$tiento[1];
+   $encryptsdt = $model->apphin_mahoa($sdt); 
+    $encryptpass = $model->apphin_mahoa($pass); 
+
+      $where = "SELECT * from user WHERE email='".$encryptemail."'";
+    $product = mysqli_query($con, $where);  
+    if (mysqli_num_rows($product)== 0) {      
+        $b->Them_user( $encryptemail, $encryptpass, $encryptsdt,$role);
         header('location:../giaodien/qlkh.php');
     } else{
-        echo '<script type="text/javascript">','def();','</script>';
+      echo '<script type="text/javascript">','def();','</script>';
     }
     }
      

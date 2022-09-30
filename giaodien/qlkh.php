@@ -27,7 +27,7 @@
         <div class="main">
             
             <div class="aa">
-                <h3 class="a0">Quản lý tài khoản khách hàng</h3>
+                <h3 class="a0">Quản lý tài khoản </h3>
                 <p class="aa0"><a href="../giaodien/themuser.php">Thêm tài khoản</a></p>
                 <div class="header_search">
                     <form action="qlkh.php" method="post" id="header-search-form">
@@ -44,6 +44,7 @@
                         <th>user_id</th>
                         <th>Email</th>  
                         <th>SDT</th>
+                        <th>Role</th>
                          <th>Sửa</th>
                         <th>Xóa</th>
                         </tr>
@@ -61,7 +62,7 @@
                             $regex_email = "/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[_a-z0-9-]+)*(\.[a-z]{2,3})$/";
                             if (!preg_match($regex_email, $search)) {
                                 echo "<p style='display:block;color:red;font-size:15px;'>Email không hợp lệ, hãy nhập lại</p><br>";
-                                $sql = "SELECT * FROM user where role = 'guest'";
+                                $sql = "SELECT * FROM user";
                                 $query = mysqli_query($con, $sql);
                                 $i = 1;
                                 while ($row = mysqli_fetch_assoc($query)) {
@@ -83,6 +84,7 @@
                                                 echo $decryptsdt; 
                                                 ?>
                                         </td>  
+                                         <td><?php echo $row['role']; ?></td>
                                         <td><a href="../giaodien/sua_user.php?user_id=<?php echo $row['user_id']; ?>">Sửa</a></td>
                                         <td><a onclick="return Del('<?php echo $decryptemail; ?>')" href="../giaodien/xoa_user.php?user_id=<?php echo $row['user_id']; ?>">Xóa</a></td>
                                     </tr>
@@ -114,6 +116,7 @@
                                                 $decryptsdt = $model->apphin_giaima($row['sdt']);
                                                 echo $decryptsdt;
                                         ?></td>  
+                                           <td><?php echo $row['role']; ?></td>
                                         <td><a href="../giaodien/sua_user.php?user_id=<?php echo $row['user_id']; ?>">Sửa</a></td>
                                         <td><a onclick="return Del('<?php echo $decryptemail; ?>')" href="../giaodien/xoa_user.php?user_id=<?php echo $row['user_id']; ?>">Xóa</a></td>
                                     </tr>
@@ -121,7 +124,7 @@
                         
                             }
                         } else {
-                            $sql = "SELECT * FROM user where role = 'guest'";
+                            $sql = "SELECT * FROM user ";
                             $query = mysqli_query($con, $sql);
                             $i = 1;
                             while ($row = mysqli_fetch_assoc($query)) {
@@ -143,6 +146,7 @@
                                             echo $decryptsdt; 
                                             ?>
                                     </td>  
+                                       <td><?php echo $row['role']; ?></td>
                                     <td><a href="../giaodien/sua_user.php?user_id=<?php echo $row['user_id']; ?>">Sửa</a></td>
                                     <td><a onclick="return Del('<?php echo $decryptemail; ?>')" href="../giaodien/xoa_user.php?user_id=<?php echo $row['user_id']; ?>">Xóa</a></td>
                                 </tr>

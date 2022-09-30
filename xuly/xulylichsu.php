@@ -31,9 +31,10 @@
                                     <th>Name</th>
                                     <th>Size</th>
                                     <th>Quantity</th>
+                                    <th>Price</th>
                                     <th>Date of payment</th>
                                     <th>Status</th>
-                                    <th>Print bill</th>
+                                
                            </tr>    
                         </thead>
                         <tbody>
@@ -68,8 +69,9 @@
                                 <th><?php echo $row['don_gia']?></th>
                                 <th><?php echo $row['ngay_gio_thanh_toan']?></th>
                                 <th style="color:#92f200;"><?php echo $row['tinh_trang']?></th>
-                                <th><a href="../giaodien/in_pdf.php?ma_don_hang=<?php echo $row['ma_don_hang']; ?>">Print</a></th
-
+                                
+                             
+                                
                             </tr>
                            <?php }
                             }

@@ -1,6 +1,7 @@
 <?php
 require '../connectdb/connect.php';
 include "../model/product_model.php";
+ include '../model/encrypt.php';
 $b = new product_model();
 
 if (isset($_POST['sub'])) {
@@ -56,8 +57,13 @@ if (isset($_POST['sub2'])) {
     $email = $_POST['email'];
     //$pass = $_POST['pass'];
     $sdt = $_POST['sdt'];
- 
-    $b->Sua_user($email, $sdt, $id);
+    $role=$_POST['role'];
+   $tiento = explode("@", $email);
+     $model = new encrypt();
+   $mahoatiento = $model->apphin_mahoa($tiento[0]);
+   $encryptemail = $mahoatiento."@".$tiento[1];
+   $encryptsdt = $model->apphin_mahoa($sdt);     
+    $b->Sua_user($encryptemail, $encryptsdt, $id,$role);
     header('location:../giaodien/qlkh.php');
 }
 ?>

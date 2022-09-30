@@ -19,17 +19,21 @@
 <div class="them">
     <form method="POST" enctype="multipart/form-data" action="../xuly/xulythem.php">
         <div class="themsp">
-        <label >User_id</label><br>
-        <input type="text" name="user_id" class="form-controll" ><br>
+       
+            <input  style="display: none;" type="text" name="user_id"  class="form-controll" ><br>
          <label >email</label><br>
-        <input type="text" name="email" class="form-controll" >  <br>
+        <input type="text" name="email" class="form-controll" required="true">  <br>
         <label >password</label><br>
-        <input type="password" name="pass" class="form-controll" > <br><br>
+        <input type="password" name="pass" class="form-controll" required="true"> <br><br>
         <label >Nhập lại password</label><br>
-        <input type="password" name="pass2" class="form-controll" > <br><br>
+        <input type="password" name="pass2" class="form-controll"required="true" > <br><br>
          <label >SDT</label><br>
-         <input type="text" name="sdt" class="form-controll" > <br><br>
-         
+         <input type="text" name="sdt" class="form-controll"required="true" > <br>
+         <label >Role</label><br>
+         <select name='role' class='form-controll'>
+       <option>admin</option> 
+       <option>kho</option>
+         </select><br>   <br>  
          <button type="submit" class="sub" name="sub2">Thêm</button>
          </div>
        
