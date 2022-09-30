@@ -65,6 +65,21 @@
             }
             return 0;
         }
+        public function totalpaidorder(){
+            $query = "select COUNT(*) as tongdonhang from don_hang where tinh_trang!='Processing'";
+            $result = mysqli_query($this->con, $query);
+            return $result;
+        }
+        public function numofpaidorder(){
+            $query = "select COUNT(*) as chuaxuly from don_hang where tinh_trang='Paid'";
+            $result = mysqli_query($this->con, $query);
+            return $result;
+        }
+        public function numofshippedorder(){
+            $query = "select COUNT(*) as daxuly from don_hang where tinh_trang='Shipped'";
+            $result = mysqli_query($this->con, $query);
+            return $result;
+        }
      }
 ?>
 

@@ -9,10 +9,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title> HTVC Admin</title>
         <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+        
         <link rel="stylesheet" href="../bootstrap/css/admin.css">
         <link rel="stylesheet" href="../bootstrap/css/admin2.css">
         <link rel="stylesheet" href="/font-awesome/css/all.css">
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -22,12 +22,60 @@
     </head>
 
     <body style="background-color: #F0F0F0;" data-spy="scroll" data-target="#myScrollspy" data-offset="1">
-        <?php require '../giaodien/admin_menu.php';
-        require '../model/encrypt.php';?>
-        <div class="main">
+        <?php include '../connectdb/connect.php';
+        require_once '../model/paginator.php';
+        require '../giaodien/admin_menu.php';
+        require '../model/encrypt.php';
+        require '../model/bill_model.php';
+        
+        $limit = ( isset($_GET['limit']) ) ? $_GET['limit'] : 5;
+        $page = ( isset($_GET['page']) ) ? $_GET['page'] : 1;
+        $links = ( isset($_GET['links']) ) ? $_GET['links'] : 7;
+        $query = "select * from don_hang where tinh_trang!='Processing'";
+        $Paginator = new Paginator($query);
 
+        $results = $Paginator->getData($limit, $page);
+        ?>
+        <div class="main">
+            <div class="container">
+                <h2>Danh sách các hoá đơn đã thanh toán</h2>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                           <th>User_id</th>
+                            <th>Bill_id</th>
+                            <th>Date</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php for ($i = 0; $i < count($results->data); $i++) : ?>
+                            <tr>
+                                <td><?php echo $results->data[$i]['user_id']; ?></td>
+                                <td><?php echo $results->data[$i]['ma_don_hang']; ?></td>
+                                <td><?php echo $results->data[$i]['ngay_gio_thanh_toan']; ?></td>
+                                <td><?php echo $results->data[$i]['tong_tien']; ?></td>
+                            </tr>
+                        <?php endfor; ?>   
+                    </tbody>
+                </table>
+                <?php echo $Paginator->createLinks( $links, 'pagination' ); ?>
+            </div>
             <div class="aa">
-                <h2 class="a0">Danh sách các hoá đơn đã thanh toán</h2>
+                <?php
+                        $con = ketnoi();
+                        $ordermodel = new bill_model();
+                        $totalpaidres = $ordermodel->totalpaidorder();
+                        $paidorderres = $ordermodel->numofpaidorder();
+                        $shippedorderres = $ordermodel->numofshippedorder();
+                        $rowtotalpaid = mysqli_fetch_assoc($totalpaidres);
+                        $rowpaidorder = mysqli_fetch_assoc($paidorderres);
+                        $rowshippedorder = mysqli_fetch_assoc($shippedorderres);
+                        ?>
+                <h4 class="a0">Tổng số đơn hàng đã được thanh toán: <?php echo $rowtotalpaid['tongdonhang'];?></h4>
+                <h4 class="a0">Số đơn hàng chưa xử lý: <?php echo $rowpaidorder['chuaxuly'];?></h4>
+                <h4 class="a0">Số đơn hàng đã xử lý: <?php echo $rowshippedorder['daxuly'];?></h4>
+                <!--<h2 class="a0">Danh sách các hoá đơn đã thanh toán</h2>
                 <table class="aa1"  > 
                     <tr class="aa2">
                         <th>#</th>
@@ -40,10 +88,7 @@
 
 
                         <?php
-                        include '../connectdb/connect.php';
-                        $encryptmodel = new encrypt();
-                        $con = ketnoi();
-                        //$sql = "SELECT shoes.shoe_id,SUM(cart.quantity),shoes.name,shoes.price FROM cart,shoes WHERE cart.shoe_id=shoes.shoe_id AND (cart.status='Paid' or cart.status='Shipped') GROUP BY shoe_id order by sum(cart.quantity) desc";
+                        /*$encryptmodel = new encrypt();
                         $sql = "select * from don_hang";
                         $query = mysqli_query($con, $sql);
                         $test = "";
@@ -53,24 +98,23 @@
                             ?>
                             <tr id="a1">     
 
-                                <td><?php echo $i++; ?></td>
-                                <td><?php echo $row['user_id']; ?></td>
-                                <td><?php echo $row['ma_don_hang']; ?></td>
+                                <td><?php //echo $i++; ?></td>
+                                <td><?php //echo $row['user_id']; ?></td>
+                                <td><?php //echo $row['ma_don_hang']; ?></td>
                                 <td><?php //echo $row['SUM(cart.quantity']; 
-                                        echo $row['ngay_gio_thanh_toan'];?>
+                                        //echo $row['ngay_gio_thanh_toan'];?>
                                 </td>
-                                 <td><?php echo $giaima_total;?></td>
+                                 <td><?php //echo $giaima_total;?></td>
                              
                             </tr>
-                        <?php } ?>
-
+                        <?php }*/
+                            ?>
                     </tbody>  
-                </table>
+                </table>-->
             </div>
             <h4 class="total">
-                <?php require '../model/bill_model.php';
-                    $bill = new bill_model();
-                    $result = $bill->gettotalprice();
+                <?php 
+                    $result = $ordermodel->gettotalprice();
                     while ($row = mysqli_fetch_assoc($result)) {
                        echo "Tổng doanh thu:".$row['tong']." VNĐ";
                     }
@@ -78,7 +122,7 @@
             </h4>
 
         </div>
-        <div>
+        
             <footer class="footer">
                <div class="container">
                 <center>
@@ -88,7 +132,6 @@
                </center>
                </div>
            </footer>
-        </div>
 
 
     </body>
