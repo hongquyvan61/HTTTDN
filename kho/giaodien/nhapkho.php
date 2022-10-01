@@ -220,10 +220,11 @@
                 document.getElementById("getdatatable").onclick = getrowvaluetable;
                 document.getElementById("khoabtn").onclick = locknhacungcap;
             });
-           function SomeDeleteRowFunction(o) {
-     //no clue what to put here?
-     var p=o.parentNode.parentNode;
-         p.parentNode.removeChild(p);
-    }
+            function SomeDeleteRowFunction(o) {
+                    //no clue what to put here?
+                    var p=o.parentNode.parentNode;
+                        p.parentNode.removeChild(p);
+                        //console.log(p);
+            }
    </script>
 </html>

@@ -51,26 +51,59 @@
                 mysqli_stmt_bind_param($stmt,"iiii", $newqty,$idgiohang,$shoe,$size);
                 mysqli_stmt_execute($stmt);
             }
-            if(getspdaco() != 0){
-                updatecart();
+            function getslbyshoeandsize(){
+                $con = ketnoi();
+                $shoe = (int)$_POST['shoe'];
+                $size = (int)$_POST['size'];
+                $query = "select so_luong_ton_kho_ban from kich_co where id_giay=$shoe and size=$size";
+                $result = mysqli_query($con, $query);
+                $sl = 0;
+                while($row = mysqli_fetch_assoc($result)){
+                    $sl = (int)$row['so_luong_ton_kho_ban'];
+                    return $sl;
+                }
+                return 0;
+            }
+            $quantity = (int)$_POST['quantity'];
+            $slspdangco = getslbyshoeandsize();
+            $vuotquasl = 0;
+            if($quantity <= $slspdangco){
+                $newqty = 0;
+                if(getspdaco() != 0){
+                    $newqty = getspdaco()+$quantity;
+                    if($newqty <= $slspdangco){
+                        updatecart();
+                    }
+                    else{
+                        $vuotquasl = 1;
+                    }
+                }
+                if($newqty == 0){
+                    $con = ketnoi();
+                    $user = (int)$_POST['user'];
+                    $idgiohang = getIDgiohangbyUserID($user);
+                        $shoe = (int)$_POST['shoe'];
+                        $quantity = (int)$_POST['quantity'];
+                        $size = (int)$_POST['size'];
+                        date_default_timezone_set('Asia/Ho_Chi_Minh');
+                        $date = date("Y-m-d H:i:s");
+                    $query = "insert into chi_tiet_gio_hang(id_gio_hang,id_giay,size,so_luong,ngay_gio_them_vao_gio)"
+                            . "values($idgiohang,$shoe,$size,$quantity,'$date')";
+                    mysqli_query($con, $query);
+                    /*$stmt = mysqli_prepare($con, $query);
+                    mysqli_stmt_bind_param($stmt, "iiiis", $user,$shoe,$quantity,$date);
+                    mysqli_stmt_execute($stmt);*/
+                }
             }
             else{
-                $con = ketnoi();
-                $user = (int)$_POST['user'];
-                $idgiohang = getIDgiohangbyUserID($user);
-                    $shoe = (int)$_POST['shoe'];
-                    $quantity = (int)$_POST['quantity'];
-                    $size = (int)$_POST['size'];
-                    date_default_timezone_set('Asia/Ho_Chi_Minh');
-                    $date = date("Y-m-d H:i:s");
-                $query = "insert into chi_tiet_gio_hang(id_gio_hang,id_giay,size,so_luong,ngay_gio_them_vao_gio)"
-                        . "values($idgiohang,$shoe,$size,$quantity,'$date')";
-                mysqli_query($con, $query);
-                /*$stmt = mysqli_prepare($con, $query);
-                mysqli_stmt_bind_param($stmt, "iiiis", $user,$shoe,$quantity,$date);
-                mysqli_stmt_execute($stmt);*/
+                $vuotquasl = 1;
             }
-            echo json_encode(1);
-            //$query = "insert into(name,brand,size,category,price,quantity_left,image)
+            if($vuotquasl == 0) {
+                echo json_encode(1);
+            }
+            else {
+                echo json_encode(0);
+            } 
+           //$query = "insert into(name,brand,size,category,price,quantity_left,image)
         //values (ajsad,adidas,49,kjdkas,1000000,5,img/".tenhang."/".tenhinh.");"
 ?>
