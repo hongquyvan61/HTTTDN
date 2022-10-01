@@ -9,13 +9,14 @@
         $results = $Paginator->getData($limit, $page);
                     //$product = new product_model();
                     //$list = $product->getAllProducts();
-                    $row_count = ceil($Paginator->_total/4);
+                    $row_count = ceil($Paginator->_totalpage/4);
                     $bieni=0;
                     while($row_count != 0){
                        $biendong=0;
                     ?>
                         <div class="row line">
-                            <?php for ($i = $bieni; $i < count($results->data); $i++) :
+                            <?php 
+                                for ($i = $bieni; $i < count($results->data); $i++) :
                                 $biendong+=1;
                                 //$row = mysqli_fetch_assoc($list);
                                 //if(!empty($row)){
@@ -67,10 +68,6 @@
                                             $bieni=$i+1;
                                             break;
                                        }
-                                    //else{
-                                        //break;
-                                    //}
-                                    
                                     endfor;?>
                         </div>
                     <?php $row_count--;
