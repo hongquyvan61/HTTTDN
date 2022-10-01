@@ -7247,6 +7247,10 @@ body {
     color:red;
     display:none;
 }
+#vuotquasl{
+    color:red;
+    display:none;
+}
 .header_search {
   float: right;
   padding: 8px 0;

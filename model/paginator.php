@@ -30,13 +30,21 @@
         while ($row = $rs->fetch_assoc()) {
             $results[] = $row;
         }
-
-        $result = new stdClass();
-        $result->page = $this->_page;
-        $result->limit = $this->_limit;
-        $result->total = $this->_total;
-        $result->data = $results;
-
+        if(isset($results)){
+            $result = new stdClass();
+            $result->page = $this->_page;
+            $result->limit = $this->_limit;
+            $result->total = $this->_total;
+            $result->data = $results;
+        }
+        else{
+            $results = array();
+            $result = new stdClass();
+            $result->page = $this->_page;
+            $result->limit = $this->_limit;
+            $result->total = $this->_total;
+            $result->data = $results;
+        }
         return $result;
     }
     public function createLinks($links, $list_class) {

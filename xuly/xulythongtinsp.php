@@ -44,7 +44,7 @@
                             }?>
                     </select><br>
                </p>
-               <p id="slton">Số lượng tồn:</p>
+               <p>Số lượng tồn: <span id="slton"></span></p>
                <br>
                <!--<p id="a2">Màu sắc: <button type="button">�?en</button><button type="button">Trắng</button></p><br>-->
                
@@ -56,6 +56,7 @@
               
                 <button id="a4">Thêm vào giỏ hàng</button>
                 <p id="addsuccess">Thêm vào giỏ hàng thành công!</p>
+                <p id="vuotquasl">Vượt quá số lượng hàng hiện có! Không thể thêm vào giỏ hàng</p>
          </div>
     </div>
     <div class="mota">
