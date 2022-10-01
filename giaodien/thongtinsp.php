@@ -72,7 +72,16 @@
                             datatype: "JSON",
                             data: {shoe: shoeid, size: sizedachon},
                             success: function(response){
-                                document.getElementById("slton").innerHTML = "Số lượng tồn: " + response;
+                                if(response <=0){
+                                    document.getElementById("slton").innerHTML = "Đã hết";
+                                    $("#slton").css("color","red");
+                                    $("#a4").attr("disabled",true);
+                                }
+                                else{
+                                    document.getElementById("slton").innerHTML = response;
+                                    $("#slton").css("color","black");
+                                    $("#a4").attr("disabled",false);
+                                }
                             }
                     });
                 }
@@ -102,8 +111,12 @@
                             data: {user: userid, shoe: shoeid, quantity: qty, size: szgiay},
                             success: function(response){
                                 
-                               if(response == 1)
+                               if(response == 1){
                                     document.getElementById('addsuccess').style.display = "block";
+                               }
+                               else{
+                                   document.getElementById('vuotquasl').style.display = "block";
+                               }
                             }
                         });
                     }
@@ -113,8 +126,13 @@
                     guiajax(sizedachon);
                         //document.getElementById('slconlai').innerHTML = "Số lượng còn lại: "
                 }
+                function clearmessage(){
+                    $("#addsuccess").css("display","none");
+                    $("#vuotquasl").css("display","none");
+                }
             document.getElementById("a4").onclick = addcart;
             document.getElementById("sizegiay").onchange = checksize;
+            document.getElementById("quantity").onclick = clearmessage;
             //document.getElementById("sizegiay").onchange = checksize;
             });
         </script>

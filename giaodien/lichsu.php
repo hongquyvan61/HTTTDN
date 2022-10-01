@@ -48,15 +48,16 @@
             $(document).ready(function(){
                 function statusmacdinh(){
                     var macdinh = document.getElementById('slboxsort').value;
-                    guiajax(macdinh);
+                    var monthmacdinh = document.getElementById('sortthang').value;
+                    guiajax(macdinh,monthmacdinh);
                 }
-                function guiajax(status){
+                function guiajax(status,month){
                     var user = <?php echo $_SESSION['id'];?>;
                     $.ajax({
                             method: 'post',
                             url: '../model/ajax_loctinhtrang.php',
                             datatype: "JSON",
-                            data: {userid: user,tinhtrang: status},
+                            data: {userid: user,tinhtrang: status, thang: month},
                             success: function(response){
                                 var arrayObj = JSON.parse(response);
                                 $("#tablelichsu").find('tbody').empty();
@@ -71,6 +72,7 @@
                                     row.append('</tr>');
                                     $("#tablelichsu").find('tbody').append(row);
                                 });
+                                //console.log(arrayObj);
                             }
                     });
                 }
@@ -78,8 +80,14 @@
                     var statusdachon = document.getElementById('slboxsort').value;
                     guiajax(statusdachon);
                 }
+                function loclichsu(){
+                    var status = document.getElementById('slboxsort').value;
+                    var month = document.getElementById('sortthang').value;
+                    guiajax(status,month);
+                }
                 statusmacdinh();
-                document.getElementById("slboxsort").onchange = checkselect;
+                document.getElementById("loclichsu").onclick = loclichsu;
+                //document.getElementById("slboxsort").onchange = checkselect;
             });
             
    </script>
