@@ -46,7 +46,6 @@
                                     <th>Name</th>
                                     <th>Size</th>
                                     <th>Quantity</th>
-                                    <th>Price</th>
                                     <th>Date of payment</th>
                                     <th>Status</th>
                            </tr>    

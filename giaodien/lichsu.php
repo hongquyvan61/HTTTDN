@@ -66,10 +66,9 @@
                                     row.append('<td>' + item.name + '</td>');
                                     row.append('<td>' + item.size + '</td>');
                                     row.append('<td>' + item.soluong + '</td>');
-                                     row.append('<td>' + item.dongia + '</td>');
                                     row.append('<td>' + item.ngaythanhtoan + '</td>');
                                     row.append('<td style="color:#92f200; font-weight: bold;">' + item.tinhtrang + '</td>');
-                                    row.append('<td>'  '</td>');
+                                    //row.append('<td>'  '</td>');
                                     row.append('</tr>');
                                     $("#tablelichsu").find('tbody').append(row);
                                 });
