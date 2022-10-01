@@ -16,7 +16,7 @@
                                 <a class="nav-link" href="../giaodien/ttgh.php" ;>Đơn Hàng</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="../giaodien/qlkh.php" ">Khách Hàng</a>
+                                <a class="nav-link" href="../giaodien/qlkh.php" ">Tài khoản</a>
                             </li>
                             <?php }?>
                         </ul>

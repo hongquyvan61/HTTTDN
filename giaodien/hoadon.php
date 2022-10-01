@@ -46,6 +46,7 @@ require '../giaodien/header.php';
                             <th>Payment Date</th>
                             <th>Total</th> 
                             <th>Detail</th>
+                            <th>Print</th>
                         </tr>
                         <tbody>
 
@@ -65,6 +66,7 @@ while ($row = mysqli_fetch_assoc($query)) {
                                     <td><?php echo $row['ngay_gio_thanh_toan']; ?></td>
                                     <td><?php echo $row['tong_tien']; ?></td>
                                     <td><a href="../giaodien/chitiethd.php?billid=<?php echo $row['ma_don_hang']; ?>">Detail</a></td>
+                                    <th><a href="../giaodien/in_pdf.php?ma_don_hang=<?php echo $row['ma_don_hang']; ?>">Print</a></th
 
                                 </tr>
 <?php } ?>

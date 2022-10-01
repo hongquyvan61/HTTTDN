@@ -19,22 +19,21 @@
        
        
         $con = ketnoi();
-        $sql="SELECT brand FROM `shoes` GROUP BY brand";
+        $sql="SELECT * FROM `nha_cung_cap`";
         $query=mysqli_query($con,$sql);      
 
         $id=$_GET['id'];
-        $sql_up="select * from shoes where shoe_id=$id";
+        $sql_up="select * from giay where id_giay=$id";
         $query_up=mysqli_query($con,$sql_up);
         $row_up= mysqli_fetch_assoc($query_up);
-        $spbrand = $row_up['brand'];
         ?>
         
 <div class="them">
     <form method="POST" enctype="multipart/form-data" action="../xuly/xulysua.php">
-        <input type="text" name="id" class="id" class="form-controll" required value="<?php echo $row_up['shoe_id']?>"><br> 
+        <input type="text" name="id" class="id" class="form-controll" required value="<?php echo $row_up['id_giay']?>"><br> 
         <div class="themsp">
         <label >Tên sản phẩm</label><br>
-        <input type="text" name="ipname"class="form-controll" required value="<?php echo $row_up['name']?>"><br> 
+        <input type="text" name="ipname"class="form-controll" required value="<?php echo $row_up['ten']?>"><br> 
           <label >Ảnh sản phẩm</label><br>
          <label>Ảnh 1:</label>
          <input type="file" name="image" class="form-controll" >  <br>
@@ -43,23 +42,16 @@
            <label>Ảnh 3:</label>
          <input type="file" name="image3" class="form-controll" >  <br>
          <label >Giá sản phẩm</label><br>
-        <input type="text" name="ipprice" class="form-controll"  value="<?php echo $row_up['price']?>">  <br>
-        <label >Thương hiệu sản phẩm</label><br>
-        <select class="form-controll" name="brand_id">
+        <input type="text" name="ipprice" class="form-controll"  value="<?php echo $row_up['don_gia']?>">  <br>
+          <label >Thương hiệu sản phẩm</label><br>
+        <select class="form-controll" name="ma_ncc">
             <?php
             while($row_brand=mysqli_fetch_assoc($query)){ ?>
-            <option class="brandselect"><?php echo $row_brand['brand']?></option>
+            <option value="<?php echo $row_brand['ma_nha_cung_cap']; ?>"><?php echo $row_brand['ten_nha_cung_cap']?></option>
            <?php } ?>
         </select>
         <br>
-         <label>Số lượng size 38 (bỏ qua nếu không sửa):</label>
-         <input type="number" name="size38" class="form-controll-qty-size" min="0" value="<?php echo $row_up['qty38'];?>"> <br><br>
-         <label>Số lượng size 39 (bỏ qua nếu không sửa):</label>
-         <input type="number" name="size39" class="form-controll-qty-size" min="0" value="<?php echo $row_up['qty39'];?>"> <br><br>
-         <label>Số lượng size 40 (bỏ qua nếu không sửa):</label>
-         <input type="number" name="size40" class="form-controll-qty-size" min="0" value="<?php echo $row_up['qty40'];?>"> <br><br>
-         <label>Số lượng size 41 (bỏ qua nếu không sửa):</label>
-         <input type="number" name="size41" class="form-controll-qty-size" min="0" value="<?php echo $row_up['qty41'];?>"> <br><br>
+    
          <button type="submit" class="sub" name="sub">Sửa</button>
  
          </div>

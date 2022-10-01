@@ -4,9 +4,9 @@
     private $_conn;
     private $_limit;
     private $_page;
-    private $_query;
+    public $_query;
     public $_total;
-
+    public $_totalpage;
     public function __construct($query) {
 
         $this->_conn = ketnoi();
@@ -15,7 +15,7 @@
         $rs = $this->_conn->query($this->_query);
         $this->_total = $rs->num_rows;
     }
-    public function getData($limit = 10, $page = 1) {
+    public function getData($limit, $page) {
 
         $this->_limit = $limit;
         $this->_page = $page;
@@ -25,8 +25,9 @@
         } else {
             $query = $this->_query . " LIMIT " . ( ( $this->_page - 1 ) * $this->_limit ) . ", $this->_limit";
         }
+        $this->_query = $query;
         $rs = $this->_conn->query($query);
-
+        $this->_totalpage = $rs->num_rows;
         while ($row = $rs->fetch_assoc()) {
             $results[] = $row;
         }
@@ -34,7 +35,7 @@
             $result = new stdClass();
             $result->page = $this->_page;
             $result->limit = $this->_limit;
-            $result->total = $this->_total;
+            $result->total = $this->_totalpage;
             $result->data = $results;
         }
         else{
@@ -42,7 +43,7 @@
             $result = new stdClass();
             $result->page = $this->_page;
             $result->limit = $this->_limit;
-            $result->total = $this->_total;
+            $result->total = $this->_totalpage;
             $result->data = $results;
         }
         return $result;
@@ -60,7 +61,8 @@
         $html = '<ul class="' . $list_class . ' justify-content-center">';
 
         $class = ( $this->_page == 1 ) ? "disabled" : "";
-        $html .= '<li class="page-item ' . $class . '"><a class="page-link" href="?limit=' . $this->_limit . '&page=' . ( $this->_page - 1 ) . '">Previous</a></li>';
+        $disablelinkprev = ( $this->_page == 1 ) ? "style=\"pointer-events: none; cursor: default;\"": "";
+        $html .= '<li class="page-item ' . $class . '"><a class="page-link" '.$disablelinkprev.'" href="?limit=' . $this->_limit . '&page=' . ( $this->_page - 1 ) . '">Previous</a></li>';
 
         if ($start > 1) {
             $html .= '<li class="page-item"><a class="page-link" href="?limit=' . $this->_limit . '&page=1">1</a></li>';
@@ -78,7 +80,8 @@
         }
 
         $class = ( $this->_page == $last ) ? "disabled" : "";
-        $html .= '<li class="page-item ' . $class . '"><a class="page-link" href="?limit=' . $this->_limit . '&page=' . ( $this->_page + 1 ) . '">Next</a></li>';
+        $disablelinknext = ( $this->_page == $last ) ? "style=\"pointer-events: none; cursor: default;\"": "";
+        $html .= '<li class="page-item ' . $class . '"><a class="page-link" '.$disablelinknext.'" href="?limit=' . $this->_limit . '&page=' . ( $this->_page + 1 ) . '">Next</a></li>';
 
         $html .= '</ul>';
 
