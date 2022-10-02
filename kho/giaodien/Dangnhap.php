@@ -27,7 +27,7 @@ and open the template in the editor.
     <!-- Login Form -->
     <form method="post"  action="../xuly/xulilogin.php">
       <input type="text" id="login" class="fadeIn second" name="email" placeholder="login">
-      <input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
       <input type="submit" name="submit" class="fadeIn fourth" value="Log In">
        <?php require '../xuly/xulilogin.php';?>
     </form>
