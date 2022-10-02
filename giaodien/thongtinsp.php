@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min(1).css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!--<link rel="stylesheet" href="../css/style.css" type="text/css">-->
-    <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">  
 </head>
 <body>
     <?php require '../giaodien/header_products.php';?>
