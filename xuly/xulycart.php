@@ -31,8 +31,8 @@
                                 <th>
                                      <input type="button" value="-" class="btntru tru" onclick="var qtyid = <?php echo $counter;?>;
                                            var val = document.getElementById('qty-' + qtyid).value;
-                                           if(val ==0){
-                                               $('#qty-' +qtyid).attr('value',0);
+                                           if(val <= 1){
+                                               $('#qty-' +qtyid).attr('value',1);
                                            }
                                            else{
                                                val=val-1;

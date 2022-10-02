@@ -22,23 +22,49 @@
     </head>
 
     <body style="background-color: #F0F0F0;" data-spy="scroll" data-target="#myScrollspy" data-offset="1">
+        <form method="post" action="">
         <?php include '../connectdb/connect.php';
         require_once '../model/paginator.php';
         require '../giaodien/admin_menu.php';
         require '../model/encrypt.php';
         require '../model/bill_model.php';
-        
-        $limit = ( isset($_GET['limit']) ) ? $_GET['limit'] : 5;
-        $page = ( isset($_GET['page']) ) ? $_GET['page'] : 1;
-        $links = ( isset($_GET['links']) ) ? $_GET['links'] : 7;
-        $query = "select * from don_hang where tinh_trang!='Processing'";
-        $Paginator = new Paginator($query);
-
-        $results = $Paginator->getData($limit, $page);
         ?>
         <div class="main">
+            
             <div class="container">
                 <h2>Danh sách các hoá đơn đã thanh toán</h2>
+                <select id="locthang" name="monthselected">
+                    <option value="1">Tháng 1</option>
+                    <option value="2">Tháng 2</option>
+                    <option value="3">Tháng 3</option>
+                    <option value="4">Tháng 4</option>
+                    <option value="5">Tháng 5</option>
+                    <option value="6">Tháng 6</option>
+                    <option value="7">Tháng 7</option>
+                    <option value="8">Tháng 8</option>
+                    <option value="9">Tháng 9</option>
+                    <option value="10">Tháng 10</option>
+                    <option value="11">Tháng 11</option>
+                    <option value="12">Tháng 12</option>
+                </select>
+                <input class="btn-primary" type="submit" name="submit" value="Lọc"><br><br>
+                <?php
+                if(isset($_POST['submit'])){
+                    $month = $_POST['monthselected'];
+                    $limit = ( isset($_GET['limit']) ) ? $_GET['limit'] : 5;
+                    $page = ( isset($_GET['page']) ) ? $_GET['page'] : 1;
+                    $links = ( isset($_GET['links']) ) ? $_GET['links'] : 7;
+                    $query = "select d1.user_id, d1.ma_don_hang, d1.ngay_gio_thanh_toan, d1.tong_tien
+                            from don_hang as d1 join 
+                            (select ma_don_hang, MONTH(CAST(ngay_gio_thanh_toan as date)) as datethanhtoan
+                            from don_hang
+                            WHERE tinh_trang!='Processing') as d2
+                            on d1.ma_don_hang=d2.ma_don_hang
+                            where datethanhtoan=$month";
+                    $Paginator = new Paginator($query);
+
+                    $results = $Paginator->getData($limit, $page);
+                ?>
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -60,6 +86,37 @@
                     </tbody>
                 </table>
                 <?php echo $Paginator->createLinks( $links, 'pagination' ); ?>
+                <?php }
+                else{
+                    $limit = ( isset($_GET['limit']) ) ? $_GET['limit'] : 5;
+                    $page = ( isset($_GET['page']) ) ? $_GET['page'] : 1;
+                    $links = ( isset($_GET['links']) ) ? $_GET['links'] : 7;
+                    $query = "select * from don_hang where tinh_trang!='Processing'";
+                    $Paginator = new Paginator($query);
+                    $results = $Paginator->getData($limit, $page);
+                ?>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                           <th>User_id</th>
+                            <th>Bill_id</th>
+                            <th>Date</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php for ($i = 0; $i < count($results->data); $i++) : ?>
+                            <tr>
+                                <td><?php echo $results->data[$i]['user_id']; ?></td>
+                                <td><?php echo $results->data[$i]['ma_don_hang']; ?></td>
+                                <td><?php echo $results->data[$i]['ngay_gio_thanh_toan']; ?></td>
+                                <td><?php echo $results->data[$i]['tong_tien']; ?></td>
+                            </tr>
+                        <?php endfor; ?>   
+                    </tbody>
+                </table>
+                <?php echo $Paginator->createLinks( $links, 'pagination' ); ?>
+                <?php }?>
             </div>
             <div class="aa">
                 <?php
@@ -75,42 +132,6 @@
                 <h4 class="a0">Tổng số đơn hàng đã được thanh toán: <?php echo $rowtotalpaid['tongdonhang'];?></h4>
                 <h4 class="a0">Số đơn hàng chưa xử lý: <?php echo $rowpaidorder['chuaxuly'];?></h4>
                 <h4 class="a0">Số đơn hàng đã xử lý: <?php echo $rowshippedorder['daxuly'];?></h4>
-                <!--<h2 class="a0">Danh sách các hoá đơn đã thanh toán</h2>
-                <table class="aa1"  > 
-                    <tr class="aa2">
-                        <th>#</th>
-                        <th>User_id</th>
-                        <th>Bill_id</th>
-                        <th>Date</th>
-                        <th>Total</th>
-                    </tr>
-                    <tbody>
-
-
-                        <?php
-                        /*$encryptmodel = new encrypt();
-                        $sql = "select * from don_hang";
-                        $query = mysqli_query($con, $sql);
-                        $test = "";
-                        $i = 1;
-                        while ($row = mysqli_fetch_assoc($query)) {
-                              $giaima_total = $row['tong_tien'];
-                            ?>
-                            <tr id="a1">     
-
-                                <td><?php //echo $i++; ?></td>
-                                <td><?php //echo $row['user_id']; ?></td>
-                                <td><?php //echo $row['ma_don_hang']; ?></td>
-                                <td><?php //echo $row['SUM(cart.quantity']; 
-                                        //echo $row['ngay_gio_thanh_toan'];?>
-                                </td>
-                                 <td><?php //echo $giaima_total;?></td>
-                             
-                            </tr>
-                        <?php }*/
-                            ?>
-                    </tbody>  
-                </table>-->
             </div>
             <h4 class="total">
                 <?php 
@@ -122,7 +143,7 @@
             </h4>
 
         </div>
-        
+        </form>
             <footer class="footer">
                <div class="container">
                 <center>

@@ -34,7 +34,7 @@
                                 <?php if(isset($_SESSION['email']) && $_SESSION['role'] == 'admin'){?>
                                 <tr>  
                                     <td ><a href="../giaodien/a.php?layout=them" id="def1">Thêm sản phẩm</a></td>
-                                    <td><a href="../giaodien/qlkh.php">Quản lí khách hàng</a></td>
+                                    <td><a href="../giaodien/qlkh.php">Quản lí tài khoản</a></td>
                                     <td><a href="../giaodien/ttgh.php">Thông tin đơn hàng</a> </td>
                                     <td><a href="../giaodien/thongke.php">Thống kê </a></td>
                                     

@@ -2,7 +2,7 @@
 <?php
        
         include '../connectdb/connect.php';
-      
+       include '../model/encrypt.php';
         ?>
  <script>
      
@@ -18,7 +18,7 @@
 
  function def(){
         
-        alert("User_id này đã tồn tại");
+        alert("Email này đã tồn tại");
             
     window.location='../giaodien/themuser.php';
            
@@ -44,11 +44,7 @@ if (isset($_POST['sub'])) {
 
     $name = $_POST['ipname'];
     $price = $_POST['ipprice'];
-    $brand = $_POST['brand_id'];
-    $size38 = $_POST['size38'];
-    $size39 = $_POST['size39'];
-    $size40 = $_POST['size40'];
-    $size41 = $_POST['size41'];
+    $ma_ncc = $_POST['ma_ncc'];
     $file = $_FILES['image'];
     $file_name = $file['name'];
     $file2 = $_FILES['image2'];
@@ -82,19 +78,24 @@ if (isset($_POST['sub'])) {
         <?php
     }
     else{
-                move_uploaded_file($file['tmp_name'], '../img/' . $brand . '/' . $file_name);
-                move_uploaded_file($file2['tmp_name'], '../img/' . $brand . '/' . $file_name2);
-                move_uploaded_file($file3['tmp_name'], '../img/' . $brand . '/' . $file_name3);
+         $sql1 = "SELECT ten_nha_cung_cap from nha_cung_cap WHERE ma_nha_cung_cap= '" . $ma_ncc . "'";
+    $query1 = mysqli_query($con, $sql1);
+        $row= mysqli_fetch_assoc($query1);
+      $ten_nha_cung_cap=$row['ten_nha_cung_cap'];    
+                move_uploaded_file($file['tmp_name'], '../img/' . $ten_nha_cung_cap . '/' . $file_name);
+                move_uploaded_file($file2['tmp_name'], '../img/' . $ten_nha_cung_cap . '/' . $file_name2);
+                move_uploaded_file($file3['tmp_name'], '../img/' . $ten_nha_cung_cap . '/' . $file_name3);
+                
     }
     
     
     
-     $where = "SELECT * from shoes WHERE name = '" . $name . "'";
+     $where = "SELECT * from giay WHERE ten= '" . $name . "'";
     $product = mysqli_query($con, $where);
     $num = mysqli_num_rows($product);
     if (mysqli_num_rows($product)== 0 && (empty($thieuhinhmess))) {
         header('location:../giaodien/admin.php');
-       $b->Them($name, $price, $brand, $size38,$size39,$size40,$size41,$file_name,$file_name2,$file_name3);
+       $b->Them($name, $price, $ma_ncc,$file_name,$file_name2,$file_name3,$ten_nha_cung_cap);
     } else{
       echo '<script type="text/javascript">',
      'xyz();',
@@ -107,23 +108,30 @@ if (isset($_POST['sub'])) {
 
 if (isset($_POST['sub2'])) {
 
-        $user_id = $_POST['user_id'];
+    
     $email = $_POST['email'];
     $pass = $_POST['pass'];
     $pass2 = $_POST['pass2'];
     $sdt = $_POST['sdt'];
+     $role=$_POST['role'];
     if($pass != $pass2){
         echo '<script type="text/javascript">','jqka();','</script>';
     }
     else{
-        $where = "SELECT * from user WHERE user_id=".$user_id."";
-    $product = mysqli_query($con, $where);
-    $num = mysqli_num_rows($product);
-    if (mysqli_num_rows($product)== 0) {
-        $b->Them_user($user_id, $email, $pass, $sdt);
+     $tiento = explode("@", $email);
+     $model = new encrypt();
+   $mahoatiento = $model->apphin_mahoa($tiento[0]);
+   $encryptemail = $mahoatiento."@".$tiento[1];
+   $encryptsdt = $model->apphin_mahoa($sdt); 
+    $encryptpass = $model->apphin_mahoa($pass); 
+
+      $where = "SELECT * from user WHERE email='".$encryptemail."'";
+    $product = mysqli_query($con, $where);  
+    if (mysqli_num_rows($product)== 0) {      
+        $b->Them_user( $encryptemail, $encryptpass, $encryptsdt,$role);
         header('location:../giaodien/qlkh.php');
     } else{
-        echo '<script type="text/javascript">','def();','</script>';
+      echo '<script type="text/javascript">','def();','</script>';
     }
     }
      

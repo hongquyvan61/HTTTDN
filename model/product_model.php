@@ -55,41 +55,42 @@
             $result = mysqli_query($this->con,$query);
             return $result;
         }
-        function Them($name,$price,$brand,$size38,$size39,$size40,$size41,$file_name,$file_name2,$file_name3){
-         $sql="INSERT INTO shoes (name,image,image2,image3,price, brand, qty38, qty39, qty40, qty41)
-                   VALUES('$name','img/$brand/$file_name','img/$brand/$file_name2','img/$brand/$file_name3',$price,'$brand',$size38,$size39,$size40,$size41)";
+        function Them($ten,$don_gia,$ma_ncc,$hinh1,$hinh2,$hinh3,$ten_nha_cung_cap){
+         $sql="INSERT INTO giay (ten,don_gia,ma_nha_cung_cap,hinh1,hinh2,hinh3)
+                   VALUES('$ten','$don_gia','$ma_ncc','img/$ten_nha_cung_cap/$hinh1','img/$ten_nha_cung_cap/$hinh2','img/$ten_nha_cung_cap/$hinh3')";
+         
             mysqli_query($this->con,$sql);
           
     }
-     function Them_user($user_id,$email,$pass,$sdt){
-         $sql="INSERT INTO user(user_id,pass,email,sdt)
-                   VALUES($user_id,'$pass','$email','$sdt')";
+     function Them_user($email,$pass,$sdt,$role){
+         $sql="INSERT INTO user(pass,email,sdt,role)
+                   VALUES('$pass','$email','$sdt','$role')";
             mysqli_query($this->con,$sql);
             
     }
-      function Sua($name,$price,$brand,$size38,$size39,$size40,$size41,$id){
+      function Sua($name,$price,$ma_ncc,$id){
 
-     $sql2="UPDATE shoes SET name='$name', price= '$price', brand= '$brand',qty38=$size38,qty39=$size39,qty40=$size40,qty41=$size41  WHERE shoe_id = '$id'";
+     $sql2="UPDATE giay SET ten='$name', don_gia= '$price', ma_nha_cung_cap= '$ma_ncc' WHERE id_giay = '$id'";
             $query2=mysqli_query($this->con,$sql2);
             
       return $query2;
       }
       
-     function Sua_user($email,$sdt,$id){
-     $sql2="UPDATE user SET email='$email', sdt='$sdt' WHERE user_id =$id";
+     function Sua_user($email,$sdt,$id,$role){
+     $sql2="UPDATE user SET email='$email', sdt='$sdt',role='$role' WHERE user_id =$id";
             $query=mysqli_query($this->con,$sql2);
             return $query;
     }
-    function suahinh1($file_name,$brand,$id){
-        $query = "update shoes set image='img/$brand/$file_name' where shoe_id=$id";
+    function suahinh1($file_name,$ten_nha_cung_cap,$id){
+     $query = "update giay set hinh1='img/$ten_nha_cung_cap/$file_name' where id_giay=$id";
         mysqli_query($this->con, $query);
     }
-    function suahinh2($file_name,$brand,$id){
-        $query = "update shoes set image2='img/$brand/$file_name' where shoe_id=$id";
+    function suahinh2($file_name,$ten_nha_cung_cap,$id){
+        $query = "update giay set hinh2='img/$ten_nha_cung_cap/$file_name' where id_giay=$id";
        mysqli_query($this->con, $query);
     }
-    function suahinh3($file_name,$brand,$id){
-        $query = "update shoes set image3='img/$brand/$file_name' where shoe_id=$id";
+    function suahinh3($file_name,$ten_nha_cung_cap,$id){
+        $query = "update giay set hinh3='img/$ten_nha_cung_cap/$file_name' where id_giay=$id";
         mysqli_query($this->con, $query);
     }
     }
