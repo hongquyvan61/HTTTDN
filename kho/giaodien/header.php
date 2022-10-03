@@ -12,7 +12,7 @@
         <a class="nav-link" href="nhapkho.php">Nhập kho</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Xuất kho</a>
+        <a class="nav-link" href="xuatkho.php">Xuất kho</a>
     </li><!-- comment -->
     <li class="nav-item">
       <a class="nav-link" href="#">Báo cáo</a>

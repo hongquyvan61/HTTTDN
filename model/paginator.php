@@ -78,9 +78,15 @@
             $html .= '<li class="page-item disabled"><span>...</span></li>';
             $html .= '<li class="page-item"><a class="page-link" href="?limit=' . $this->_limit . '&page=' . $last . '">' . $last . '</a></li>';
         }
-
-        $class = ( $this->_page == $last ) ? "disabled" : "";
-        $disablelinknext = ( $this->_page == $last ) ? "style=\"pointer-events: none; cursor: default;\"": "";
+        $disablelinknext = "";
+        if($last == 0){
+            $class = "disabled";
+            $disablelinknext = "style=\"pointer-events: none; cursor: default;\"";
+        }
+        else{
+            $class = ( $this->_page == $last ) ? "disabled" : "";
+            $disablelinknext = ( $this->_page == $last ) ? "style=\"pointer-events: none; cursor: default;\"": "";
+        }
         $html .= '<li class="page-item ' . $class . '"><a class="page-link" '.$disablelinknext.'" href="?limit=' . $this->_limit . '&page=' . ( $this->_page + 1 ) . '">Next</a></li>';
 
         $html .= '</ul>';

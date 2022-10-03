@@ -1,4 +1,4 @@
-<div class="col text-center"><h1>NHẬP KHO</h1></div>
+<div class="col text-center"><h1>XUẤT KHO</h1></div>
 <div class="form-row">
 <div class="form-group col-md-3">
       <label style="font-size: 13px;" for="slboxsort">Nhà cung cấp:</label>
@@ -72,20 +72,7 @@
             </tr>
        </thead>
        <tbody>
-           <!--<tr>
-               <td>abc</td>
-               <td>40</td>
-               <td>500000</td>
-               <td>2000000</td>
-               <td><button class="btn btn-danger" style="font-size: 13px;">Xoá</button></td>
-           </tr>
-           <tr>
-               <td>def</td>
-               <td>10</td>
-               <td>500000</td>
-               <td>2000000</td>
-               <td><button class="btn btn-danger" style="font-size: 13px;">Xoá</button></td>
-           </tr>-->
+           
        </tbody>
     </table>
     <div class="row">
@@ -94,21 +81,4 @@
         </div>
     </div>
 </div>
-
-<!--<table id="tablelichsu" class="table table-bordered table-striped">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        
-                                        <th>Tên sản phẩm</th>
-                                        <th>Hình ảnh</th>
-                                        <th>Đơn giá</th>
-                                        <th>Số lượng tồn kho</th>
-                                        
-                                        
-                                       
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                  
-                                </tbody>
-                            </table>-->
+  
