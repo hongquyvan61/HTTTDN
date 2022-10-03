@@ -32,14 +32,13 @@
                     <tr class="aa2">
                         <th>#</th>
                         <th>Mã đơn hàng</th>
-                        <th>user_id</th>
-                        <th>SDT</th>
+                        <th>user_id</th>                    
                         <th>Ngày giờ thanh toán</th>
                         <th>Tên người nhận</th>
-                        <th>SĐT người nhận</th>
                         <th>Địa chỉ giao hàng</th>
                         <th>Chi tiết</th>
-                        <th>Giao</th>
+                        <th>Giao hàng</th>
+                        <th>Hóa đơn</th>
 
                     </tr>
                     <tbody>
@@ -73,14 +72,12 @@
                                             //echo $decryptemail; 
                                         ?>
                                 </td>-->
-                                <td><?php $decryptsdt = $model->apphin_giaima($row['sdt']);
-                                            echo $decryptsdt; ?></td>
                                 <td><?php echo $row['ngay_gio_thanh_toan']?></td>
                                 <td><?php echo $row['ten_nguoinhan']?></td>
-                                <td><?php echo $row['sdt_nguoinhan']?></td>
                                 <td><?php echo $row['diachi_giaohang']?></td>
                                 <td><a href="../giaodien/chitiet.php?user_id=<?php echo $row['user_id']; ?>&don=<?php echo $row['ma_don_hang']; ?>"><button class="x1"> Chi tiết</button></a></td>
                                 <td><a onclick="return giao()" href="../giaodien/giaohang.php?userid=<?php echo $row['user_id']; ?>&don=<?php echo $row['ma_don_hang']; ?>"><input type="button" name="giao" id="giao" class="x1" value="Giao hàng"></a></td>
+                                 <th><a href="../giaodien/in_pdf.php?ma_don_hang=<?php echo $row['ma_don_hang']; ?>"><button class="x1"> Print</button></a></th
 
                             </tr>
                         <?php } ?>

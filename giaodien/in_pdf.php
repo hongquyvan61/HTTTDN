@@ -29,8 +29,8 @@ class MYPDF extends TCPDF {
          $ma_don_hang=$_GET['ma_don_hang'];
          $sql1="SELECT email,don_hang.user_id FROM don_hang,user where don_hang.user_id=user.user_id and ma_don_hang=$ma_don_hang";
          $query1=mysqli_query($con,$sql1);
-           $result = $model->getInfo(intval($_SESSION['id']));
-                $row = mysqli_fetch_assoc($result);
+         //  $result = $model->getInfo(intval($_SESSION['id']));
+                $row = mysqli_fetch_assoc($query1);
           $truoc = explode("@", $row['email']);
                 $giaima = $encryptmodel->apphin_giaima($truoc[0]);
                 $decryptemail = $giaima."@".$truoc[1];

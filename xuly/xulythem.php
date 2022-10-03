@@ -20,7 +20,7 @@
         
         alert("Email này đã tồn tại");
             
-    window.location='../giaodien/themuser.php';
+    window.location='../giaodien/qlkh.php';
            
         }
         function xyz(){
@@ -32,7 +32,7 @@
         }
         function jqka(){
          alert("Nhập lại password không khớp với password!");
-         window.location = '../giaodien/themuser.php';
+         window.location = '../giaodien/qlkh.php';
     }
  </script>
 <?php
