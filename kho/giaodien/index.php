@@ -43,19 +43,16 @@ and open the template in the editor.
         </div>
   <label for="brand"></label>
 
-  <select name="brand" class="s" style="position: absolute;
+  <select id="slboxsort" name="brand" class="s" style="position: absolute;
    top: 79px;
     left: 200px;
      height: 30px;
      width: 100px;
      margin-left: 100px;
       border-radius: 4px;" placeholder="Thương hiệu" >
-  <option value="Adidas">Adidas</option>
-  <option value="Adidas">Puma</option>
-  <option value="Adidas">Nike</option>
+  <option value="nhapkho">Nhập kho</option>
+  <option value="xuatkho">Xuất kho</option>
 </select> 
- 
-
 <input type="date" id="start" name="trip-start"
        value="2022-07-22"
        class="d" style="position: absolute;
