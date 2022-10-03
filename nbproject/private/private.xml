@@ -12,12 +12,54 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/HTTTDN/giaodien/admin.php</file>
-            <file>file:/C:/xampp/htdocs/HTTTDN/giaodien/them.php</file>
-            <file>file:/C:/xampp/htdocs/HTTTDN/giaodien/ttgh.php</file>
-            <file>file:/C:/xampp/htdocs/HTTTDN/giaodien/themuser.php</file>
+
+            <file>file:/C:/xampp/htdocs/HTTTDN/giaodien/header.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/kho/xuly/xulilichsu.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/kho/model/ajaxlocsanpham.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/giaodien/pdbybrand.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/giaodien/login.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/kho/xuly/xulinhapkho.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/kho/giaodien/Dangnhap.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/kho/model/user.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/giaodien/thongtinsp.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/xuly/xulycart.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/giaodien/lichsu.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/giaodien/cart.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/giaodien/products.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/css/css.css</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/kho/model/ajaxnhapkho.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/connectdb/connect.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/kho/model/ajaxlochang.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/kho/model/ajaxlaynhapxuat.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/kho/xuly/xulilogin.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/kho/xuly/xulihienthi.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/kho/giaodien/lichsu.php</file>
             <file>file:/C:/xampp/htdocs/HTTTDN/giaodien/qlkh.php</file>
-            <file>file:/C:/xampp/htdocs/HTTTDN/xuly/xulythem.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/kho/model/ajaxlayidgiay.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/model/ajax_loctinhtrang.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/giaodien/logout.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/giaodien/index.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/kho/model/ajaxloctrangchu.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/kho/model/ajaxlaydongiasp.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/kho/giaodien/index.php</file>
+
+
+            <file>file:/C:/xampp/htdocs/HTTTDN/giaodien/login.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/xuly/xulylogin.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/kho/xuly/xulinhapkho.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/model/ajax_loctinhtrang.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/model/detailbill_model.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/giaodien/thongtinsp.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/xuly/xulythongtinsp.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/model/cart_model.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/giaodien/lichsu.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/model/bill_model.php</file>
+
+            <file>file:/C:/xampp/htdocs/HTTTDN/xuly/xulylichsu.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/model/tanggiamslsp.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/kho/giaodien/nhapkho.php</file>
+
+
         </group>
     </open-files>
 </project-private>
