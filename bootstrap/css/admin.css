@@ -150,3 +150,6 @@ input:checked+.slider:before {
 .x1{
     background-color: chartreuse;
 }
+#them_tk{
+    margin-left: 10%;
+}
