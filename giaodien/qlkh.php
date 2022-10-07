@@ -28,6 +28,53 @@
             
             <div class="aa">
                 <h3 class="a0">Quản lý tài khoản </h3>
+                
+               <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Thêm tài khoản</button>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+           <h4 class="modal-title">Thêm tài khoản</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+       
+      </div>
+        
+        <div class="them">
+    <form method="POST" enctype="multipart/form-data" action="../xuly/xulythem.php">
+        <div class="themsp">
+       
+            <input  style="display: none;" type="text" name="user_id"  class="form-controll" ><br>
+         <label >email</label><br>
+        <input type="text" name="email"  required="true">  <br>
+        <label >password</label><br>
+        <input type="password" name="pass"  required="true"> <br><br>
+        <label >Nhập lại password</label><br>
+        <input type="password" name="pass2" required="true" > <br><br>
+         <label >SDT</label><br>
+         <input type="text" name="sdt" required="true" > <br>
+         <label >Role</label><br>
+         <select name='role' >
+       <option>admin</option> 
+       <option>kho</option>
+         </select><br>   <br>  
+         <button type="submit" class="sub" name="sub2">Thêm</button>
+         </div>
+       
+    </form>
+</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+                
+                
                 <p class="aa0"><a href="../giaodien/themuser.php">Thêm tài khoản</a></p>
                 <div class="header_search">
                     <form action="qlkh.php" method="post" id="header-search-form">
