@@ -1,4 +1,4 @@
-<div class="col text-center"><h1>NHẬP KHO</h1></div>
+<div class="col text-center"><h3>NHẬP KHO</h3></div>
 <div class="form-row">
 <div class="form-group col-md-3">
       <label style="font-size: 13px;" for="slboxsort">Nhà cung cấp:</label>
@@ -72,20 +72,7 @@
             </tr>
        </thead>
        <tbody>
-           <!--<tr>
-               <td>abc</td>
-               <td>40</td>
-               <td>500000</td>
-               <td>2000000</td>
-               <td><button class="btn btn-danger" style="font-size: 13px;">Xoá</button></td>
-           </tr>
-           <tr>
-               <td>def</td>
-               <td>10</td>
-               <td>500000</td>
-               <td>2000000</td>
-               <td><button class="btn btn-danger" style="font-size: 13px;">Xoá</button></td>
-           </tr>-->
+           
        </tbody>
     </table>
     <div class="row">
