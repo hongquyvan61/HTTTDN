@@ -105,10 +105,8 @@ and open the template in the editor.
             </select>
         </div>
     </div>
-    <?php require '../xuly/xulihienthi.php';
-    
-    //dfdsfdsfdsfds
-    ?>
+
+    <?php require '../xuly/xulihienthi.php';?>s
 </div>
     </body>
     <script type="text/javascript">
