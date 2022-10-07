@@ -194,7 +194,7 @@
                                             ?>
                                     </td>  
                                        <td><?php echo $row['role']; ?></td>
-                                    <td><a href="../giaodien/sua_user.php?user_id=<?php echo $row['user_id']; ?>">Sửa</a></td>
+                                 
                                     <td><a onclick="return Del('<?php echo $decryptemail; ?>')" href="../giaodien/xoa_user.php?user_id=<?php echo $row['user_id']; ?>">Xóa</a></td>
                                 </tr>
                         <?php 
