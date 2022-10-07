@@ -19,6 +19,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
         <title></title>
     </head>
     <body>
@@ -32,7 +33,7 @@
         // put your code here
         ?>
         <div class="container">
-            <?php require '../xuly/xulinhapkho.php';?>
+            <?php require '../xuly/xulixuatkho.php';?>
         </div>
       
 

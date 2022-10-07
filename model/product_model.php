@@ -49,9 +49,10 @@
         public function getProductsbyKey($key){
             $keyword = mysqli_real_escape_string($this->con, $key);
             $query ="select *
-                    from giay as g join nha_cung_cap as ncc
-                    on g.ma_nha_cung_cap = ncc.ma_nha_cung_cap
-                    where (ten like '% $keyword') or (ncc.ten_nha_cung_cap='$keyword') or (ten like '$keyword') or (id_giay='$keyword')";
+                        from giay as g join nha_cung_cap as ncc
+                        on g.ma_nha_cung_cap=ncc.ma_nha_cung_cap
+                        where (ncc.ten_nha_cung_cap='$key' and (ten like '% $key %' or ten like '% $key %' or ten like '$key %' or ten like '% $key')) 
+                        or (ten like '% $key %' or ten like '$key %' or ten like '% $key')";
             $result = mysqli_query($this->con,$query);
             return $result;
         }
