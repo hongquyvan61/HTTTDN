@@ -1,4 +1,4 @@
-<?php 
+    <?php 
     session_start();
 ?>
 <html lang="en">
@@ -29,7 +29,7 @@
             <div class="aa">
                 <h3 class="a0">Quản lý tài khoản </h3>
                 
-               <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Thêm tài khoản</button>
+              <button type="button" id="them_tk" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Thêm tài khoản</button>
 
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
@@ -73,9 +73,10 @@
 
   </div>
 </div>
+<!-- Modal -->
                 
                 
-                <p class="aa0"><a href="../giaodien/themuser.php">Thêm tài khoản</a></p>
+          
                 <div class="header_search">
                     <form action="qlkh.php" method="post" id="header-search-form">
                         <input type="text" name="keyword" class="form-control searchbar" id="searchbox" placeholder="Search..">
@@ -104,6 +105,7 @@
                         include '../model/encrypt.php';
                         $con = ketnoi();
                         $model = new encrypt();
+            
                         if(isset($_POST['keyword'])){
                             $search=$_POST['keyword'];
                             $regex_email = "/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[_a-z0-9-]+)*(\.[a-z]{2,3})$/";
@@ -179,8 +181,8 @@
                                 <tr id="a1">     
 
                                     <td><?php echo $i++; ?></td>
-                                    <td><?php echo $row['user_id']; ?></td>
-
+                                    <td><?php echo $row['user_id'];?>  </td>
+                                        
                                     <td>
                                         <?php 
                                             $tiento = explode("@", $row['email']);
@@ -194,7 +196,7 @@
                                             ?>
                                     </td>  
                                        <td><?php echo $row['role']; ?></td>
-                                    <td><a href="../giaodien/sua_user.php?user_id=<?php echo $row['user_id']; ?>">Sửa</a></td>
+                                       <td>  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="<?php echo $row['user_id']?>">Sửa</button></td>
                                     <td><a onclick="return Del('<?php echo $decryptemail; ?>')" href="../giaodien/xoa_user.php?user_id=<?php echo $row['user_id']; ?>">Xóa</a></td>
                                 </tr>
                         <?php 
@@ -208,6 +210,7 @@
 
 
         </div>
+        
         <div>
             <footer class="footer">
                <div class="container">
@@ -219,10 +222,96 @@
                </div>
            </footer>
         </div>
+        
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+   <div class="them">
+    <form method="POST" enctype="multipart/form-data" action="../xuly/xulysua.php">
+        <input type="text" name="id" id="id" class="id" style="display: none" class="form-controll" required ><br>
+        <div class="themsp">
+            User ID: <span id="user_id"></span><br><br>
+          <label >Email</label><br>
+          
+           <input type="text" name="email" id="email"  >  <br><br>
+     
+         <label >SDT</label><br>
+         
+         <input type="text" name="sdt" id="sdt"  > <br><br>
+         <div id="phan_bac">
+             <label >Role</label><br>
+             <select name="role">
+                 <option id="admin"> admin</option>
+                  <option id="kho">kho</option>              
+             </select><br>
+         </div>
+    
+   <br> <button type="submit" class="sub" name="sub2">Sửa</button>
+         </div>
+    </form>
+</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+        
         <script type="text/javascript">
                 function Del(name) {
                     return confirm("Bạn có chắc chắn muốn xóa user có email là: " + name + " ?");
                 }
+                $.extend({
+                    xResponse: function(url, data) {
+                    var arrayObj = null;
+                    $.ajax({
+                            method: 'post',
+                            url: url,
+                            datatype: "JSON",
+                            data: data,
+                            async: false,
+                            success: function(response){
+                                arrayObj = JSON.parse(response);
+                            }   
+                        });
+                        return arrayObj;
+                    }
+                }); 
+                
+                $('#exampleModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var recipient = button.data('whatever') // Extract info from data-* attributes
+  var modal = $(this)
+  modal.find('.modal-title').text('Sửa thông tin tài khoản');
+    var xArrayObj = $.xResponse('../model/ajax_sua_user.php',{id: recipient});
+       xArrayObj.forEach(function (item,index){   
+         modal.find('#user_id').text(item.user_id);
+         modal.find('#id').val(item.user_id);
+        modal.find('#email').val(item.email);
+        modal.find('#sdt').val(item.sdt);
+            if(item.role == "admin"){
+            document.getElementById("phan_bac").style.display = "block";
+            document.getElementById("admin").selected = true;
+            }
+            else if(item.role == "kho"){
+                 document.getElementById("phan_bac").style.display = "block";
+                  document.getElementById("kho").selected = true;
+            }
+            else{
+                 document.getElementById("phan_bac").style.display = "none"
+            }
+          
+    
+                    });
+    })
+    
+    
         </script>
     </body>
 
