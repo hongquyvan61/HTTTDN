@@ -59,7 +59,7 @@ and open the template in the editor.
                   <label class="col-form-label">Tổng số lượng tồn trong kho:</label>
                   <span id="tongslton"></span>
               </div>
-              <div>
+              <div class="kcsoluong">
                   <label class="col-form-label">Kich cỡ:</label>
                   <select id="selectsize">
                       
@@ -76,17 +76,15 @@ and open the template in the editor.
   </div>
 </div>
 <div class="container">
-    <div class="form-row col-md-12">
+    <div class="form-row col-md-12" style="margin: 10px 0px;">
         <div class="form-group col-md-4">
-            
-                            <input id="searchinput" class="form-control mr-sm-2" type="search" name="keyword" placeholder="Search" aria-label="Search" style="margin-left: 30px; height: 27px; width: 60%; font-size: 13px;">
-                            <button id="searchbtn" class="btn btn-outline-success" type="submit" name="submit" style="font-size: 13px;">Search</button>
-            
+            <input id="searchinput" class="form-control mr-sm-2" type="search" name="keyword" placeholder="Search" aria-label="Search" style="display:inline-block; margin-left: 3%; width: 60%; font-size: 13px;">
+            <button id="searchbtn" class="btn btn-outline-success" type="submit" name="submit" style="font-size: 13px;">Search</button>
         </div>
         <div class="form-group col-md-6">
             <label for="brand" class="col-md-3" style="font-size: 13px;">Nhà cung cấp:</label>
 
-            <select id="slboxsort" name="brand" class="form-control col-md-3" style="font-size: 13px;" placeholder="Thương hiệu" >
+            <select id="slboxsort" name="brand" class="form-control col-md-3" style="display:inline-block; font-size: 13px;" placeholder="Thương hiệu" >
                <option value="All" selected="true">All</option>
                 <?php 
                     require '../../connectdb/connect.php';
@@ -156,8 +154,25 @@ and open the template in the editor.
                         });
                         return arrayObj;
                     }
+                }); 
+                //AJAX LAY SO LUONG TON TRONG KHO TONG THEO SIZE
+                $.extend({
+                    slsizeResponse: function(url, data) {
+                    var sl = null;
+                    $.ajax({
+                            method: 'post',
+                            url: url,
+                            datatype: "JSON",
+                            data: data,
+                            async: false,
+                            success: function(response){
+                                sl = JSON.parse(response);
+                            }   
+                        });
+                        return sl;
+                    }
                 });
-                //END AJAX LAY THONG TIN CHI TIET GIAY
+                //END AJAX LAY SO LUONG TON TRONG KHO TONG THEO SIZE
                 function ttctsizegiay(idgiay,isgetsize){
                     $.ajax({
                             method: 'post',
@@ -176,6 +191,18 @@ and open the template in the editor.
                                     opt.text = item;
                                     selectsize.add(opt);
                                 });
+                            }   
+                        });
+                }
+                function hienthisltheosize(idgiay,selectedsize, ele){
+                    $.ajax({
+                            method: 'post',
+                            url: '../../model/ajaxsltheosize.php',
+                            datatype: "JSON",
+                            data: {shoe: idgiay, size: selectedsize},
+                            success: function(response){
+                                var sl = JSON.parse(response);
+                                ele.text(' - Số lượng tồn: ' + sl);
                             }   
                         });
                 }
@@ -205,6 +232,23 @@ and open the template in the editor.
                        modal.find('#tongslton').text(item.tongslkhotong);
                     });
                     ttctsizegiay(idgiay,1);
+                    var slboxsize = modal.find('.kcsoluong #selectsize');
+                    var sizemacdinh = slboxsize.find(":selected").val();
+                    var elementslton = modal.find('#sltontheosize');
+                    if(typeof(sizemacdinh) !== 'undefined'){
+                        hienthisltheosize(idgiay,sizemacdinh, elementslton);
+                    }
+                    else{
+                        elementslton.text(' - Số lượng tồn: Đang xử lí...');
+                    }
+                    //var sltonmacdinh = $.slsizeResponse('../../model/ajaxslmacdinh.php',{shoe: idgiay, size: sizemacdinh});
+                    //modal.find('#sltontheosize').text(' - Số lượng tồn: ' + sltonmacdinh);
+                    slboxsize.change(function(){
+                        var selectedsize = slboxsize.find(":selected").val();
+                        hienthisltheosize(idgiay,selectedsize, elementslton);
+                        //var sltontheosize = $.slsizeResponse('../../model/ajaxsltheosize.php',{shoe: idgiay, size: selectedsize});
+                        //modal.find('#sltontheosize').text(' - Số lượng tồn: ' + sltontheosize);
+                    });
                     //modal.find('.modal-body input').val(recipient)
                 })
             });
