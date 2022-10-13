@@ -45,6 +45,10 @@ if (isset($_POST['sub'])) {
     $name = $_POST['ipname'];
     $price = $_POST['ipprice'];
     $ma_ncc = $_POST['ma_ncc'];
+    $size = $_POST['size'];
+    $sl_size = $_POST['sl_size'];
+    $the_loai = $_POST['the_loai'];
+    $mo_ta = $_POST['mo_ta'];
     $file = $_FILES['image'];
     $file_name = $file['name'];
     $file2 = $_FILES['image2'];
@@ -95,7 +99,14 @@ if (isset($_POST['sub'])) {
     $num = mysqli_num_rows($product);
     if (mysqli_num_rows($product)== 0 && (empty($thieuhinhmess))) {
         header('location:../giaodien/admin.php');
-       $b->Them($name, $price, $ma_ncc,$file_name,$file_name2,$file_name3,$ten_nha_cung_cap);
+       $b->Them($name, $price, $ma_ncc,$file_name,$file_name2,$file_name3,$ten_nha_cung_cap,$the_loai,$mo_ta,$sl_size);
+       
+       $sql="SELECT id_giay FROM giay WHERE id_giay=(SELECT MAX(id_giay) FROM giay)";
+           $query = mysqli_query($con, $sql);
+        $row= mysqli_fetch_assoc($query);
+        $id_giay=$row['id_giay'];    
+   
+       $b->Them_size($id_giay,$size,$sl_size);
     } else{
       echo '<script type="text/javascript">',
      'xyz();',
