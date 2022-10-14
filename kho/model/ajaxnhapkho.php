@@ -52,6 +52,15 @@
             
                     $updatesl="UPDATE giay SET so_luong_ton_kho_tong=$sl+$slnhapthem WHERE id_giay ='$idsp' ;";
                     mysqli_query($con, $updatesl);
+                    $getslkhotong = "select so_luong_ton_kho_tong from kich_co where id_giay=$idsp and size=$sizesp";
+                    $getslresult = mysqli_query($con, $getslkhotong);
+                    $slkhotong = 0;
+                        while($row = mysqli_fetch_assoc($getslresult)){
+                        $slkhotong = (int)$row['so_luong_ton_kho_tong'];
+                        break;
+                        }
+                    $updateslkichco="update kich_co set so_luong_ton_kho_tong=$slkhotong+$slnhapthem where id_giay=$idsp and size=$sizesp";
+                    mysqli_query($con, $updateslkichco);
                 }
                 if(mysqli_affected_rows($con) != 0){
                     $checkinsert = 1;
