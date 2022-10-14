@@ -1,9 +1,19 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<?php 
+session_start();
+                    if(isset($_SESSION['email'])){
+                            $user = $_SESSION['email'];
+                        }
+                        else{
+                            $user = "";
+                        }
+                     
+                    if($user === ""){
+                    echo "<script>
+                    alert('Vui lòng đăng nhập trước!');
+                    window.location.href='../giaodien/Dangnhap.php';
+                    </script>";
+                    }
+                    ?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -29,7 +39,7 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-       <?php require 'header.php'; ?>
+       <?php require 'header.php'; ?>   
        
     <container id="search">
         <div style="width: 300px;">
