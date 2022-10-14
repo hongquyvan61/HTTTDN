@@ -1,3 +1,16 @@
+<script>
+    function check_size(){
+         
+        
+        alert("Size này đã tồn tại");  
+              window.location='../giaodien/admin.php';
+      
+    }
+                      function success() {
+            alert ("Thêm size thành công");
+              window.location='../giaodien/admin.php';
+}
+    </script>
 <?php
 require '../connectdb/connect.php';
 include "../model/product_model.php";
@@ -53,7 +66,7 @@ if (isset($_POST['sub'])) {
         
     }
     
-   // header('location:../giaodien/admin.php');
+    header('location:../giaodien/admin.php');
     $b->Sua($name, $price, $ma_ncc, $id,$the_loai,$mo_ta);
     
 }
@@ -78,12 +91,21 @@ if (isset($_POST['sub3'])) {
     $id_giay = $_POST['id'];
     $size = $_POST['size'];
     $sl_size = $_POST['sl_size'];
+     $where = "SELECT * from kich_co WHERE size='".$size."'";
+    $product = mysqli_query($con, $where);  
+    if (mysqli_num_rows($product)== 0) {     
       $b->Them_size($id_giay,$size,$sl_size);
      $sql="SELECT SUM(so_luong_ton_kho_tong) from kich_co where id_giay=$id_giay";
            $query = mysqli_query($con, $sql);
         $row= mysqli_fetch_assoc($query);
         $sum_tongsl=$row['SUM(so_luong_ton_kho_tong)']; 
      $b->update_sl($id_giay,$sum_tongsl);
-    header("location:../giaodien/a.php?layout=sua&id='$id_giay'");
+      echo '<script type="text/javascript">','success();','</script>';
+     
+ //   header("location:../giaodien/a.php?layout=sua&id='$id_giay'");
+    }
+    else{
+        echo '<script type="text/javascript">','check_size();','</script>';
+    }
     }
 ?>

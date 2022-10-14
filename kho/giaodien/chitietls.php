@@ -1,10 +1,28 @@
+<?php 
+session_start();
+                    if(isset($_SESSION['email'])){
+                            $user = $_SESSION['email'];
+                        }
+                        else{
+                            $user = "";
+                        }
+                     
+                    if($user === ""){
+                    echo "<script>
+                    alert('Vui lòng đăng nhập trước!');
+                    window.location.href='../giaodien/Dangnhap.php';
+                    </script>";
+                    }
+                    ?>
 <html>
+
     <head>
         <meta charset="UTF-8">
       <!-- Latest compiled and minified CSS -->
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../../css/csskho.css" type="text/css">
+
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- Latest compiled and minified CSS -->
@@ -21,13 +39,16 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <title></title>
+
     </head>
-    <body>
-        <?php
+<body>  
+    <?php
+
     require '../../connectdb/connect.php';
  require 'header.php';
  $con = ketnoi();
  ?>
+    
 <div class="container">
 <div class="col-md-12">
     <table id="tablenhapkho" class="table table-bordered table-striped">

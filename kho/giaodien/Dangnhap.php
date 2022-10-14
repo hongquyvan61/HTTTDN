@@ -27,7 +27,18 @@ and open the template in the editor.
     <!-- Login Form -->
     <form method="post"  action="../xuly/xulilogin.php">
       <input type="text" id="login" class="fadeIn second" name="email" placeholder="login">
-      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" style="         background-color: #f6f6f6;
+    border: none;
+    color: #0d0d0d;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px;
+    width: 85%;
+    border: 2px solid #f6f6f6;
+    -webkit-transition: all 0.5s ease-in-out;">
       <input type="submit" name="submit" class="fadeIn fourth" value="Log In">
        <?php require '../xuly/xulilogin.php';?>
     </form>
