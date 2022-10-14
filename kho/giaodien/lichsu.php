@@ -1,3 +1,19 @@
+<?php 
+session_start();
+                    if(isset($_SESSION['email'])){
+                            $user = $_SESSION['email'];
+                        }
+                        else{
+                            $user = "";
+                        }
+                     
+                    if($user === ""){
+                    echo "<script>
+                    alert('Vui lòng đăng nhập trước!');
+                    window.location.href='../giaodien/Dangnhap.php';
+                    </script>";
+                    }
+                    ?>
 <html>
     <head>
         <meta charset="UTF-8">

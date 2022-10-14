@@ -1,4 +1,5 @@
 
+
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="font-size: large;">
             <a class="navbar-brand" style="font-size: large; font-family: Times New Roman, Times, serif;"  href="index.php">Quản lí kho</a>
   <!-- Links -->
@@ -22,11 +23,11 @@
         <a class="nav-link" href="lichsu.php">Lịch sử</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Nhà cung ứng</a>
+        <a class="nav-link" href="nhacungung.php">Nhà cung ứng</a>
     </li>
   </ul>
  <ul class="navbar-nav ml-auto">
-     <li class="nav-item"><a href="#" class="nav-link"><span class="glyphicon glyphicon-user"></span> Đăng nhập</a></li>
-     <li class="nav-item"><a href="Dangnhap.php" class="nav-link"><span class="glyphicon glyphicon-log-in"></span> Thoát</a></li>
+    
+     <li class="nav-item"><a href="logout.php" class="nav-link"><span class="glyphicon glyphicon-log-in"></span> Thoát</a></li>
     </ul>
 </nav>

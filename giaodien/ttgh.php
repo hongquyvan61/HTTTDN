@@ -75,9 +75,9 @@
                                 <td><?php echo $row['ngay_gio_thanh_toan']?></td>
                                 <td><?php echo $row['ten_nguoinhan']?></td>
                                 <td><?php echo $row['diachi_giaohang']?></td>
-                                <td><a href="../giaodien/chitiet.php?user_id=<?php echo $row['user_id']; ?>&don=<?php echo $row['ma_don_hang']; ?>"><button class="x1"> Chi tiết</button></a></td>
-                                <td><a onclick="return giao()" href="../giaodien/giaohang.php?userid=<?php echo $row['user_id']; ?>&don=<?php echo $row['ma_don_hang']; ?>"><input type="button" name="giao" id="giao" class="x1" value="Giao hàng"></a></td>
-                                 <th><a href="../giaodien/in_pdf.php?ma_don_hang=<?php echo $row['ma_don_hang']; ?>"><button class="x1"> Print</button></a></th
+                                <td><a href="../giaodien/chitiet.php?user_id=<?php echo $row['user_id']; ?>&don=<?php echo $row['ma_don_hang']; ?>"><button class="btn btn-primary"> Chi tiết</button></a></td>
+                                <td><a onclick="return giao()" href="../giaodien/giaohang.php?userid=<?php echo $row['user_id']; ?>&don=<?php echo $row['ma_don_hang']; ?>"><button class="btn btn-primary"> Giao hàng</button></a></td>
+                                 <th><a href="../giaodien/in_pdf.php?ma_don_hang=<?php echo $row['ma_don_hang']; ?>"><button class="btn btn-primary"> Print</button></a></th
 
                             </tr>
                         <?php } ?>
