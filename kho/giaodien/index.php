@@ -1,19 +1,9 @@
-<?php 
-session_start();
-                    if(isset($_SESSION['email'])){
-                            $user = $_SESSION['email'];
-                        }
-                        else{
-                            $user = "";
-                        }
-                     
-                    if($user === ""){
-                    echo "<script>
-                    alert('Vui lòng đăng nhập trước!');
-                    window.location.href='../giaodien/Dangnhap.php';
-                    </script>";
-                    }
-                    ?>
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -39,19 +29,57 @@ session_start();
         <title></title>
     </head>
     <body>
-
-       <?php require 'header.php'; ?>   
-       
-    <container id="search">
-        <div style="width: 300px;">
-            <form method="post" class="form-inline" action="index.php">
-                <input class="form-control mr-sm-2" type="search" name="keyword" placeholder="Search" aria-label="Search" style="margin-left: 30px;
-    height: 27px;
-    width: 186px">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="submit">Search</button>
-  </form>
-
-
+       <?php require 'header.php'; ?>
+<div class="modal fade" id="modalchitiet" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">    
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group" style="display: flex;justify-content: center;">
+              <div class="a anh1">
+                  <img src="../../img/adidas/bravada.jpg" id="anh1">
+              </div>
+              <div class="a anhphai">
+                  <div class="anh2">
+                      <img src="../../img/adidas/bravada.jpg" id="anh2">
+                  </div>
+                  <div class="anh3">
+                      <img src="../../img/adidas/bravada.jpg" id="anh3">
+                  </div>
+              </div>
+          </div>
+          <div class="form-group">
+              <div>
+                  <label class="col-form-label">Tổng số lượng tồn trong kho:</label>
+                  <span id="tongslton"></span>
+              </div>
+              <div class="kcsoluong">
+                  <label class="col-form-label">Kich cỡ:</label>
+                  <select id="selectsize">
+                      
+                  </select>
+                  <span id="sltontheosize"> - Số lượng tồn:</span>
+              </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+    <div class="form-row col-md-12" style="margin: 10px 0px;">
+        <div class="form-group col-md-4">
+            <input id="searchinput" class="form-control mr-sm-2" type="search" name="keyword" placeholder="Search" aria-label="Search" style="display:inline-block; margin-left: 3%; width: 60%; font-size: 13px;">
+            <button id="searchbtn" class="btn btn-outline-success" type="submit" name="submit" style="font-size: 13px;">Search</button>
         </div>
         <div class="form-group col-md-6">
             <label for="brand" class="col-md-3" style="font-size: 13px;">Nhà cung cấp:</label>
@@ -71,7 +99,6 @@ session_start();
                                                           ?>
 
               
-               ?>
             </select>
         </div>
     </div>
@@ -187,6 +214,7 @@ session_start();
                 function search(){
                     var searchinput = document.getElementById("searchinput").value;
                     var statusdachon = document.getElementById('slboxsort').value;
+                    
                     guiajax(statusdachon, searchinput)
                 }
                 statusmacdinh();

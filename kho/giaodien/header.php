@@ -23,7 +23,7 @@
         <a class="nav-link" href="lichsu.php">Lịch sử</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Nhà cung ứng</a>
+        <a class="nav-link" href="nhacungung.php">Nhà cung ứng</a>
     </li>
   </ul>
  <ul class="navbar-nav ml-auto">
