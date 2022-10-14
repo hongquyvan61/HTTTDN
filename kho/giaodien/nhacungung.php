@@ -1,4 +1,5 @@
 <?php
+echo 'dit me may';
 
 /* 
  * To change this license header, choose License Headers in Project Properties.
