@@ -10730,10 +10730,23 @@ textarea.form-control-lg {
     width: 200px;
     height: 230px;
 }
+.them{
+   position: absolute;
+		  left: 50%;
+		  top: 65%;
+		  transform: translate(-50%, -60%);
+                 
+		 
+}
+#them_size{
+    margin-top: 6px;
+}
 .title_them{
-    background-color:grey;
+    color: white;
+    background-color:24a0ed;
     height: 90px;
     margin-bottom: 30px;
+    border: 1px;
 }.title_them h2{
    margin-left: 100px;
 }
@@ -10779,11 +10792,11 @@ textarea.form-control-lg {
     margin-left: 20px;
 }
 .def td{
-    background-color:chartreuse;
+    background-color:#24a0ed;
     text-align: center;
 }
 .def td:hover{
-    background-color:forestgreen;
+    background-color:1183ca;
 }
 .header_search {
   float: right;

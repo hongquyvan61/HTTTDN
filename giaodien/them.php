@@ -2,8 +2,9 @@
     <head>
         <link rel="stylesheet" href="../bootstrap/css/admin2.css">
     </head>
-    <body>
+     <body style="background-color: #F0F0F0;" >
        <?php require '../giaodien/admin_menu.php';?>
+  
         <div class="title_them">
         
             <br>
@@ -17,19 +18,21 @@
         $query=mysqli_query($con,$sql);   
            
         ?>
-<div class="them">
+        
+         
+<div class="them" >
     <form method="POST" enctype="multipart/form-data" action="../xuly/xulythem.php">
         <div class="themsp" style="width: 1000px;">
-            <div class="sp_left" style="float: left; width:42%;">
+            <div class="sp_left" style="float: left; width:50%;">
         <label >Tên sản phẩm</label><br>
         <input type="text" name="ipname"class="form-controll" required="true" style="width:200px"><br>
-         <label >Ảnh sản phẩm</label><br>
+         <label >Ảnh sản phẩm</label><br> <br>
          <label>Ảnh 1:</label>
-         <input type="file" name="image"class="form-controll" >  <br>
+         <input type="file" name="image" >  <br> <br>
            <label>Ảnh 2:</label>
-         <input type="file" name="image2"class="form-controll" >  <br>
+         <input type="file" name="image2" >  <br> <br>
            <label>Ảnh 3:</label>
-         <input type="file" name="image3"class="form-controll" >  <br>
+         <input type="file" name="image3" >  <br> <br>
          <div class="size">
             <div style="float:left; width: 20%;">
         <label >Size</label><br>
@@ -62,12 +65,11 @@
         <input type="number" name="ipprice" class="form-controll" min="0" required="true">  <br>
         <label >Mô tả</label><br><br>
        <textarea  name="mo_ta" rows="4" cols="40"></textarea><br><br>
-          <br><button type="submit" class="sub" name="sub">Thêm</button>
+          <br><button type="submit" class="btn btn-primary" name="sub">Thêm</button>
         </div>
          </div>
     </form>
-</div>
           
-    
+   </div> 
 </body>
 </html>

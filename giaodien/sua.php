@@ -1,13 +1,19 @@
-<html>
+
+<html lang="en">
+
     <head>
-        <link rel="stylesheet" href="../bootstrap/css/admin2.css"><!-- comment -->
-         <meta charset="UTF-8">
+        <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-         <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>     
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title> HTVC Admin</title>
+       <link rel="stylesheet" href="../bootstrap/css/admin2.css"><!-- comment -->
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>     
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
     </head>
-    <body>
+
+   <body style="background-color: #F0F0F0;">
         <style>
             .id{
                 display: none;
@@ -19,37 +25,50 @@
             <br>
         <h2>Sửa sản phẩm</h2>
         </div>
+
         <?php
 
        
        
         $con = ketnoi();
         $sql="SELECT * FROM `nha_cung_cap`";
-        $query=mysqli_query($con,$sql);      
+        $query=mysqli_query($con,$sql);    
+         $id=$_GET['id'];
+         
+          $sql2="SELECT * FROM `kich_co` where id_giay=$id order by size asc";
+        $query2=mysqli_query($con,$sql2);
 
-        $id=$_GET['id'];
-        $sql_up="select * from giay where id_giay=$id";
+       $sql_up="select * from giay where id_giay=$id";
         $query_up=mysqli_query($con,$sql_up);
         $row_up= mysqli_fetch_assoc($query_up);
         ?>
+        
    
         
-        
-        <div class="them">
+     
+           <div class="them" >
     <form method="POST" enctype="multipart/form-data" action="../xuly/xulysua.php">
+        <br><br><br>
          <input type="text" name="id" class="id" class="form-controll" required value="<?php echo $row_up['id_giay']?>"><br> 
-        <div class="themsp" style="width: 1000px;">
-            <div class="sp_left" style="float: left; width:42%;">
+        <div class="themsp" style="width: 1000px">
+            <div class="sp_left" style="float: left; width:42%; ">
         <label >Tên sản phẩm</label><br>
         <input type="text" name="ipname"class="form-controll" value="<?php echo $row_up['ten']?>" style="width:200px"><br>
-         <label >Ảnh sản phẩm</label><br>
+         <label >Ảnh sản phẩm</label><br><br>
          <label>Ảnh 1:</label>
-         <input type="file" name="image"class="form-controll" >  <br>
+         <input type="file" name="image" >  <br><br>
            <label>Ảnh 2:</label>
-         <input type="file" name="image2"class="form-controll" >  <br>
+         <input type="file" name="image2" >  <br><br>
            <label>Ảnh 3:</label>
-         <input type="file" name="image3"class="form-controll" >  <br>
-              
+         <input type="file" name="image3" >  <br><br>
+             <label >Size</label><br>    
+                <select class="form-controll" name="ma_ncc">
+                 <?php    while($row=mysqli_fetch_assoc($query2)){ ?>
+                    <option><?php echo $row['size']?></option>   
+                    <?php } ?>
+           </select><br><br><br>
+                      <button type="button"  class="btn btn-primary" id="them_size" data-toggle="modal" data-target="#exampleModal">Thêm size</button>
+
             </div><!-- comment -->
             
             <div class="sp_right" style="float: left; width:50%;">
@@ -78,8 +97,8 @@
            
 </div>
         
-        
-     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Thêm size</button>
+              
+       
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
@@ -106,7 +125,7 @@
             </div>
         </div> 
                
-           <br><br><br><br><button type="submit" class="sub" name="sub3" >Thêm</button>
+           <br><br><br><br><button  type="submit" class="btn btn-primary" name="sub3" >Thêm</button>
            </form>
           
       </div>
@@ -116,21 +135,9 @@
       </div>
     </div>
   </div>
-</div>   
-
+</div>
 </body>
-<script type="text/javascript">
 
-        function changebrand(){
-        var arr = document.getElementsByClassName("brandselect");
-        for(var i=0;i<arr.length;i++){
-            if(arr[i].value == '<?php echo $spbrand;?>'){
-                arr[i].selected='selected';
-            }
-        }
-            //console.log(arr[1].value);
-        }
-        changebrand();
-    
-</script>
 </html>
+ 
+

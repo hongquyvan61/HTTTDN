@@ -43,7 +43,7 @@
        
       </div>
         
-        <div class="them">
+        <div >
     <form method="POST" enctype="multipart/form-data" action="../xuly/xulythem.php">
         <div class="themsp">
        
@@ -197,7 +197,7 @@
                                     </td>  
                                        <td><?php echo $row['role']; ?></td>
                                        <td>  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="<?php echo $row['user_id']?>">Sửa</button></td>
-                                    <td><a onclick="return Del('<?php echo $decryptemail; ?>')" href="../giaodien/xoa_user.php?user_id=<?php echo $row['user_id']; ?>">Xóa</a></td>
+                                       <td><a onclick="return Del('<?php echo $decryptemail; ?>')" href="../giaodien/xoa_user.php?user_id=<?php echo $row['user_id']; ?>"><button class="btn btn-primary"> Xóa</button></a></td>
                                 </tr>
                         <?php 
                             }
@@ -232,7 +232,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-   <div class="them">
+   <div >
     <form method="POST" enctype="multipart/form-data" action="../xuly/xulysua.php">
         <input type="text" name="id" id="id" class="id" style="display: none" class="form-controll" required ><br>
         <div class="themsp">
@@ -252,7 +252,7 @@
              </select><br>
          </div>
     
-   <br> <button type="submit" class="sub" name="sub2">Sửa</button>
+   <br> <button type="submit" class="btn btn-primary" name="sub2">Sửa</button>
          </div>
     </form>
 </div>
@@ -262,9 +262,9 @@
     </div>
   </div>
 </div>
-        
+      
         <script type="text/javascript">
-                function Del(name) {
+              function Del(name) {
                     return confirm("Bạn có chắc chắn muốn xóa user có email là: " + name + " ?");
                 }
                 $.extend({
