@@ -205,7 +205,10 @@
                     $("#tablenhapkho").find('tbody').append(row);
                 }
                 function locknhacungcap(){
-                    $("#slboxsort").prop("disabled", true);
+                    var selectedncc = $("#slboxsort").val();
+                    if(selectedncc != "--"){
+                        $("#slboxsort").prop("disabled", true);
+                    }
                 }
                 statusmacdinh();
                 sanphammacdinh();

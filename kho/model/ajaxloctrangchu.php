@@ -11,7 +11,7 @@
                 $query ="select id_giay, ten, hinh1, ncc.ten_nha_cung_cap, don_gia
                         from giay as g join nha_cung_cap as ncc
                         on g.ma_nha_cung_cap=ncc.ma_nha_cung_cap
-                        where (ten like '% $search %' or ten like '$search %' or ten like '% $search')";
+                        where ten like '% $search %' or ten like '$search %' or ten like '% $search' or ten like '$search'";
                 
             }
             if($checkbrand == true && $checksearch == true){
@@ -29,8 +29,8 @@
                  $query ="select id_giay, ten, hinh1, ncc.ten_nha_cung_cap, don_gia
                         from giay as g join nha_cung_cap as ncc
                         on g.ma_nha_cung_cap=ncc.ma_nha_cung_cap
-                        where (ncc.ten_nha_cung_cap='$brand' and (ten like '% $search %' or ten like '% $brand %' or ten like '$search %' or ten like '% $search')) 
-                        or ((ten like '% $search %' or ten like '$search %' or ten like '% $search') or ncc.ten_nha_cung_cap='$brand')";
+                        where (ncc.ten_nha_cung_cap='$brand' and (ten like '% $search %' or ten like '% $brand %' or ten like '$search %' or ten like '% $search' or or ten like '$search')) 
+                        or ((ten like '% $search %' or ten like '$search %' or ten like '% $search' or ten like '$search') or ncc.ten_nha_cung_cap='$brand')";
             }
             $locresult = mysqli_query($con, $query);
                 $arrayObj = array();

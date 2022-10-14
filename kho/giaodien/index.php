@@ -99,12 +99,11 @@ and open the template in the editor.
                                                           ?>
 
               
-               ?>
             </select>
         </div>
     </div>
 
-    <?php require '../xuly/xulihienthi.php';?>s
+    <?php require '../xuly/xulihienthi.php';?>
 </div>
     </body>
     <script type="text/javascript">
@@ -215,6 +214,7 @@ and open the template in the editor.
                 function search(){
                     var searchinput = document.getElementById("searchinput").value;
                     var statusdachon = document.getElementById('slboxsort').value;
+                    
                     guiajax(statusdachon, searchinput)
                 }
                 statusmacdinh();
