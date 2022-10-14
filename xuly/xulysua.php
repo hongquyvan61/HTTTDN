@@ -8,7 +8,10 @@ if (isset($_POST['sub'])) {
     $id = $_POST['id'];
     $name = $_POST['ipname'];
     $price = $_POST['ipprice'];
-     $ma_ncc = $_POST['ma_ncc'];
+    $ma_ncc = $_POST['ma_ncc'];
+    $the_loai = $_POST['the_loai'];
+    $mo_ta = $_POST['mo_ta'];
+    
 
     //     if($_FILES['image']['name']==''){
     //        $file_name=$row_up['image'];
@@ -50,8 +53,8 @@ if (isset($_POST['sub'])) {
         
     }
     
-    header('location:../giaodien/admin.php');
-    $b->Sua($name, $price, $ma_ncc, $id);
+   // header('location:../giaodien/admin.php');
+    $b->Sua($name, $price, $ma_ncc, $id,$the_loai,$mo_ta);
     
 }
 
@@ -70,4 +73,17 @@ if (isset($_POST['sub2'])) {
     $b->Sua_user($encryptemail, $encryptsdt, $id,$role);
     header('location:../giaodien/qlkh.php');
 }
+
+if (isset($_POST['sub3'])) {
+    $id_giay = $_POST['id'];
+    $size = $_POST['size'];
+    $sl_size = $_POST['sl_size'];
+      $b->Them_size($id_giay,$size,$sl_size);
+     $sql="SELECT SUM(so_luong_ton_kho_tong) from kich_co where id_giay=$id_giay";
+           $query = mysqli_query($con, $sql);
+        $row= mysqli_fetch_assoc($query);
+        $sum_tongsl=$row['SUM(so_luong_ton_kho_tong)']; 
+     $b->update_sl($id_giay,$sum_tongsl);
+    header("location:../giaodien/a.php?layout=sua&id='$id_giay'");
+    }
 ?>

@@ -15,11 +15,13 @@ session_start();
                     }
                     ?>
 <html>
-   <head>
+
+    <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="../../css/css.css" type="text/css">
       <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/csskho.css" type="text/css">
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -37,8 +39,11 @@ session_start();
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <title></title>
-    </head>  
+
+    </head>
+<body>  
     <?php
+
     require '../../connectdb/connect.php';
  require 'header.php';
  $con = ketnoi();
@@ -109,4 +114,5 @@ while ($row = mysqli_fetch_assoc($query)) {
     </div>
 </div>
     </div>
+    </body>
 </html>

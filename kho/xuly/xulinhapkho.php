@@ -1,3 +1,4 @@
+<div class="col text-center"><h3>NHẬP KHO</h3></div>
 <div class="form-row">
 <div class="form-group col-md-3">
       <label style="font-size: 13px;" for="slboxsort">Nhà cung cấp:</label>

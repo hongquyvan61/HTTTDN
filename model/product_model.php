@@ -49,17 +49,24 @@
         public function getProductsbyKey($key){
             $keyword = mysqli_real_escape_string($this->con, $key);
             $query ="select *
-                    from giay as g join nha_cung_cap as ncc
-                    on g.ma_nha_cung_cap = ncc.ma_nha_cung_cap
-                    where (ten like '% $keyword') or (ncc.ten_nha_cung_cap='$keyword') or (ten like '$keyword') or (id_giay='$keyword')";
+                        from giay as g join nha_cung_cap as ncc
+                        on g.ma_nha_cung_cap=ncc.ma_nha_cung_cap
+                        where (ncc.ten_nha_cung_cap='$key' and (ten like '% $key %' or ten like '% $key %' or ten like '$key %' or ten like '% $key')) 
+                        or (ten like '% $key %' or ten like '$key %' or ten like '% $key')";
             $result = mysqli_query($this->con,$query);
             return $result;
         }
-        function Them($ten,$don_gia,$ma_ncc,$hinh1,$hinh2,$hinh3,$ten_nha_cung_cap){
-         $sql="INSERT INTO giay (ten,don_gia,ma_nha_cung_cap,hinh1,hinh2,hinh3)
-                   VALUES('$ten','$don_gia','$ma_ncc','img/$ten_nha_cung_cap/$hinh1','img/$ten_nha_cung_cap/$hinh2','img/$ten_nha_cung_cap/$hinh3')";
+        function Them($ten,$don_gia,$ma_ncc,$hinh1,$hinh2,$hinh3,$ten_nha_cung_cap,$the_loai,$mo_ta,$sl_size){
+         $sql="INSERT INTO giay (ten,don_gia,ma_nha_cung_cap,hinh1,hinh2,hinh3,phan_loai,mo_ta,so_luong_ton_kho_tong,so_luong_ton_kho_ban)
+                   VALUES('$ten','$don_gia','$ma_ncc','img/$ten_nha_cung_cap/$hinh1','img/$ten_nha_cung_cap/$hinh2','img/$ten_nha_cung_cap/$hinh3','$the_loai','$mo_ta','$sl_size','0')";
          
             mysqli_query($this->con,$sql);
+          
+    }
+     function Them_size($id_giay,$size,$sl_size){    
+      $sql="INSERT INTO kich_co(id_giay,size,so_luong_ton_kho_tong,so_luong_ton_kho_ban)
+                   VALUES('$id_giay','$size','$sl_size','0')";
+             mysqli_query($this->con,$sql);
           
     }
      function Them_user($email,$pass,$sdt,$role){
@@ -68,9 +75,14 @@
             mysqli_query($this->con,$sql);
             
     }
-      function Sua($name,$price,$ma_ncc,$id){
+      function update_sl($id_giay,$sum_tongsl){
+     $sql2="UPDATE giay SET so_luong_ton_kho_tong='$sum_tongsl' WHERE id_giay =$id_giay";
+            $query=mysqli_query($this->con,$sql2);
+            return $query;
+    }
+      function Sua($name,$price,$ma_ncc,$id,$the_loai,$mo_ta){
 
-     $sql2="UPDATE giay SET ten='$name', don_gia= '$price', ma_nha_cung_cap= '$ma_ncc' WHERE id_giay = '$id'";
+     $sql2="UPDATE giay SET ten='$name', don_gia= '$price', ma_nha_cung_cap= '$ma_ncc',phan_loai='$the_loai', mo_ta='$mo_ta' WHERE id_giay = '$id'";
             $query2=mysqli_query($this->con,$sql2);
             
       return $query2;

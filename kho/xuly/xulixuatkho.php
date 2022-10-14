@@ -1,3 +1,5 @@
+<div class="col text-center"><h3>XUẤT KHO</h3></div>
+
 <div class="form-row">
 <div class="form-group col-md-3">
       <label style="font-size: 13px;" for="slboxsort">Nhà cung cấp:</label>
@@ -38,12 +40,15 @@
       </select>
     </div>
     <div class="form-group col-md-3">
+
         <label style="font-size: 13px;" for="soluong">Số lượng trong kho</label><br>
         <input type="number" class="form-control" style="margin:0px;  text-align: left;padding:5px;"id="sl" disabled="true">
+
     </div>
     <div class="form-group col-md-1">
         <label style="font-size: 13px;" for="size">Size</label><br>
         <select style="font-size: 13px;" id="size" class="form-control">
+
         </select>
     </div>
     <div class="form-group col-md-3">
@@ -53,6 +58,7 @@
     </div>
     <div class="form-group col-md-1" style="display: flex; align-items:center; justify-content: center; padding-top: 2%;">
             <button class="btn btn-primary" style="width:100%; height:35px; font-size: 13px;" id="thembtn">Thêm</button>
+
             
     </div>
 </div><br>
@@ -60,12 +66,15 @@
 
 <div class="col-md-12">
     <table id="tablexuatkho" class="table table-bordered table-striped">
+
         <thead>
             <tr>
                 <th>ID sản phẩm</th>
                 <th>Tên sản phẩm</th>
                 <th>Size</th>
+
                 <th>Số lượng xuất kho</th>
+
                 <th>Hành động</th>
             </tr>
        </thead>
