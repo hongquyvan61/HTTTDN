@@ -1,14 +1,15 @@
 <script>
-    function check_size(){
+    function check_size(id_giay){
          
         
         alert("Size này đã tồn tại");  
-              window.location='../giaodien/admin.php';
+      
+              window.location='../giaodien/a.php?layout=sua&id='+id_giay;
       
     }
-                      function success() {
+                      function success(id_giay) {
             alert ("Thêm size thành công");
-              window.location='../giaodien/admin.php';
+               window.location='../giaodien/a.php?layout=sua&id='+id_giay;
 }
     </script>
 <?php
@@ -86,26 +87,31 @@ if (isset($_POST['sub2'])) {
     $b->Sua_user($encryptemail, $encryptsdt, $id,$role);
     header('location:../giaodien/qlkh.php');
 }
-
 if (isset($_POST['sub3'])) {
+    $tam=0;
     $id_giay = $_POST['id'];
     $size = $_POST['size'];
     $sl_size = $_POST['sl_size'];
      $where = "SELECT * from kich_co WHERE size='".$size."'";
     $product = mysqli_query($con, $where);  
-    if (mysqli_num_rows($product)== 0) {     
+    if (mysqli_num_rows($product)== 0) {
+        $tam=1;
       $b->Them_size($id_giay,$size,$sl_size);
      $sql="SELECT SUM(so_luong_ton_kho_tong) from kich_co where id_giay=$id_giay";
            $query = mysqli_query($con, $sql);
         $row= mysqli_fetch_assoc($query);
         $sum_tongsl=$row['SUM(so_luong_ton_kho_tong)']; 
      $b->update_sl($id_giay,$sum_tongsl);
-      echo '<script type="text/javascript">','success();','</script>';
-     
- //   header("location:../giaodien/a.php?layout=sua&id='$id_giay'");
+      echo '<script type="text/javascript">','success('.$id_giay.');','</script>';
+    // echo $tam;
+ //  header("location:../giaodien/a.php?layout=sua&id='$id_giay'");
     }
     else{
-        echo '<script type="text/javascript">','check_size();','</script>';
+     
+        echo '<script type="text/javascript">','check_size('.$id_giay.');','</script>';
+         //  echo $tam;
+     //   header("location:../giaodien/a.php?layout=sua&id='$id_giay'");
     }
     }
+
 ?>
