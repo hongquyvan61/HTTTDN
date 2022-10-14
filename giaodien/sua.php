@@ -117,7 +117,7 @@
          <div class="size">
             <div style="float:left; width: 20%;">
         <label >Size</label><br>
-        <input type="number" name="size" class="form-controll" min="0" required="true" style="width:60px">  <br>
+        <input type="number" id="size" name="size" class="form-controll" min="0" required="true" style="width:60px">  <br>
             </div><!-- comment -->
             <div style="float:left;"><!-- comment -->
             <label >Số lượng</label><br>
@@ -125,7 +125,7 @@
             </div>
         </div> 
                
-           <br><br><br><br><button  type="submit" class="btn btn-primary" name="sub3" >Thêm</button>
+           <br><br><br><br><button  id="check_size" type="submit" class="btn btn-primary" name="sub3" >Thêm</button>
            </form>
           
       </div>
@@ -139,5 +139,30 @@
 </body>
 
 </html>
- 
+<!--<script>
+  
+    function check_size(){
+         var size = document.getElementById("size").value;
+                $.ajax({
+                            method: 'post',
+                            url: '../xyly/sulysua.php',
+                            datatype: "JSON",
+                            data: {size: size},
+                            success: function(response){
+                                var arrayObj = response;
+                          console.log(arrayObj);
+                          if(arrayObj==0){
+                              alert("Size nay da ton tai");
+                          }
+                          else{
+                               alert("them size thanh cong");
+                          }
+                            }
+                    });
+         
+    }
+    document.getElementById("check_size").onclick = check_size;
+  
+    </script>
+ -->
 

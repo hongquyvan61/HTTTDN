@@ -1,9 +1,19 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<?php 
+session_start();
+                    if(isset($_SESSION['email'])){
+                            $user = $_SESSION['email'];
+                        }
+                        else{
+                            $user = "";
+                        }
+                     
+                    if($user === ""){
+                    echo "<script>
+                    alert('Vui lòng đăng nhập trước!');
+                    window.location.href='../giaodien/Dangnhap.php';
+                    </script>";
+                    }
+                    ?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -43,14 +53,14 @@ and open the template in the editor.
         <form>
           <div class="form-group" style="display: flex;justify-content: center;">
               <div class="a anh1">
-                  <img src="../../img/adidas/bravada.jpg" id="anh1">
+                  <img src="" id="anh1">
               </div>
               <div class="a anhphai">
                   <div class="anh2">
-                      <img src="../../img/adidas/bravada.jpg" id="anh2">
+                      <img src="" id="anh2">
                   </div>
                   <div class="anh3">
-                      <img src="../../img/adidas/bravada.jpg" id="anh3">
+                      <img src="" id="anh3">
                   </div>
               </div>
           </div>
@@ -60,7 +70,7 @@ and open the template in the editor.
                   <span id="tongslton"></span>
               </div>
               <div class="kcsoluong">
-                  <label class="col-form-label">Kich cỡ:</label>
+                  <label class="col-form-label">Kích cỡ:</label>
                   <select id="selectsize">
                       
                   </select>
