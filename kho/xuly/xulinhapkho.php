@@ -58,6 +58,7 @@
     </div>
 </div><br>
 
+
 <div class="col-md-12">
     <table id="tablenhapkho" class="table table-bordered table-striped">
         <thead>
@@ -82,20 +83,3 @@
     </div>
 </div>
 
-<!--<table id="tablelichsu" class="table table-bordered table-striped">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        
-                                        <th>Tên sản phẩm</th>
-                                        <th>Hình ảnh</th>
-                                        <th>Đơn giá</th>
-                                        <th>Số lượng tồn kho</th>
-                                        
-                                        
-                                       
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                  
-                                </tbody>
-                            </table>-->

@@ -1,10 +1,27 @@
 <?php 
-    session_start();
-?>
+session_start();
+                    if(isset($_SESSION['email'])){
+                            $user = $_SESSION['email'];
+                        }
+                        else{
+                            $user = "";
+                        }
+                     
+                    if($user === ""){
+                    echo "<script>
+                    alert('Vui lòng đăng nhập trước!');
+                    window.location.href='../giaodien/Dangnhap.php';
+                    </script>";
+                    }
+                    ?>
 <html>
     <head>
         <meta charset="UTF-8">
-        <!-- jQuery library -->
+        <link rel="stylesheet" href="../../css/css.css" type="text/css">
+      <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -81,46 +98,74 @@
                             }
                     });
                 }
-                function guiajaxsanpham(tensp){
+
+                 
+                function guiajaxsanpham(tensp,sizedachon){
                     //var user = <?php //echo $_SESSION['id'];?>;
                     $.ajax({
                             method: 'post',
-                            url: '../model/ajaxlaydongiasp.php',
+                            url: '../model/ajaxlaysize.php',
                             datatype: "JSON",
-                            data: {ten: tensp},
+                            data: {ten: tensp, size: sizedachon},
                             success: function(response){
                                 var result = JSON.parse(response);
-                                document.getElementById("dongia").value = result[0];
-                                
-                                var arrayObj = result[1];
+
                                 var slboxsize = document.getElementById('size');
                                 while (slboxsize.options.length > 0) {                
                                     slboxsize.remove(0);
                                 }
-                                var optnull = document.createElement('option');
+
+                               var optnull = document.createElement('option');
                                     optnull.value = "--";
                                     optnull.text = "--";
                                     slboxsize.add(optnull);
-                                arrayObj.forEach(function (item,index){
+                                result.forEach(function (item,index){
+
                                     var opt = document.createElement('option');
                                     opt.value = item;
                                     opt.text = item;
                                     slboxsize.add(opt);
                                 });
-                                
+      
                             }
+                           
+                           
                     });
                 }
+                function guiajaxsl(tensp,sizedachon){
+                    //var user = <?php //echo $_SESSION['id'];?>;
+                    $.ajax({
+                            method: 'post',
+                            url: '../model/ajaxlaysl.php',
+                            datatype: "JSON",
+                            data: {ten: tensp, size: sizedachon},
+                            success: function(response){
+                                var result = JSON.parse(response);
+                                document.getElementById("sl").value =result;
+                    }
+                });
+                
+            }
+
                 function checkselect(){
                     var statusdachon = document.getElementById('slboxsort').value;
                     guiajax(statusdachon);
                 }
                 function checkselectsanpham(){
                     var spdachon = document.getElementById('sortsanpham').value;
-                    guiajaxsanpham(spdachon);
-                }``
+
+                    var sizedachon=document.getElementById('size').value;
+                    console.log(spdachon,sizedachon);
+                    guiajaxsanpham(spdachon,sizedachon);
+                }
+                function selectsl(){
+                    var spdachon = document.getElementById('sortsanpham').value;
+                    var sizedachon=document.getElementById('size').value;
+                    guiajaxsl(spdachon,sizedachon);
+                }
                 function getrowvaluetable(){
-                    var $table = $("#tablenhapkho");
+                    var $table = $("#tablexuatkho");
+
   
                     var headers = $table.find('thead th').map(function(){
                       return $(this).text().replace(' ', '');
@@ -152,18 +197,21 @@
                    
                     var tabledatajson = JSON.parse(tableresult);
                     var tenncc = $("#slboxsort").val();
-                    guiajaxnhapkho(tabledatajson,tenncc);
+
+                    guiajaxxuatkho(tabledatajson);
                 }
-                function guiajaxnhapkho(tableresult,tenncc){
+                function guiajaxxuatkho(tableresult){
                     $.ajax({
                             method: 'post',
-                            url: '../model/ajaxnhapkho.php',
+                            url: '../model/ajaxxuatkho.php',
                             datatype: "JSON",
-                            data: {tabledata: tableresult, ncc: tenncc},
+                            data: {tabledata: tableresult},
                             success: function(response){
                                 var result = JSON.parse(response);
                                 if(result == 1){
-                                    alert("Tạo đơn nhập kho thành công!");
+                                    alert("Tạo đơn xuất kho thành công!");
+                                  $('#tablexuatkho').find('tbody').empty();
+
                                    
                                 }
                                 else{
@@ -181,29 +229,42 @@
                             data: {ten: tensp},
                             success: function(response){
                                 var result = JSON.parse(response);
+
+                                var sl =  parseInt(document.getElementById("sl").value);
+                                var slinp =  parseInt(document.getElementById("soluong").value);
+                                if(slinp<=sl){
                                 inserttable(tensp,result);
                             }
+                            else{
+                                alert("Không đủ số lương trong kho!");  
+                            }      
+                            }
+
                     });
                 }
                 function inserttable(tensp,id){
                     var idgiay = id;
-                    var dongia = document.getElementById("dongia").value;
+
+                    //var dongia = document.getElementById("sl").value;
+
                     var sl = document.getElementById("soluong").value;
                     var size = document.getElementById("size").value;
                     document.getElementById("sortsanpham").selectedIndex = 0;
                     document.getElementById("size").selectedIndex = 0;
-                    document.getElementById("dongia").value = "";
+
+                    document.getElementById("sl").value = "";
+
                     document.getElementById("soluong").value = "";
                     var row = $('<tr>');
                     row.append('<td>' + idgiay + '</td>');
                     row.append('<td>' + tensp + '</td>');
                     row.append('<td>' + size + '</td>');
                     row.append('<td>' + sl + '</td>');
-                    row.append('<td>' + dongia + '</td>');
-                    row.append('<td>' + dongia*sl +'</td>');
+
                     row.append('<td><button class="btn btn-danger" style="font-size: 13px;" onclick="SomeDeleteRowFunction(this)">Xoá</button></td>');
                     row.append('</tr>');
-                    $("#tablenhapkho").find('tbody').append(row);
+                    $("#tablexuatkho").find('tbody').append(row);
+
                 }
                 function locknhacungcap(){
                     $("#slboxsort").prop("disabled", true);
@@ -211,7 +272,10 @@
                 statusmacdinh();
                 sanphammacdinh();
                 document.getElementById("slboxsort").onchange = checkselect;
-                document.getElementById("sortsanpham").onchange = checkselectsanpham;
+
+                document.getElementById("sortsanpham").onchange  = checkselectsanpham;
+                document.getElementById("size").onchange  = selectsl;
+
                 document.getElementById("thembtn").onclick = layidgiay;
                 document.getElementById("getdatatable").onclick = getrowvaluetable;
                 document.getElementById("khoabtn").onclick = locknhacungcap;
@@ -223,4 +287,6 @@
                         //console.log(p);
             }
    </script>
+
 </html>
+

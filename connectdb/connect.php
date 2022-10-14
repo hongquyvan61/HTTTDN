@@ -3,7 +3,7 @@
         $server = "localhost";
         $username = "root";
         $password = "";
-        $dbname = "web_giay";
+        $dbname = "test1";
         $con = mysqli_connect($server,$username,$password);
         mysqli_set_charset($con,"uft8");
         if(!$con){
