@@ -28,9 +28,10 @@
             ?>
             <br>
             <div class="container">
+                <form method="post" action="">
                 <?php require '../xuly/xulylichsu.php';?>
                          
-               
+                </form>
             </div>
             <br><br><br><br><br><br><br><br><br><br>
             <footer class="footer">
@@ -86,8 +87,8 @@
                     var month = document.getElementById('sortthang').value;
                     guiajax(status,month);
                 }
-                statusmacdinh();
-                document.getElementById("loclichsu").onclick = loclichsu;
+                //statusmacdinh();
+                //document.getElementById("loclichsu").onclick = loclichsu;
                 //document.getElementById("slboxsort").onchange = checkselect;
             });
             
