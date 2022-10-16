@@ -89,6 +89,4 @@ class tanggiamsl{
         return 0;
     }
 }
-    
- abcxyzzzzz
 ?>
