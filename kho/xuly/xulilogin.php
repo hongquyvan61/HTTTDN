@@ -25,7 +25,7 @@
                                                 $mahoatiento = $model->apphin_mahoa($tiento[0]);
                                                 $encryptemail = $mahoatiento."@".$tiento[1];
                                                 $encryptpass = $model->apphin_mahoa($password);
-                                                $user_authentication_query = "select role,user_id,email from user where email='$encryptemail' and pass='$encryptpass'";
+                                                $user_authentication_query = "select role,user_id,email from user where email='$encryptemail' and pass='$encryptpass' and role='kho'";
                                                 $user_authentication_result = mysqli_query($con, $user_authentication_query) or die(mysqli_error($con));
                                                 $rows_fetched = mysqli_num_rows($user_authentication_result);
                                                 if($rows_fetched==0){

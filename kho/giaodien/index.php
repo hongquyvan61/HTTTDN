@@ -120,17 +120,63 @@ session_start();
             
             $(document).ready(function(){
                 function statusmacdinh(){
-                    var macdinh = document.getElementById('slboxsort').value;
-                    var searchinput = document.getElementById("searchinput").value;
-                    guiajax(macdinh, searchinput);
+                    guiajax();
                 }
-                function guiajax(brand, searchinput){
+                function guiajax(){
+                    //var user = <?php //echo $_SESSION['id'];?>;
+                    $.ajax({
+                            method: 'post',
+                            url: '../model/ajaxmacdinhtrangchu.php',
+                            datatype: "JSON",
+                            data: {},
+                            success: function(response){
+                                var arrayObj = JSON.parse(response);
+                                $("#tablehienthi").find('tbody').empty();
+                                arrayObj.forEach(function (item,index){
+                                    var row = $('<tr>');
+                                    row.append('<td>' + item.name+'</td>');
+                                    row.append('<td><img src="../../'+ item.image +'" style="width:200px; height:230px;"></td>');
+                                    row.append('<td>' + item.brand + '</td>');
+                                    row.append('<td>' + item.price + '</td>');
+                                    row.append('<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalchitiet" data-whatever="'+ item.idgiay +'">Chi tiết</button></td>')
+                                    row.append('</tr>');
+                                    $("#tablehienthi").find('tbody').append(row);
+                                });
+                                //console.log(arrayObj);
+                            }
+                    });
+                }
+                function guiajaxloc(brand){
                     //var user = <?php //echo $_SESSION['id'];?>;
                     $.ajax({
                             method: 'post',
                             url: '../model/ajaxloctrangchu.php',
                             datatype: "JSON",
-                            data: {nhanhang: brand, search: searchinput},
+                            data: {nhanhang: brand},
+                            success: function(response){
+                                var arrayObj = JSON.parse(response);
+                                $("#tablehienthi").find('tbody').empty();
+                                arrayObj.forEach(function (item,index){
+                                    var row = $('<tr>');
+                                    row.append('<td>' + item.name+'</td>');
+                                    row.append('<td><img src="../../'+ item.image +'" style="width:200px; height:230px;"></td>');
+                                    row.append('<td>' + item.brand + '</td>');
+                                    row.append('<td>' + item.price + '</td>');
+                                    row.append('<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalchitiet" data-whatever="'+ item.idgiay +'">Chi tiết</button></td>')
+                                    row.append('</tr>');
+                                    $("#tablehienthi").find('tbody').append(row);
+                                });
+                                //console.log(arrayObj);
+                            }
+                    });
+                }
+                function guiajaxsearch(searchinput){
+                    //var user = <?php //echo $_SESSION['id'];?>;
+                    $.ajax({
+                            method: 'post',
+                            url: '../model/ajaxsearchtrangchu.php',
+                            datatype: "JSON",
+                            data: {search: searchinput},
                             success: function(response){
                                 var arrayObj = JSON.parse(response);
                                 $("#tablehienthi").find('tbody').empty();
@@ -217,15 +263,13 @@ session_start();
                         });
                 }
                 function checkselect(){
-                    var searchinput = document.getElementById("searchinput").value;
                     var statusdachon = document.getElementById('slboxsort').value;
-                    guiajax(statusdachon, searchinput);
+                    guiajaxloc(statusdachon);
                 }
                 function search(){
                     var searchinput = document.getElementById("searchinput").value;
-                    var statusdachon = document.getElementById('slboxsort').value;
                     
-                    guiajax(statusdachon, searchinput)
+                    guiajaxsearch(searchinput);
                 }
                 statusmacdinh();
                 document.getElementById("slboxsort").onchange = checkselect;
@@ -234,6 +278,8 @@ session_start();
                     var button = $(event.relatedTarget) // Button that triggered the modal
                     var idgiay = button.data('whatever'); 
                     var modal = $(this);
+                    var elementslton = modal.find('#sltontheosize');
+                    //elementslton.text(' - Số lượng tồn:');
                     modal.find('.modal-title').text('Thông tin chi tiết sản phẩm');
                     var xArrayObj = $.xResponse('../model/ajaxthongtinchitiet.php', {shoe: idgiay,checkgetsize: 0});
                     xArrayObj.forEach(function (item,index){
@@ -245,7 +291,6 @@ session_start();
                     ttctsizegiay(idgiay,1);
                     var slboxsize = modal.find('.kcsoluong #selectsize');
                     var sizemacdinh = slboxsize.find(":selected").val();
-                    var elementslton = modal.find('#sltontheosize');
                     if(typeof(sizemacdinh) !== 'undefined'){
                         hienthisltheosize(idgiay,sizemacdinh, elementslton);
                     }
@@ -257,11 +302,18 @@ session_start();
                     slboxsize.change(function(){
                         var selectedsize = slboxsize.find(":selected").val();
                         hienthisltheosize(idgiay,selectedsize, elementslton);
-                        //var sltontheosize = $.slsizeResponse('../../model/ajaxsltheosize.php',{shoe: idgiay, size: selectedsize});
-                        //modal.find('#sltontheosize').text(' - Số lượng tồn: ' + sltontheosize);
+                        
                     });
                     //modal.find('.modal-body input').val(recipient)
                 })
+                $('#modalchitiet').on('hide.bs.modal', function (event) {
+                    var modal = $(this);
+                    modal.find('.modal-title').text('Thông tin chi tiết sản phẩm');
+                    var elementslton = modal.find('#sltontheosize');
+                    elementslton.text(' - Số lượng tồn:');
+                    var slboxsize = modal.find('.kcsoluong #selectsize');
+                    slboxsize.prop("selectedIndex",0);
+                });
             });
             
    </script>
