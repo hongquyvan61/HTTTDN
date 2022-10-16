@@ -25,7 +25,7 @@
           
        </tbody>
     </table>
-    <table id="tablehtlsx" class="table table-bordered table-striped" style="visibility: hidden; margin-top: -400px;">
+    <table id="tablehtlsx" class="table table-bordered table-striped" style="visibility: hidden; margin-top: -530px;">
         <thead>
             <tr>
                 <th>Mã xuất kho</th>
