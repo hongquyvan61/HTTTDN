@@ -51,6 +51,12 @@ session_start();
     
 <div class="container">
 <div class="col-md-12">
+          <?php
+
+$id = $_GET['id'];
+$get = $_GET['loai'];
+    if(strcmp($get, "nhapkho") == 0){
+        ?>
     <table id="tablenhapkho" class="table table-bordered table-striped">
         <thead>
             <tr>
@@ -64,11 +70,7 @@ session_start();
             </tr>
        </thead>
        <tbody>
-          <?php
-
-$id = $_GET['id'];
-$get = $_GET['loai'];
-    if(strcmp($get, "nhapkho") == 0){
+    <?php
     $sql = "select * from chi_tiet_nhap_kho where ma_nhap_kho=$id"; 
 $query = mysqli_query($con, $sql);
 $i = 1;
@@ -84,9 +86,28 @@ while ($row = mysqli_fetch_assoc($query)) {
                                     <td><?php echo $row['don_gia']; ?></td>
 
                                 </tr>
+                                
 <?php }
+
+?>
+       </tbody>
+    </table>
+<?php
 }
- else {
+ else { 
+     ?>
+     <table id="tablexuatkho" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Mã xuất kho</th>
+                <th>ID giày </th>
+                <th>Size</th>
+                <th>Số lượng của size</th>
+            </tr>
+       </thead>
+       <tbody>
+           <?php
      $sql = "select * from chi_tiet_xuat_kho where ma_xuat_kho=$id"; 
 $query = mysqli_query($con, $sql);
 $i = 1;
@@ -105,8 +126,8 @@ while ($row = mysqli_fetch_assoc($query)) {
 }
  }
 ?>
-       </tbody>
-    </table>
+     </tbody>
+    </table>   
     <div class="row">
         <div class="col text-center">
           <a class="btn btn-dark" style="font-size: 15px;" id="getdatatable">In phiếu</a>
