@@ -133,26 +133,44 @@
             }
         }
         else{
-            $user_products_query ="select don.ma_don_hang,g.ten, ct.size, ct.so_luong, ct.don_gia, don.ngay_gio_thanh_toan, don.tinh_trang
-from don_hang as don
-join gio_hang as gio
-on don.user_id = gio.user_id
-join chi_tiet_don_hang as ct
-on don.ma_don_hang = ct.ma_don_hang
-join giay as g
-on ct.id_giay = g.id_giay
-join (select ma_don_hang, MONTH(CAST(ngay_gio_thanh_toan as date)) as datethanhtoan
-from don_hang
-WHERE tinh_trang!='Processing') as don1
-on don.ma_don_hang = don1.ma_don_hang
-where don.user_id=$user_id and tinh_trang='$statusselected' and datethanhtoan=$monthselected";
+            if(strcmp($monthselected,"--") != 0){
+                $user_products_query ="select don.ma_don_hang,g.ten, ct.size, ct.so_luong, ct.don_gia, don.ngay_gio_thanh_toan, don.tinh_trang
+                from don_hang as don
+                join gio_hang as gio
+                on don.user_id = gio.user_id
+                join chi_tiet_don_hang as ct
+                on don.ma_don_hang = ct.ma_don_hang
+                join giay as g
+                on ct.id_giay = g.id_giay
+                join (select ma_don_hang, MONTH(CAST(ngay_gio_thanh_toan as date)) as datethanhtoan
+                from don_hang
+                WHERE tinh_trang!='Processing') as don1
+                on don.ma_don_hang = don1.ma_don_hang
+                where don.user_id=$user_id and tinh_trang='$statusselected' and datethanhtoan=$monthselected";
+            }
+            else{
+                $user_products_query ="select don.ma_don_hang,g.ten, ct.size, ct.so_luong, ct.don_gia, don.ngay_gio_thanh_toan, don.tinh_trang
+                from don_hang as don
+                join gio_hang as gio
+                on don.user_id = gio.user_id
+                join chi_tiet_don_hang as ct
+                on don.ma_don_hang = ct.ma_don_hang
+                join giay as g
+                on ct.id_giay = g.id_giay
+                join (select ma_don_hang, MONTH(CAST(ngay_gio_thanh_toan as date)) as datethanhtoan
+                from don_hang
+                WHERE tinh_trang!='Processing') as don1
+                on don.ma_don_hang = don1.ma_don_hang
+                where don.user_id=$user_id and tinh_trang='$statusselected'";
+            }
         }
-        
         $Paginator = new Paginator($user_products_query);
         $user_products_result = $Paginator->getData($limit, $page);
-        if($Paginator->_total != 0){
         $statusquery = "select tinh_trang from don_hang where user_id=$user_id and (tinh_trang='Paid' or tinh_trang='Shipped') GROUP BY tinh_trang";
         $statusres = mysqli_query($con,$statusquery);
+        if($Paginator->_total != 0){
+        
+        
         ?>
 
     <div class="form-group col-md-9">
