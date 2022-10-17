@@ -228,10 +228,6 @@ session_start();
                                         success: function(response){
                                             var result = JSON.parse(response);
                                             inserttable(tensp,result);
-                                            $("#sortsanpham").prop("selectedIndex", 0);
-                                            $("#dongia").text("");
-                                            $("#size").prop("selectedIndex", 0);
-                                            $("#soluong").text("");
                                         }
                                 });
                             }
@@ -286,8 +282,12 @@ session_start();
                             var slcu = parseInt(temparr[i]["3"],10);
                             var slmoi = parseInt(sl,10);
                             var slsaukhitang = slcu+slmoi;
-                            $("#" + temparr[i]["0"] + "_" + temparr[i]["3"]).html(slsaukhitang+'');
-                            $("#" + temparr[i]["0"] + "_" + temparr[i]["3"]).attr("id",temparr[i]["0"] + "_" + slsaukhitang);
+                            var dongiasp = parseInt(temparr[i]["4"],10);
+                            var thanhtienmoi = dongiasp*slsaukhitang;
+                            $("#" + temparr[i]["0"] + "_" + slcu).html(slsaukhitang+'');
+                            $("#" + temparr[i]["0"] + "_" + slcu).attr("id",temparr[i]["0"] + "_" + slsaukhitang);
+                            $("#" + temparr[i]["0"] + "_" + dongiasp*slcu).html(thanhtienmoi+'');
+                            $("#" + temparr[i]["0"] + "_" + dongiasp*slcu).attr("id",temparr[i]["0"] + "_" + thanhtienmoi);
                             flag = 1;
                             break;
                         }
