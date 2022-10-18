@@ -227,11 +227,12 @@
              <label >Role</label><br>
              <select name="role">
                  <option id="admin"> admin</option>
-                  <option id="kho">kho</option>              
+                  <option id="kho">kho</option> 
+                   <option id="guest">guest</option> 
              </select><br>
          </div>
     
-   <br> <button type="submit" class="btn btn-primary" name="sub5">Sửa</button>
+   <br> <button type="submit" class="btn btn-primary" name="sub2">Sửa</button>
          </div>
     </form>
 </div>
@@ -283,7 +284,9 @@
                   document.getElementById("kho").selected = true;
             }
             else{
+                 document.getElementById("guest").selected = true;
                  document.getElementById("phan_bac").style.display = "none"
+                
             }
           
     
