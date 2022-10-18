@@ -23,6 +23,13 @@
     window.location='../giaodien/qlkh.php';
            
         }
+         function ncc(){
+        
+        alert("Nhà cung ứng này đã tồn tại");
+            
+    window.location='../giaodien/nha_cung_ung.php';
+           
+        }
         function xyz(){
         
         alert("Tên sản phẩm này đã tồn tại");
@@ -148,5 +155,22 @@ if (isset($_POST['sub2'])) {
      
    //echo "<h2>$num</h2>";
 }
+// them nha cung ung
+if (isset($_POST['sub3'])) {
+
+    
+    $name = $_POST['name'];
+    $address = $_POST['address'];
+    $sdt = $_POST['sdt'];
+     $where = "SELECT * from nha_cung_cap WHERE name='".$name."'";
+    $product = mysqli_query($con, $where);  
+    if (mysqli_num_rows($product)== 0) {      
+        $b->Them_ncc( $name, $address, $sdt);
+        header('location:../giaodien/nha_cung_ung.php');
+    } else{
+      echo '<script type="text/javascript">','def();','</script>';
+    }
+}
+    
 ?>
 

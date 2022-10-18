@@ -75,6 +75,12 @@
             mysqli_query($this->con,$sql);
             
     }
+       function Them_ncc($name,$address,$sdt){
+         $sql="INSERT INTO nha_cung_cap(ten_nha_cung_cap,dia_chi,sdt)
+                   VALUES('$name','$address','$sdt')";
+            mysqli_query($this->con,$sql);
+            
+    }
       function update_sl($id_giay,$sum_tongsl){
      $sql2="UPDATE giay SET so_luong_ton_kho_tong='$sum_tongsl' WHERE id_giay =$id_giay";
             $query=mysqli_query($this->con,$sql2);
@@ -90,6 +96,11 @@
       
      function Sua_user($email,$sdt,$id,$role){
      $sql2="UPDATE user SET email='$email', sdt='$sdt',role='$role' WHERE user_id =$id";
+            $query=mysqli_query($this->con,$sql2);
+            return $query;
+    }
+      function Sua_ncc($id,$name,$address,$sdt){
+     $sql2="UPDATE nha_cung_cap SET ten_nha_cung_cap='$name', sdt='$sdt',dia_chi='$address' WHERE ma_nha_cung_cap =$id";
             $query=mysqli_query($this->con,$sql2);
             return $query;
     }

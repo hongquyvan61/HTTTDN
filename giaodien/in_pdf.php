@@ -26,6 +26,7 @@ class MYPDF extends TCPDF {
         $encryptmodel = new encrypt();
          $model = new user_model();
           $con = ketnoi();
+          $mdh=1;
          $ma_don_hang=$_GET['ma_don_hang'];
          $sql1="SELECT email,don_hang.user_id FROM don_hang,user where don_hang.user_id=user.user_id and ma_don_hang=$ma_don_hang";
          $query1=mysqli_query($con,$sql1);
@@ -159,13 +160,14 @@ $mdh=$pdf->thong_tin_nguoi_dat($data);
 $total1 = $pdf->ColoredTable($header, $data,$total);
 $pdf->writeHTML("<br>", true, false, true, false, '');
 $pdf->writeHTML("<h3>Tong cong: ".$total1, true, false, true, false, '');
+$pdf->writeHTML("<h3>Tong cong: ".$mdh, true, false, true, false, '');
 $pdf->writeHTML("<br>", true, false, true, false, '');
 $pdf->writeHTML("<h4>Thong tin giao hang</h4>", true, false, true, false, '');
 $pdf->thong_tin_nguoi_nhan($data);
 // ---------------------------------------------------------
 
 // close and output PDF document
-$pdf->Output('hoa_don '.$mdh.'.pdf', 'I');
+$pdf->Output('hoa_don'.$mdh.'.pdf', 'I');
 
 ?>
 

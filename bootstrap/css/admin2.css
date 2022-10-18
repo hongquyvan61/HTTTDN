@@ -10743,7 +10743,6 @@ textarea.form-control-lg {
 }
 .title_them{
     color: white;
-    background-color:24a0ed;
     height: 90px;
     margin-bottom: 30px;
     border: 1px;
@@ -10783,7 +10782,7 @@ textarea.form-control-lg {
 }
 .def td a{
     text-decoration: none;
-        color: black;
+        color: white;
          font-size: 22px;
          font-weight: bold;
         
@@ -10792,11 +10791,11 @@ textarea.form-control-lg {
     margin-left: 20px;
 }
 .def td{
-    background-color:#24a0ed;
+    background-color:#6c757d;
     text-align: center;
 }
 .def td:hover{
-    background-color:1183ca;
+    background-color:#4c5157;
 }
 .header_search {
   float: right;

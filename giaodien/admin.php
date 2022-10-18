@@ -37,6 +37,7 @@
                                     <td><a href="../giaodien/qlkh.php">Quản lí tài khoản</a></td>
                                     <td><a href="../giaodien/ttgh.php">Thông tin đơn hàng</a> </td>
                                     <td><a href="../giaodien/thongke.php">Thống kê </a></td>
+                                    <td><a href="../giaodien/nha_cung_ung.php">Nhà cung ứng </a></td>
                                     
                                 </tr>
                                 <?php }?>

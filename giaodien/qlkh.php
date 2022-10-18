@@ -134,8 +134,8 @@
                                                 ?>
                                         </td>  
                                          <td><?php echo $row['role']; ?></td>
-                                        <td><a href="../giaodien/sua_user.php?user_id=<?php echo $row['user_id']; ?>">Sửa</a></td>
-                                        <td><a onclick="return Del('<?php echo $decryptemail; ?>')" href="../giaodien/xoa_user.php?user_id=<?php echo $row['user_id']; ?>">Xóa</a></td>
+                                         <td>  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="<?php echo $row['user_id']?>">Sửa</button></td>
+                                       <td><a onclick="return Del('<?php echo $decryptemail; ?>')" href="../giaodien/xoa_user.php?user_id=<?php echo $row['user_id']; ?>"><button class="btn btn-primary"> Xóa</button></a></td>
                                     </tr>
                                 <?php 
                                 }
@@ -166,8 +166,8 @@
                                                 echo $decryptsdt;
                                         ?></td>  
                                            <td><?php echo $row['role']; ?></td>
-                                        <td><a href="../giaodien/sua_user.php?user_id=<?php echo $row['user_id']; ?>">Sửa</a></td>
-                                        <td><a onclick="return Del('<?php echo $decryptemail; ?>')" href="../giaodien/xoa_user.php?user_id=<?php echo $row['user_id']; ?>">Xóa</a></td>
+                                       <td>  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="<?php echo $row['user_id']?>">Sửa</button></td>
+                                       <td><a onclick="return Del('<?php echo $decryptemail; ?>')" href="../giaodien/xoa_user.php?user_id=<?php echo $row['user_id']; ?>"><button class="btn btn-primary"> Xóa</button></a></td>
                                     </tr>
                             <?php }
                         
@@ -252,7 +252,7 @@
              </select><br>
          </div>
     
-   <br> <button type="submit" class="btn btn-primary" name="sub2">Sửa</button>
+   <br> <button type="submit" class="btn btn-primary" name="sub5">Sửa</button>
          </div>
     </form>
 </div>
