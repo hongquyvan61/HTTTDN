@@ -151,7 +151,7 @@ session_start();
                     var spdachon = document.getElementById('sortsanpham').value;
 
                     var sizedachon=document.getElementById('size').value;
-                    console.log(spdachon,sizedachon);
+                    //console.log(spdachon,sizedachon);
                     guiajaxsanpham(spdachon,sizedachon);
                 }
                 function selectsl(){
@@ -278,15 +278,8 @@ session_start();
                     var idgiay = id;
 
                     //var dongia = document.getElementById("sl").value;
-
                     var sl = document.getElementById("soluong").value;
                     var size = document.getElementById("size").value;
-                    document.getElementById("sortsanpham").selectedIndex = 0;
-                    document.getElementById("size").selectedIndex = 0;
-
-                    document.getElementById("sl").value = "";
-
-                    document.getElementById("soluong").value = "";
                     
                     var $table = $("#tablexuatkho");
                     
@@ -320,8 +313,10 @@ session_start();
                             var slcu = parseInt(temparr[i]["3"],10);
                             var slmoi = parseInt(sl,10);
                             var slsaukhitang = slcu+slmoi;
-                            var sltrongkho = parseInt($("#sl").val(),10);
-                            if(slsaukhitang <= sltrongkho){
+                            var sltrongkho = $("#sl").val();
+                            var sltrongkhoInt = parseInt(sltrongkho,10);
+                            //console.log(slsaukhitang,sltrongkhoInt);
+                            if(slsaukhitang <= sltrongkhoInt){
                                 $("#" + temparr[i]["0"] + "_" + temparr[i]["3"]).html(slsaukhitang+'');
                                 $("#" + temparr[i]["0"] + "_" + temparr[i]["3"]).attr("id",temparr[i]["0"] + "_" + slsaukhitang);
                                 flag = 1;
@@ -345,6 +340,12 @@ session_start();
                         row.append('</tr>');
                         $("#tablexuatkho").find('tbody').append(row);
                     }
+                    document.getElementById("sortsanpham").selectedIndex = 0;
+                    document.getElementById("size").selectedIndex = 0;
+
+                    document.getElementById("sl").value = "";
+
+                    document.getElementById("soluong").value = "";
                 }
                 function locknhacungcap(){
                     $("#slboxsort").prop("disabled", true);
