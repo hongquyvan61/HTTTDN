@@ -10,6 +10,7 @@
         <title> HTVC Admin</title>
         <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
         <!--<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" type="text/css">-->
+        <link rel="stylesheet" href="../css/csskho.css">
         <link rel="stylesheet" href="../bootstrap/css/admin2.css">
         
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -22,7 +23,8 @@
 
         <?php
         include '../connectdb/connect.php';
-
+        require '../model/paginator.php';
+        require '../model/product_model.php';
         ?>
         <div class="container-fluid" style="width: 100%;">
             <div class="col">
@@ -56,7 +58,25 @@
                                         <button type="submit" name="submit">
                                             <i class="fa fa-search" aria-hidden="true"></i>
                                         </button>
-                                    </form>
+                                </form>
+                            </div>
+                            <div class="filteradmin">
+                                <form action="../giaodien/admin.php" method="post" class="formfilter">
+                                    <?php $productmodel = new product_model();
+                                        $brandresult = $productmodel->getAllBrand();
+                                    ?>
+                                    <select class="form-control"  name="selectedbrand">
+                                        <option value="All">All</option>
+                                        <?php while ($row = mysqli_fetch_assoc($brandresult)) {
+
+                                        ?>
+                                                <option value="<?php echo $row['ten_nha_cung_cap'];?>"><?php echo $row['ten_nha_cung_cap'];?></option>
+                                        <?php 
+                                            }
+                                        ?>
+                                    </select>
+                                    <button class="btn btn-primary btnfilter" type="submit" name="submitfilter">Lọc</button>
+                                </form>
                             </div>
                             <?php require '../xuly/xulyadminsearch.php';?>
                         </div>

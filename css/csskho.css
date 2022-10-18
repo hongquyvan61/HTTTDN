@@ -28,3 +28,23 @@
     width: 145px;
     height: 125px;
 }
+
+.filteradmin{
+    width:30%;
+    margin: 0.5% 2%;
+    padding: 0 2%;
+    float:right;
+}
+
+.formfilter{
+    display: flex;
+}
+
+.slboxfilter{
+    margin-left: 15%;
+}
+
+.btnfilter{
+    width:100%;
+    margin-left: 5%;
+}

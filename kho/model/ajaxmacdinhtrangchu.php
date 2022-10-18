@@ -2,19 +2,9 @@
     
             require '../../connectdb/connect.php';
             $con = ketnoi();
-            $brand = $_POST['nhanhang'];
-            $query = "";
-            if(strcmp($brand, "All") != 0){
-                $query ="select id_giay, ten, hinh1, ncc.ten_nha_cung_cap, don_gia
-                        from giay as g join nha_cung_cap as ncc
-                        on g.ma_nha_cung_cap=ncc.ma_nha_cung_cap
-                        where ncc.ten_nha_cung_cap='$brand'";
-            }
-            else{
-                $query ="select id_giay, ten, hinh1, ncc.ten_nha_cung_cap, don_gia
+            $query = "select id_giay, ten, hinh1, ncc.ten_nha_cung_cap, don_gia
                         from giay as g join nha_cung_cap as ncc
                         on g.ma_nha_cung_cap=ncc.ma_nha_cung_cap";
-            }
             $locresult = mysqli_query($con, $query);
                 $arrayObj = array();
                 $biendem=0;
@@ -31,3 +21,4 @@
                  echo json_encode($arrayObj);
            
 ?>
+

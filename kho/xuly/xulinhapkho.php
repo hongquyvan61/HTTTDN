@@ -35,7 +35,7 @@
     <div class="form-group col-md-4">
       <label style="font-size: 13px;" for="sortsanpham">Sản phẩm</label>
       <select style="font-size: 13px;" id="sortsanpham" class="form-control">
-          
+          <option value="--" selected>--</option>
       </select>
     </div>
     <div class="form-group col-md-3">
@@ -45,7 +45,7 @@
     <div class="form-group col-md-1">
         <label style="font-size: 13px;" for="size">Size</label><br>
         <select style="font-size: 13px;" id="size" class="form-control">
-          
+            <option value="--" selected>--</option>
         </select>
     </div>
     <div class="form-group col-md-3">

@@ -14,6 +14,11 @@
             $result = mysqli_query($this->con, $query);
             return $result;
         }
+        public function getAllBrand(){
+            $query = "select ten_nha_cung_cap from nha_cung_cap";
+            $result = mysqli_query($this->con, $query);
+            return $result;
+        }
         public function getMotaProductbyid($id){
             $query = "select mo_ta
                     from giay

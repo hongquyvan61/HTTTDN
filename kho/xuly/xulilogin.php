@@ -16,7 +16,11 @@
                                             }
                                             $password = mysqli_real_escape_string($con,$_POST['password']);
                                             if(strlen($password)<6){
-                                                echo "<p class=\"error\">Password không hợp lệ, tối thiểu 6 kí tự</p><br>";
+                                                echo "<script>
+                                                    alert('Password không hợp lệ, tối thiểu 6 kí tự');
+                                                    window.location.href='../giaodien/Dangnhap.php';
+                                                    </script>";
+                                                
                                                 $check++;
                                             }
                                             if($check == 0){
@@ -25,7 +29,7 @@
                                                 $mahoatiento = $model->apphin_mahoa($tiento[0]);
                                                 $encryptemail = $mahoatiento."@".$tiento[1];
                                                 $encryptpass = $model->apphin_mahoa($password);
-                                                $user_authentication_query = "select role,user_id,email from user where email='$encryptemail' and pass='$encryptpass'";
+                                                $user_authentication_query = "select role,user_id,email from user where email='$encryptemail' and pass='$encryptpass' and role='kho'";
                                                 $user_authentication_result = mysqli_query($con, $user_authentication_query) or die(mysqli_error($con));
                                                 $rows_fetched = mysqli_num_rows($user_authentication_result);
                                                 if($rows_fetched==0){

@@ -131,6 +131,30 @@ session_start();
                     var spdachon = document.getElementById('sortsanpham').value;
                     guiajaxsanpham(spdachon);
                 }``
+                function ResetAllAfterSubmit(){
+                    $("#tablenhapkho").find('tbody').empty();
+                    $("#slboxsort").prop("disabled", false);
+                    $("#slboxsort").prop("selectedIndex", 0);
+                    $("#khoabtn").prop("enabled", true);
+                    var slboxsanpham = document.getElementById('sortsanpham');
+                    while (slboxsanpham.options.length > 0) {                
+                                    slboxsanpham.remove(0);
+                    }
+                    var optspnull = document.createElement('option');
+                       optspnull.value = "--";
+                       optspnull.text = "--";
+                       slboxsanpham.add(optspnull);
+                       
+                    var slboxsize = document.getElementById('size');
+                    while (slboxsize.options.length > 0) {                
+                                    slboxsize.remove(0);
+                    }
+                    var optsizenull = document.createElement('option');
+                       optsizenull.value = "--";
+                       optsizenull.text = "--";
+                       slboxsize.add(optsizenull);
+                    $("#soluong").text("");
+                }
                 function getrowvaluetable(){
                     var $table = $("#tablenhapkho");
   
@@ -165,6 +189,7 @@ session_start();
                     var tabledatajson = JSON.parse(tableresult);
                     var tenncc = $("#slboxsort").val();
                     guiajaxnhapkho(tabledatajson,tenncc);
+                    ResetAllAfterSubmit();
                 }
                 function guiajaxnhapkho(tableresult,tenncc){
                     $.ajax({
@@ -185,17 +210,35 @@ session_start();
                     });
                 }
                 function layidgiay(){
-                    var tensp = document.getElementById("sortsanpham").value;
-                    $.ajax({
-                            method: 'post',
-                            url: '../model/ajaxlayidgiay.php',
-                            datatype: "JSON",
-                            data: {ten: tensp},
-                            success: function(response){
-                                var result = JSON.parse(response);
-                                inserttable(tensp,result);
+                    var sp = document.getElementById("sortsanpham").value;
+                    if(sp != "--"){
+                        var sizesp = document.getElementById("size").value;
+                        if(sizesp != "--"){
+                            var tensp = document.getElementById("sortsanpham").value;
+                            var sl = document.getElementById("soluong").value;
+                            if(sl != null && sl <= 0){
+                                alert("Số lượng phải lớn hơn 0");
                             }
-                    });
+                            if(sl != null && sl > 0){
+                                $.ajax({
+                                        method: 'post',
+                                        url: '../model/ajaxlayidgiay.php',
+                                        datatype: "JSON",
+                                        data: {ten: tensp},
+                                        success: function(response){
+                                            var result = JSON.parse(response);
+                                            inserttable(tensp,result);
+                                        }
+                                });
+                            }
+                        }
+                        else{
+                            alert("Hãy chọn size!");
+                        }
+                    }
+                    else{
+                        alert("Hãy chọn sản phẩm!");
+                    }
                 }
                 function inserttable(tensp,id){
                     var idgiay = id;
@@ -206,22 +249,71 @@ session_start();
                     document.getElementById("size").selectedIndex = 0;
                     document.getElementById("dongia").value = "";
                     document.getElementById("soluong").value = "";
-                    var row = $('<tr>');
-                    row.append('<td>' + idgiay + '</td>');
-                    row.append('<td>' + tensp + '</td>');
-                    row.append('<td>' + size + '</td>');
-                    row.append('<td>' + sl + '</td>');
-                    row.append('<td>' + dongia + '</td>');
-                    row.append('<td>' + dongia*sl +'</td>');
-                    row.append('<td><button class="btn btn-danger" style="font-size: 13px;" onclick="SomeDeleteRowFunction(this)">Xoá</button></td>');
-                    row.append('</tr>');
-                    $("#tablenhapkho").find('tbody').append(row);
+                    
+                    var $table = $("#tablenhapkho");
+                    
+                    var headers = $table.find('thead th').map(function(){
+                      return $(this).text().replace(' ', '');
+                    });
+                    
+                    var rows = $table.find('tbody tr').map(function(){
+                      var result = {};
+                      var values = $(this).find('>td').map(function(){
+                        return $(this).text();
+                      });
+                      
+                      // use the headers for keys and td values for values
+                      for (var i = 0; i < headers.length; i++) {
+                          if(values[i] != "Xoá"){
+                          
+                            result[i] = values[i];
+                          }
+                      }
+
+                      return result;
+                    }).toArray();
+                    
+                    var temparr = JSON.parse(JSON.stringify(rows));
+                    var arrayLength = temparr.length;
+                    var flag = 0;
+                    for (var i = 0; i < arrayLength; i++) {
+                        //console.log(temparr[i]);
+                        if(temparr[i]["0"] == idgiay && temparr[i]["2"] == size){
+                            var slcu = parseInt(temparr[i]["3"],10);
+                            var slmoi = parseInt(sl,10);
+                            var slsaukhitang = slcu+slmoi;
+                            var dongiasp = parseInt(temparr[i]["4"],10);
+                            var thanhtienmoi = dongiasp*slsaukhitang;
+                            $("#" + temparr[i]["0"] + "_" + slcu).html(slsaukhitang+'');
+                            $("#" + temparr[i]["0"] + "_" + slcu).attr("id",temparr[i]["0"] + "_" + slsaukhitang);
+                            $("#" + temparr[i]["0"] + "_" + dongiasp*slcu).html(thanhtienmoi+'');
+                            $("#" + temparr[i]["0"] + "_" + dongiasp*slcu).attr("id",temparr[i]["0"] + "_" + thanhtienmoi);
+                            flag = 1;
+                            break;
+                        }
+                    }
+                    if(flag == 0){
+                            var row = $('<tr>');
+                            row.append('<td>' + idgiay + '</td>');
+                            row.append('<td>' + tensp + '</td>');
+                            row.append('<td>' + size + '</td>');
+                            row.append('<td id='+idgiay+'_'+sl+'>' + sl + '</td>');
+                            row.append('<td>' + dongia + '</td>');
+                            row.append('<td id='+idgiay+'_'+dongia*sl+'>' + dongia*sl +'</td>');
+                            row.append('<td><button class="btn btn-danger" style="font-size: 13px;" onclick="SomeDeleteRowFunction(this)">Xoá</button></td>');
+                            row.append('</tr>');
+                            $("#tablenhapkho").find('tbody').append(row);
+                    }
+                    //console.log(JSON.parse(JSON.stringify(rows)));
                 }
                 function locknhacungcap(){
-                    $("#slboxsort").prop("disabled", true);
+                    var selectedncc = $("#slboxsort").val();
+                    if(selectedncc != "--"){
+                        $("#slboxsort").prop("disabled", true);
+                    }
                 }
-                statusmacdinh();
-                sanphammacdinh();
+                //statusmacdinh();
+                //sanphammacdinh();
                 document.getElementById("slboxsort").onchange = checkselect;
                 document.getElementById("sortsanpham").onchange = checkselectsanpham;
                 document.getElementById("thembtn").onclick = layidgiay;
