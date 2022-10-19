@@ -114,4 +114,16 @@ if (isset($_POST['sub3'])) {
     }
     }
 
+    if (isset($_POST['sub4'])) {
+    
+    $id = $_POST['id'];
+    $name = $_POST['name'];
+    $address = $_POST['address'];
+    $sdt = $_POST['sdt'];
+     $where = "SELECT * from nha_cung_cap WHERE ma_nha_cung_cap='".$id."'";
+    $product = mysqli_query($con, $where);  
+      $b->Sua_ncc($id, $name, $address,$sdt);
+          header('location:../giaodien/nha_cung_ung.php');
+    }
+
 ?>
