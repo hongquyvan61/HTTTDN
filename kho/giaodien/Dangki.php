@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-
+<?php
+  
+    session_start();
+    if(isset($_SESSION['email'])){
+        header('location: index.php');
+    }
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -12,7 +12,9 @@ and open the template in the editor.
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="../../css/css.css" type="text/css">
-        <title></title>
+<link rel="stylesheet" href="../../css/csskho.css" type="text/css">
+
+<title></title>
     </head>
     <body>
         <div class="wrapper fadeInDown">
@@ -25,9 +27,9 @@ and open the template in the editor.
     </div>
 
     <!-- Login Form -->
-    <form method="post"  action="../xuly/xulilogin.php">
-      <input type="text" id="login" class="fadeIn second" name="email" placeholder="email">
-      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" style="background-color: #f6f6f6;
+    <form method="post"  action="../xuly/xulidangki.php">
+      <input type="text" id="login" class="fadeIn second" name="email" placeholder="Vui lòng điền email">
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="Nhập password" style="         background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;
     padding: 15px 32px;
@@ -39,18 +41,27 @@ and open the template in the editor.
     width: 85%;
     border: 2px solid #f6f6f6;
     -webkit-transition: all 0.5s ease-in-out;">
-      <input type="submit" name="submit" class="fadeIn fourth" value="Log In">
-       <?php require '../xuly/xulilogin.php';?>
+      <input type="number" id="contact" class="fadeIn fourth" name="contact" placeholder="Nhập số điện thoại" style="         background-color: #f6f6f6;
+    border: none;
+    color: #0d0d0d;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px;
+    width: 85%;
+    border: 2px solid #f6f6f6;
+    -webkit-transition: all 0.7s ease-in-out;">
+      <input type="submit" name="submit" class="fadeIn fifth" value="Register">
+       
     </form>
 
     <!-- Remind Passowrd -->
     <div id="formFooter">
-        <div>
-            Don't have an account yet?
-        </div>
-            
-        <a class="underlineHover" href="Dangki.php">Register</a>
+        <a class="underlineHover" href="Dangnhap.php">Login again?</a>
     </div>
+
   </div>
 </div>
         <?php
@@ -58,4 +69,3 @@ and open the template in the editor.
         ?>
     </body>
 </html>
-

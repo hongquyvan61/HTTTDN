@@ -9,14 +9,26 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- latest compiled and minified CSS -->
-        <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" type="text/css">
         <!-- jquery library -->
-        <script type="text/javascript" src="../bootstrap/js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="../../bootstrap/js/jquery-3.2.1.min.js"></script>
         <!-- Latest compiled and minified javascript -->
-        <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
         <!-- External CSS -->
         <link rel="stylesheet" href="../../css/style.css" type="text/css">
         <link rel="stylesheet" href="../../css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+
+
+<!-- Popper JS -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     </head>
     <body>
         <div>

@@ -129,6 +129,7 @@
                                             <td><?php echo $i++; ?></td>
                                             <td><?php echo $row['user_id']; ?></td>
 
+
                                             <td>
                                                 <?php 
                                                     $tiento = explode("@", $row['email']);
@@ -226,7 +227,8 @@
              <label >Role</label><br>
              <select name="role">
                  <option id="admin"> admin</option>
-                  <option id="kho">kho</option>              
+                  <option id="kho">kho</option> 
+                   <option id="guest">guest</option> 
              </select><br>
          </div>
     
@@ -282,7 +284,9 @@
                   document.getElementById("kho").selected = true;
             }
             else{
+                 document.getElementById("guest").selected = true;
                  document.getElementById("phan_bac").style.display = "none"
+                
             }
           
     

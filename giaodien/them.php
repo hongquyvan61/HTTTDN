@@ -5,7 +5,7 @@
      <body style="background-color: #F0F0F0;" >
        <?php require '../giaodien/admin_menu.php';?>
   
-        <div class="title_them">
+        <div class="title_them bg-secondary">
         
             <br>
         <h2>Thêm sản phẩm</h2>
