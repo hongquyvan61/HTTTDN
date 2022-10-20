@@ -1,3 +1,6 @@
+<?php 
+    session_start();
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -24,7 +27,7 @@
         <title></title>
     </head>
     <body>
-          <?php require '../giaodien/admin_menu.php';?>
+                <?php require '../giaodien/admin_menu.php';?>
          
    <div class="container">
              <button type="button" id="them_ncu" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style=" margin-left: 2.5%; margin-top: 5%;margin-bottom: 1%;">Thêm nhà cung ứng</button>

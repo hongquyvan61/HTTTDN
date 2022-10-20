@@ -7,15 +7,18 @@ $id=$_GET['user_id'];
 
     $sql1 = "SELECT * FROM don_hang WHERE user_id= '" . $id . "'";
     $query1 = mysqli_query($con, $sql1);
-        $row1= mysqli_fetch_assoc($query1);
-         if (mysqli_num_rows($query1)!= 0) {
-        $ma_dh=$row1['ma_don_hang']; 
-        
+       if (mysqli_num_rows($query1)!= 0) {
+      while ($row = mysqli_fetch_assoc($query1)) {
+          
+           $ma_dh=$row['ma_don_hang'];     
         $sql3="DELETE FROM chi_tiet_don_hang WHERE ma_don_hang=$ma_dh";
         $query3= mysqli_query($con, $sql3);   
         
      $sql4="DELETE FROM don_hang WHERE user_id=$id";
     $query4= mysqli_query($con, $sql4);  
+    echo $ma_dh." ";
+                 }
+      
         }
    //     echo $ma_dh." ";
     
@@ -43,6 +46,6 @@ $id=$_GET['user_id'];
 $sql7="DELETE FROM user WHERE user_id=$id";
 $query7= mysqli_query($con, $sql7);
 
-header('location:qlkh.php');
+//header('location:qlkh.php');
 ?>
 
