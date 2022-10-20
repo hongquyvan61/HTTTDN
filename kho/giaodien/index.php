@@ -8,10 +8,10 @@ session_start();
                         }
                      
                     if($user === ""){
-                    echo "<script>
-                    alert('Vui lòng đăng nhập trước!');
-                    window.location.href='../giaodien/Dangnhap.php';
-                    </script>";
+                        echo "<script>
+                        alert('Vui lòng đăng nhập trước!');
+                        window.location.href='../giaodien/Dangnhap.php';
+                        </script>";
                     }
                     ?>
 <html>
@@ -138,7 +138,18 @@ session_start();
                                     row.append('<td><img src="../../'+ item.image +'" style="width:200px; height:230px;"></td>');
                                     row.append('<td>' + item.brand + '</td>');
                                     row.append('<td>' + item.price + '</td>');
-                                    row.append('<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalchitiet" data-whatever="'+ item.idgiay +'">Chi tiết</button></td>')
+                                    row.append('<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalchitiet" data-whatever="'+ item.idgiay +'">Chi tiết</button></td>');
+                                    if(item.slkhoban > 0 && item.slkhoban <= 10){
+                                        row.append('<td><a type="button" href="..\/giaodien\/xuatkho.php" class="btn btn-primary" style="background-color:#f09143;">Sắp hết</a></td>');
+                                    }
+                                    else{
+                                        if(item.slkhoban == 0){
+                                            row.append('<td><a type="button" href="..\/giaodien\/xuatkho.php" class="btn btn-danger">Hết hàng</a></td>');
+                                        }
+                                        if(item.slkhoban > 10){
+                                            row.append('<td style="font-weight:bold;">Còn hàng</td>');
+                                        }
+                                    }
                                     row.append('</tr>');
                                     $("#tablehienthi").find('tbody').append(row);
                                 });
@@ -163,6 +174,17 @@ session_start();
                                     row.append('<td>' + item.brand + '</td>');
                                     row.append('<td>' + item.price + '</td>');
                                     row.append('<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalchitiet" data-whatever="'+ item.idgiay +'">Chi tiết</button></td>')
+                                    if(item.slkhoban > 0 && item.slkhoban <= 10){
+                                        row.append('<td><a type="button" href="..\/giaodien\/xuatkho.php" class="btn btn-primary" style="background-color:#f09143;">Sắp hết</a></td>');
+                                    }
+                                    else{
+                                        if(item.slkhoban == 0){
+                                            row.append('<td><a type="button" href="..\/giaodien\/xuatkho.php" class="btn btn-danger">Hết hàng</a></td>');
+                                        }
+                                        if(item.slkhoban > 10){
+                                            row.append('<td style="font-weight:bold;">Còn hàng</td>');
+                                        }
+                                    }
                                     row.append('</tr>');
                                     $("#tablehienthi").find('tbody').append(row);
                                 });
@@ -187,6 +209,17 @@ session_start();
                                     row.append('<td>' + item.brand + '</td>');
                                     row.append('<td>' + item.price + '</td>');
                                     row.append('<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalchitiet" data-whatever="'+ item.idgiay +'">Chi tiết</button></td>')
+                                    if(item.slkhoban > 0 && item.slkhoban <= 10){
+                                        row.append('<td><a type="button" href="..\/giaodien\/xuatkho.php" class="btn btn-primary" style="background-color:#f09143;">Sắp hết</a></td>');
+                                    }
+                                    else{
+                                        if(item.slkhoban == 0){
+                                            row.append('<td><a type="button" href="..\/giaodien\/xuatkho.php" class="btn btn-danger">Hết hàng</a></td>');
+                                        }
+                                        if(item.slkhoban > 10){
+                                            row.append('<td style="font-weight:bold;">Còn hàng</td>');
+                                        }
+                                    }
                                     row.append('</tr>');
                                     $("#tablehienthi").find('tbody').append(row);
                                 });
