@@ -37,10 +37,9 @@ class MYPDF extends TCPDF {
       foreach($query1 as $row) {
            $this->writeHTML("Ma don hang: ".$ma_don_hang, true, false, true, false, '');
              $this->writeHTML("Khach hang: ".$decryptemail, true, false, true, false, '');
-          $mdh=$row['ma_don_hang'];
             $this->writeHTML("<br>", true, false, true, false, '');
       }   
-      return $mdh;
+      return $ma_don_hang;
     }
     public function thong_tin_nguoi_nhan(   ){
         $con = ketnoi();
@@ -165,7 +164,7 @@ $pdf->thong_tin_nguoi_nhan($data);
 // ---------------------------------------------------------
 
 // close and output PDF document
-$pdf->Output('hoa_don '.$mdh.'.pdf', 'I');
+$pdf->Output('hoa_don_'.$mdh.'.pdf', 'I');
 
 ?>
 

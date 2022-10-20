@@ -103,22 +103,25 @@
                         <?php
                         include '../connectdb/connect.php';
                         include '../model/encrypt.php';
+                        include '../model/testdauvao.php';
                         $con = ketnoi();
                         $model = new encrypt();
-            
+                        $testinputmodel = new testdauvao();
                         if(isset($_POST['keyword'])){
-                            $search=$_POST['keyword'];
-                            $regex_email = "/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[_a-z0-9-]+)*(\.[a-z]{2,3})$/";
+                            $search = $testinputmodel->test_input($_POST['keyword']);
+                            //$regex_email = "/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[_a-z0-9-]+)*(\.[a-z]{2,3})$/";
                                 $mahoasearchemail ="";
-                                if(preg_match($regex_email, $search)){
+                                if(filter_var($search, FILTER_VALIDATE_EMAIL)){
+                                    
                                     $tientosearch = explode("@", $search);
                                     $mahoasearch = $model->apphin_mahoa($tientosearch[0]);
                                     $mahoasearchemail = $mahoasearch."@".$tientosearch[1];
                                 }
                                 else{
-                                    $mahoasearchemail = $model->apphin_mahoa($search);
+                                    $tientosearch = explode("@", $search);
+                                    $mahoasearchemail = $model->apphin_mahoa($tientosearch[0]);
                                 }
-                                $sql1 = "SELECT * FROM  user WHERE email LIKE '%$mahoasearchemail%'";
+                                $sql1 = "SELECT * FROM  user WHERE email LIKE '%$mahoasearchemail%' or sdt='$mahoasearchemail'";
                                 $query = mysqli_query($con, $sql1);
                                 $i = 1;
                                 if(mysqli_num_rows($query) != 0){
@@ -128,6 +131,7 @@
 
                                             <td><?php echo $i++; ?></td>
                                             <td><?php echo $row['user_id']; ?></td>
+
 
                                             <td>
                                                 <?php 
@@ -226,7 +230,8 @@
              <label >Role</label><br>
              <select name="role">
                  <option id="admin"> admin</option>
-                  <option id="kho">kho</option>              
+                  <option id="kho">kho</option> 
+                   <option id="guest">guest</option> 
              </select><br>
          </div>
     
@@ -282,7 +287,9 @@
                   document.getElementById("kho").selected = true;
             }
             else{
+                 document.getElementById("guest").selected = true;
                  document.getElementById("phan_bac").style.display = "none"
+                
             }
           
     

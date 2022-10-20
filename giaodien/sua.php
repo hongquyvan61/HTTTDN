@@ -21,7 +21,7 @@
             
         </style>
         <?php require '../giaodien/admin_menu.php';?>
-        <div class="title_them">
+        <div class="title_them bg-secondary">
             <br>
         <h2>Sửa sản phẩm</h2>
         </div>
