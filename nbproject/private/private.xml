@@ -12,16 +12,9 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/HTTTDN/kho/giaodien/nhacungung.php</file>
-            <file>file:/C:/xampp/htdocs/HTTTDN/kho/xuly/xulilichsu.php</file>
-            <file>file:/C:/xampp/htdocs/HTTTDN/kho/xuly/xulincc.php</file>
-            <file>file:/C:/xampp/htdocs/HTTTDN/kho/model/ajaxlochang.php</file>
-            <file>file:/C:/xampp/htdocs/HTTTDN/kho/model/ajaxloctrangchu.php</file>
-            <file>file:/C:/xampp/htdocs/HTTTDN/kho/model/ajaxlocncc.php</file>
-            <file>file:/C:/xampp/htdocs/HTTTDN/kho/xuly/xulihienthi.php</file>
-            <file>file:/C:/xampp/htdocs/HTTTDN/kho/giaodien/lichsu.php</file>
-            <file>file:/C:/xampp/htdocs/HTTTDN/kho/giaodien/index.php</file>
-            <file>file:/C:/xampp/htdocs/HTTTDN/kho/giaodien/chitietls.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/giaodien/signup.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/xuly/user_registration_script.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/kho/giaodien/Dangki.php</file>
         </group>
     </open-files>
 </project-private>

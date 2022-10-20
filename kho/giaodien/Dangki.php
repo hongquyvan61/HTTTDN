@@ -28,8 +28,9 @@
 
     <!-- Login Form -->
     <form method="post"  action="../xuly/xulidangki.php">
-      <input type="text" id="login" class="fadeIn second" name="email" placeholder="Vui lòng điền email">
-      <input type="password" id="password" class="fadeIn third" name="password" placeholder="Nhập password" style="         background-color: #f6f6f6;
+      <input type="text" id="login" class="form-control fadeIn second" name="email" placeholder="Vui lòng điền email" required="true" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+      <input type="password" id="password" class=" form-control fadeIn third" name="password" placeholder="Nhập password" required="true" pattern=".{6,}" style="
+    background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;
     padding: 15px 32px;
@@ -41,7 +42,8 @@
     width: 85%;
     border: 2px solid #f6f6f6;
     -webkit-transition: all 0.5s ease-in-out;">
-      <input type="number" id="contact" class="fadeIn fourth" name="contact" placeholder="Nhập số điện thoại" style="         background-color: #f6f6f6;
+      <input type="number" id="contact" class="fadeIn fourth" name="contact" placeholder="Nhập số điện thoại" style="
+    background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;
     padding: 15px 32px;
