@@ -7,17 +7,14 @@
 <html>
     <head>   
         <meta charset="UTF-8">
+      <!-- Latest compiled and minified CSS -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- latest compiled and minified CSS -->
-        <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" type="text/css">
-        <!-- jquery library -->
-        <script type="text/javascript" src="../../bootstrap/js/jquery-3.2.1.min.js"></script>
-        <!-- Latest compiled and minified javascript -->
-        <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
-        <!-- External CSS -->
-        <link rel="stylesheet" href="../../css/style.css" type="text/css">
-        <link rel="stylesheet" href="../../css/font-awesome.min.css" type="text/css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../css/csskho.css" type="text/css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 
 <!-- jQuery library -->
 
@@ -36,22 +33,20 @@
             <br>
             <div class="container">
                 <div class="row">
-                    <div class="col-xs-6">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading"></div>
-                            <div class="panel-body">
-                                <p>You have been logged out. <a href="Dangnhap.php">Login again.</a></p>
-                            </div>
+                    <div class="col-md-6" style="margin:auto;">
+                        <div class="card">
+                            <div class="card-header bg-info text-white">Information</div>
+                            <div class="card-body"><p>You have been logged out. <a href="Dangnhap.php">Login again.</a></p></div> 
                         </div>
                     </div>
                 </div>
             </div>
             <footer class="footer">
-               <div class="container">
-                <center>
-                   <p>Copyright &copy Store. All Rights Reserved.</p>
-                   <!--<p>This website is developed by Yugesh Verma</p>-->
-               </center>
+                <div class="container" style="margin-top: 4%;">
+                    <center>
+                       <p>Copyright &copy Store. All Rights Reserved.</p>
+                       <!--<p>This website is developed by Yugesh Verma</p>-->
+                   </center>
                </div>
            </footer>
         </div>

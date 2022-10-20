@@ -14,7 +14,7 @@ session_start();
                     </script>";
                     }
                     ?>
-<html>
+<html style="background-color: #fff">
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../../css/css.css" type="text/css">
@@ -101,11 +101,16 @@ session_start();
                 function checkselect(){
                     var statusdachon = document.getElementById('slboxsort').value;
                     if(statusdachon === "nhapkho"){
+                        document.getElementById("tablehtls").style.zIndex = "1";
+                    document.getElementById("tablehtlsx").style.zIndex = "-1"; 
                       document.getElementById("tablehtls").style.visibility = 'visible';
-                    document.getElementById("tablehtlsx").style.visibility = 'hidden';;
+                    document.getElementById("tablehtlsx").style.visibility = 'hidden';
+                    
                     guiajax(statusdachon);
                 }
                 else{
+                    document.getElementById("tablehtls").style.zIndex = "-1";
+                    document.getElementById("tablehtlsx").style.zIndex = "1";
                       document.getElementById("tablehtls").style.visibility = 'hidden';
                      document.getElementById("tablehtlsx").style.visibility = 'visible';
                      guiajaxxuat(statusdachon);

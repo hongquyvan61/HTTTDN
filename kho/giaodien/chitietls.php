@@ -130,7 +130,9 @@ while ($row = mysqli_fetch_assoc($query)) {
     </table>   
     <div class="row">
         <div class="col text-center">
-          <a class="btn btn-dark" style="font-size: 15px;" id="getdatatable">In phiếu</a>
+            <a class="btn btn-danger" href="lichsu.php" style="font-size: 15px;" id="close">Quay lại</a>
+            <a class="btn btn-dark" style="font-size: 15px;" id="getdatatable" href="in_pdf.php?id=<?php echo $id;?>&loai=<?php echo $get;?>">In phiếu</a>
+          
         </div>
     </div>
 </div>
