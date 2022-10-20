@@ -14,6 +14,7 @@
                                         <th>Hãng</th>
                                         <th>Đơn giá</th>
                                         <th>Chi tiết</th>
+                                        <th>Tình trạng bên bán</th>
                                     </tr>
                                 </thead>
                                 <tbody>

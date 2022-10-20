@@ -10,6 +10,7 @@
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="../giaodien/admin.php">Trang chủ</a>
                             </li>
+                            
                             <?php if(isset($_SESSION['email']) && $_SESSION['role'] == 'admin'){
                                     ?>
                             <li class="nav-item">
@@ -24,18 +25,21 @@
                         <ul class="navbar-nav px-3">
                             <li class="nav-item text-nowrap">
                                 <p class="nav-link">
-                                    <?php if(isset($_SESSION['email']) && $_SESSION['role'] == 'admin'){
-                                    ?>Xin chào quản trị viên
-                                        <?php }?>
+                                    <?php if(isset($_SESSION['email']) && $_SESSION['role'] == 'admin'){  ?>
+                                    Xin chào quản trị viên
+                                       
+                                    <a type="button" class="btn btn-outline-info btn-md btn-rounded btn-navbar waves-effect waves-light" href="../giaodien/logout.php">Đăng Xuất</a>
+                                <?php }
+                                
+                                else{
+                                    ?>
+                              <a type="button" class="btn btn-outline-info btn-md btn-rounded btn-navbar waves-effect waves-light" href="../giaodien/login.php">Đăng Nhập</a>
+
+                             <?php   }  ?>
+                      
                                 </p>
                             </li>
-                            <?php if(isset($_SESSION['email']) && $_SESSION['role'] == 'admin'){
-                                    ?>
-                            <li class="nav-item text-nowrap">
-                                <!-- Nếu chưa đăng nhập thì hiển thị nút Đăng nhập -->
-                                <a type="button" class="btn btn-outline-info btn-md btn-rounded btn-navbar waves-effect waves-light" href="../giaodien/logout.php">Đăng Xuất</a>
-                            </li>
-                            <?php }?>
+                         
                         </ul>
                     </div>
             </nav>

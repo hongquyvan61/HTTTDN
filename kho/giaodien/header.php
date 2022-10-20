@@ -27,7 +27,15 @@
     </li>
   </ul>
  <ul class="navbar-nav ml-auto">
-    
-     <li class="nav-item"><a href="logout.php" class="nav-link"><span class="glyphicon glyphicon-log-in"></span> Thoát</a></li>
+    <?php if(!isset($_SESSION['id'])){?>
+     <li class="nav-item"><a href="Dangnhap.php" class="nav-link"><span class="glyphicon glyphicon-log-in"></span>Đăng nhập</a></li>
+
+    <?php }
+            else{
+                ?>
+                     <li class="nav-item"><a href="logout.php" class="nav-link"><span class="glyphicon glyphicon-log-in"></span> Thoát</a></li>
+     <?php
+            }
+?>
     </ul>
 </nav>
