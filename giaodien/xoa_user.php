@@ -16,11 +16,11 @@ $id=$_GET['user_id'];
         
      $sql4="DELETE FROM don_hang WHERE user_id=$id";
     $query4= mysqli_query($con, $sql4);  
-    echo $ma_dh." ";
+  //  echo $ma_dh." ";
                  }
       
         }
-   //     echo $ma_dh." ";
+
     
       
    
@@ -46,6 +46,6 @@ $id=$_GET['user_id'];
 $sql7="DELETE FROM user WHERE user_id=$id";
 $query7= mysqli_query($con, $sql7);
 
-//header('location:qlkh.php');
+header('location:qlkh.php');
 ?>
 
