@@ -27,7 +27,7 @@
         <title></title>
     </head>
     <body>
-          <?php require '../giaodien/admin_menu.php';?>
+                <?php require '../giaodien/admin_menu.php';?>
          
    <div class="container">
             <div class="form-group col-md-12">

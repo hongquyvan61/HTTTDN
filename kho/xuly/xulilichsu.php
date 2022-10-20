@@ -10,7 +10,7 @@
 </select> 
 <br><br>
 <div class="col-md-12">
-    <table id="tablehtls" class="table table-bordered table-striped">
+    <table id="tablehtls" class="table table-bordered table-striped" style=" position:absolute;">
         <thead>
             <tr>
                 <th>Mã nhập kho</th>
@@ -25,7 +25,7 @@
           
        </tbody>
     </table>
-    <table id="tablehtlsx" class="table table-bordered table-striped" style="visibility: hidden; margin-top: -530px;">
+    <table id="tablehtlsx" class="table table-bordered table-striped" style="visibility: hidden; position:absolute;">
         <thead>
             <tr>
                 <th>Mã xuất kho</th>
