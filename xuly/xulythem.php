@@ -168,7 +168,7 @@ if (isset($_POST['sub3'])) {
         $b->Them_ncc( $name, $address, $sdt);
         header('location:../giaodien/nha_cung_ung.php');
     } else{
-      echo '<script type="text/javascript">','def();','</script>';
+      echo '<script type="text/javascript">','ncc();','</script>';
     }
 }
     
