@@ -50,7 +50,7 @@ session_start();
  ?>
     
 <div class="container">
-<div class="col-md-12">
+<div class="col-md-12" style="margin-top: 3%;">
           <?php
 
 $id = $_GET['id'];

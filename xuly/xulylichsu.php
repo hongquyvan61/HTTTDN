@@ -71,7 +71,7 @@
                 </select>
             </div>
             <div class="form-group col-md-2" style="display: flex; align-items:center; justify-content: center; padding-top: 3%;">
-                <button id="loclichsu" class="btn-primary" style="width:100%; height:35px; font-size: 13px;" name="submit">Lọc</button>
+                <button id="loclichsu" class="btn btn-primary" style="width:100%; height:35px; font-size: 13px;" name="submit">Lọc</button>
             </div>
         </div>
 

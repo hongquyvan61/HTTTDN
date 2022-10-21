@@ -61,6 +61,11 @@ session_start();
                     var searchinput = document.getElementById("searchinput").value;
                     guiajax(searchinput);
                 }
+                function locbaocaomacdinh(){
+                    var selectedmonth = $("#sortthang").val();
+                    var selectedtype = $("#sorttype").val();
+                    guiajaxbaocao(selectedmonth,selectedtype);
+                }
                 function guiajax(searchinput){
             
                     $.ajax({
@@ -88,8 +93,83 @@ session_start();
                     var searchinput = document.getElementById("searchinput").value;
                     guiajax(searchinput);
                 }
+                function guiajaxbaocao(selectedmonth,selectedtype){
+                    $.ajax({
+                                method: 'post',
+                                url: '../model/ajaxbaocaoncc.php',
+                                datatype: "JSON",
+                                data: {month: selectedmonth, type: selectedtype},
+                                success: function(response){
+                                    var arrayObj = JSON.parse(response);
+                                    if(selectedmonth == "--" && selectedtype == "--"){
+                                        $("#tablebaocao").find('tbody').empty();
+                                        $("#tablebaocao thead th:eq("+2+")").remove();
+                                        $("#tablebaocao tbody tr").find("td:eq("+2+")").remove();
+                                        $('#tablebaocao').find('thead tr').append('<th>Tổng chi phí nhập</th>');
+                                        $("#tongslhangnhap").text("Tổng lượng hàng nhập theo tháng");
+                                        arrayObj.forEach(function (item,index){
+                                            var row = $('<tr>');
+                                            row.append('<td>' + item.tenncc+'</td>');
+                                            row.append('<td>' + item.tongslnhap+'</td>');
+                                            row.append('<td>' + item.tongtiennhap + '</td>');
+                                            row.append('</tr>');
+                                            $("#tablebaocao").find('tbody').append(row);
+                                        });
+                                    }
+                                    if(selectedtype == "nhapkho"){
+                                        $("#tablebaocao").find('tbody').empty();
+                                        $("#tablebaocao thead th:eq("+2+")").remove();
+                                        $("#tablebaocao tbody tr").find("td:eq("+2+")").remove();
+                                        $('#tablebaocao').find('thead tr').append('<th>Tổng chi phí nhập</th>');
+                                        $("#tongslhangnhap").text("Tổng lượng hàng nhập theo tháng");
+                                        arrayObj.forEach(function (item,index){
+                                            var row = $('<tr>');
+                                            row.append('<td>' + item.tenncc+'</td>');
+                                            row.append('<td>' + item.tongslnhap+'</td>');
+                                            row.append('<td>' + item.tongtiennhap + '</td>');
+                                            row.append('</tr>');
+                                            $("#tablebaocao").find('tbody').append(row);
+                                        });
+                                    }
+                                    if(selectedtype == "xuatkho"){
+                                        $("#tablebaocao").find('tbody').empty();
+                                        $("#tablebaocao thead th:eq("+2+")").remove();
+                                        $("#tablebaocao tbody tr").find("td:eq("+2+")").remove();
+                                        $("#tongslhangnhap").text("Tổng lượng hàng xuất theo tháng");
+                                        arrayObj.forEach(function (item,index){
+                                            var row = $('<tr>');
+                                            row.append('<td>' + item.tenncc+'</td>');
+                                            row.append('<td>' + item.tongslxuat+'</td>');
+                                            row.append('</tr>');
+                                            $("#tablebaocao").find('tbody').append(row);
+                                        });
+                                    }
+                                    //console.log(arrayObj);
+                                }
+                        });
+                }
+                function locbaocao(){
+                    var selectedmonth = $("#sortthang").val();
+                    var selectedtype = $("#sorttype").val();
+                    if(selectedmonth != "--" && selectedtype != "--"){
+                        guiajaxbaocao(selectedmonth,selectedtype);
+                    }
+                    else{
+                        if(selectedmonth != "--" && selectedtype == "--"){
+                            alert("Hãy chọn loại!");
+                        }
+                        if(selectedtype != "--" && selectedmonth == "--"){
+                            alert("Hãy chọn tháng!");
+                        }
+                        if(selectedtype == "--" && selectedmonth == "--"){
+                            guiajaxbaocao(selectedmonth,selectedtype);
+                        }
+                    }
+                }
                 statusmacdinh();
+                locbaocaomacdinh();
                 document.getElementById("searchbtn").onclick = search;
+                document.getElementById("locbaocao").onclick = locbaocao;
             });
            </script>
 </html>

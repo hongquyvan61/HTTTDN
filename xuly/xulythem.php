@@ -93,6 +93,10 @@ if (isset($_POST['sub'])) {
     $query1 = mysqli_query($con, $sql1);
         $row= mysqli_fetch_assoc($query1);
       $ten_nha_cung_cap=$row['ten_nha_cung_cap'];    
+       $path = "../img/".$ten_nha_cung_cap;
+       if(!file_exists($path)){
+           mkdir($path, 0777, true);
+       }
                 move_uploaded_file($file['tmp_name'], '../img/' . $ten_nha_cung_cap . '/' . $file_name);
                 move_uploaded_file($file2['tmp_name'], '../img/' . $ten_nha_cung_cap . '/' . $file_name2);
                 move_uploaded_file($file3['tmp_name'], '../img/' . $ten_nha_cung_cap . '/' . $file_name3);
