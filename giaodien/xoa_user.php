@@ -10,12 +10,14 @@
         </script>
 <?php
    include '../connectdb/connect.php';
+   require '../model/tanggiamslsp.php';
    $con = ketnoi();
 $id=$_GET['user_id'];
  // echo $id." ";
 
     $sql1 = "SELECT * FROM don_hang WHERE user_id= '" . $id . "'";
     $query1 = mysqli_query($con, $sql1);
+    $temp2=0;
     $tam=0;
        if (mysqli_num_rows($query1)!= 0) {
            
@@ -27,21 +29,27 @@ $id=$_GET['user_id'];
            
            if($tam==1){
                 echo '<script type="text/javascript">','abc();','</script>';
-                
+                 $temp2=1;
            }
            else{
+             
+               
                 $sql8 = "SELECT * FROM don_hang WHERE user_id= '" . $id . "'";
     $query8 = mysqli_query($con, $sql8  );
        while ($row = mysqli_fetch_assoc($query8)) {
          
             $ma_dh=$row['ma_don_hang'];     
+            
+               $tanggiammodel = new tanggiamsl();
+            $tanggiamresult = $tanggiammodel->tang($ma_dh, $id);
+            
             $sql3="DELETE FROM chi_tiet_don_hang WHERE ma_don_hang=$ma_dh";
             $query3= mysqli_query($con, $sql3);   
             
          $sql4="DELETE FROM don_hang WHERE user_id=$id";
         $query4= mysqli_query($con, $sql4);  
-    echo $ma_dh." ";
-
+   // echo $ma_dh." ";
+   
            }
    
         }
@@ -63,17 +71,21 @@ $id=$_GET['user_id'];
             $sql6="DELETE FROM gio_hang WHERE user_id=$id";
             $query6= mysqli_query($con, $sql6);   
              
-     
+  
     
         }
    // echo $ma_gh." ";
      
-     
-$sql7="DELETE FROM user WHERE user_id=$id";
+    
+         $sql7="DELETE FROM user WHERE user_id=$id";
 $query7= mysqli_query($con, $sql7);
+if($temp2==0){
+    header('location:qlkh.php'); 
+}
 
-header('location:qlkh.php');
      
+
+
            
       
         
