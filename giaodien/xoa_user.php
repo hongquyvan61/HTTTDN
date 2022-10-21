@@ -4,7 +4,12 @@
      alert("Có đơn hàng đã thanh toán, không thể xóa user này!");
             
    window.location='../giaodien/qlkh.php';
-}       
+} 
+ function def(){
+     alert("Xóa user thành công!");
+            
+   window.location='../giaodien/qlkh.php';
+} 
             
         
         </script>
@@ -80,7 +85,8 @@ $id=$_GET['user_id'];
          $sql7="DELETE FROM user WHERE user_id=$id";
 $query7= mysqli_query($con, $sql7);
 if($temp2==0){
-    header('location:qlkh.php'); 
+          echo '<script type="text/javascript">','def();','</script>';
+   // header('location:qlkh.php'); 
 }
 
      
