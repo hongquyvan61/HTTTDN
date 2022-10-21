@@ -56,8 +56,7 @@
             $query ="select *
                         from giay as g join nha_cung_cap as ncc
                         on g.ma_nha_cung_cap=ncc.ma_nha_cung_cap
-                        where (ncc.ten_nha_cung_cap='$key' and (ten like '% $key %' or ten like '% $key %' or ten like '$key %' or ten like '% $key')) 
-                        or (ten like '% $key %' or ten like '$key %' or ten like '% $key')";
+                        where ten like '% $key %' or ten like '$key %' or ten like '% $key' or ten like '$key' or ten like '%$key%'";
             $result = mysqli_query($this->con,$query);
             return $result;
         }

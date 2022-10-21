@@ -22,9 +22,9 @@
       </select>
       
 </div>
-<div class="form-group col-md-1" style="display: flex; align-items:center; justify-content: center; padding-top: 2%;">
+<!--<div class="form-group col-md-1" style="display: flex; align-items:center; justify-content: center; padding-top: 2%;">
         <button class="btn btn-primary" style="width:100%; height:35px; font-size: 13px;" id="khoabtn">Khoá</button>
-</div>
+</div>-->
 </div>
 
 
@@ -72,9 +72,7 @@
                 <th>ID sản phẩm</th>
                 <th>Tên sản phẩm</th>
                 <th>Size</th>
-
                 <th>Số lượng xuất kho</th>
-
                 <th>Hành động</th>
             </tr>
        </thead>

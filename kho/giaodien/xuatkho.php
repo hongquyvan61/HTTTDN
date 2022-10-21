@@ -14,7 +14,7 @@ session_start();
                     </script>";
                     }
                     ?>
-<html>
+<html style="background-color: #fff">
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../../css/css.css" type="text/css">
@@ -163,7 +163,7 @@ session_start();
                     $("#tablexuatkho").find('tbody').empty();
                     $("#slboxsort").prop("disabled", false);
                     $("#slboxsort").prop("selectedIndex", 0);
-                    $("#khoabtn").prop("enabled", true);
+                    //$("#khoabtn").prop("enabled", true);
                     var slboxsanpham = document.getElementById('sortsanpham');
                     while (slboxsanpham.options.length > 0) {                
                                     slboxsanpham.remove(0);
@@ -359,7 +359,7 @@ session_start();
 
                 document.getElementById("thembtn").onclick = layidgiay;
                 document.getElementById("getdatatable").onclick = getrowvaluetable;
-                document.getElementById("khoabtn").onclick = locknhacungcap;
+                //document.getElementById("khoabtn").onclick = locknhacungcap;
             });
             function SomeDeleteRowFunction(o) {
                     //no clue what to put here?

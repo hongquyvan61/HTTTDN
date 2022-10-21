@@ -17,9 +17,6 @@
         <a class="nav-link" href="xuatkho.php">Xuất kho</a>
     </li><!-- comment -->
     <li class="nav-item">
-      <a class="nav-link" href="#">Báo cáo</a>
-    </li>
-    <li class="nav-item">
         <a class="nav-link" href="lichsu.php">Lịch sử</a>
     </li>
     <li class="nav-item">
