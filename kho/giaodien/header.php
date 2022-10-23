@@ -25,12 +25,12 @@
   </ul>
  <ul class="navbar-nav ml-auto">
     <?php if(!isset($_SESSION['id'])){?>
-     <li class="nav-item"><a href="Dangnhap.php" class="nav-link"><span class="glyphicon glyphicon-log-in"></span>Đăng nhập</a></li>
+     <li class="nav-item"><a href="Dangnhap.php" class="nav-link"><i class="fas fa-sign-in-alt"></i> Đăng nhập</a></li>
 
     <?php }
             else{
                 ?>
-                     <li class="nav-item"><a href="logout.php" class="nav-link"><span class="glyphicon glyphicon-log-in"></span> Thoát</a></li>
+                     <li class="nav-item"><a href="logout.php" class="nav-link"><i class="fas fa-sign-out-alt"></i> Thoát</a></li>
      <?php
             }
 ?>

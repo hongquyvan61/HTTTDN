@@ -17,7 +17,9 @@ session_start();
 <html style="background-color: #fff">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="../../css/css.css" type="text/css">
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
       <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
@@ -68,7 +70,7 @@ session_start();
                                     row.append('<td>' + item.date + '</td>');
                                     row.append('<td>' + item.quality + '</td>');
                                     row.append('<td>' + item.price + '</td>');
-                                    row.append('<td><a class=" btn btn-info" href="../giaodien/chitietls.php?id='+item.id1+'&loai=nhapkho">Chi tiết</a></td>');
+                                    row.append('<td><a style="font-size:13px;" class=" btn btn-info" href="../giaodien/chitietls.php?id='+item.id1+'&loai=nhapkho">Chi tiết</a></td>');
                                     row.append('</tr>');
                              
                                     $("#tablehtls").find('tbody').append(row);
@@ -101,18 +103,16 @@ session_start();
                 function checkselect(){
                     var statusdachon = document.getElementById('slboxsort').value;
                     if(statusdachon === "nhapkho"){
-                        document.getElementById("tablehtls").style.zIndex = "1";
-                    document.getElementById("tablehtlsx").style.zIndex = "-1"; 
-                      document.getElementById("tablehtls").style.visibility = 'visible';
-                    document.getElementById("tablehtlsx").style.visibility = 'hidden';
+                         
+                      document.getElementById("tablehtls").style.display = 'table';
+                    document.getElementById("tablehtlsx").style.display = 'none';
                     
                     guiajax(statusdachon);
                 }
                 else{
-                    document.getElementById("tablehtls").style.zIndex = "-1";
-                    document.getElementById("tablehtlsx").style.zIndex = "1";
-                      document.getElementById("tablehtls").style.visibility = 'hidden';
-                     document.getElementById("tablehtlsx").style.visibility = 'visible';
+                    
+                      document.getElementById("tablehtls").style.display = 'none';
+                     document.getElementById("tablehtlsx").style.display = 'table';
                      guiajaxxuat(statusdachon);
                 }
                 }

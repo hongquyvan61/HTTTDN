@@ -57,7 +57,50 @@
                                 </tbody>
                             </table>
              <div style="display: none; justify-content: center;" id="notfound"><h3>Không tìm thấy nhà cung cấp!</h3></div>
-        </div>       
+             <div class="form-row">
+                <div class="form-group col-md-2">
+                  <label style="font-size: 15px; font-weight: bold;" for="sortthang">Tháng: </label>
+                  <select style="font-size: 13px; width:100%; margin-left: 0%;" id="sortthang" class="form-control">
+                      <option value="--" selected="true">--</option>
+                      <option value="1" >Tháng 1</option>
+                      <option value="2" >Tháng 2</option>
+                      <option value="3" >Tháng 3</option>
+                      <option value="4" >Tháng 4</option>
+                      <option value="5" >Tháng 5</option>
+                      <option value="6" >Tháng 6</option>
+                      <option value="7" >Tháng 7</option>
+                      <option value="8" >Tháng 8</option>
+                      <option value="9" >Tháng 9</option>
+                      <option value="10" >Tháng 10</option>
+                      <option value="11" >Tháng 11</option>
+                      <option value="12" >Tháng 12</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-2">
+                  <label style="font-size: 15px; font-weight: bold;" for="sorttype">Loại: </label>
+                  <select style="font-size: 13px; width:100%; margin-left: 0%;" id="sorttype" class="form-control">
+                      <option value="--" selected="true">--</option>
+                      <option value="nhapkho" >Nhập kho</option>
+                      <option value="xuatkho" >Xuất kho</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-1" style="display: flex; align-items:center; justify-content: center; padding-top: 2.5%; margin-left: 2%;">
+                   <button id="locbaocao" class="btn btn-primary" style="width:100%; height:97%; font-size: 15px;">Lọc</button>
+                </div>
+             </div>
+             <table id="tablebaocao" class="table table-bordered table-striped" style="font-size: 15px;">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Tên NCC</th>
+                                            <th id="tongslhangnhap">Tổng lượng hàng nhập theo tháng</th>
+                                            <th>Tổng chi phí nhập</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+             </table>
+    </div>       
         
         <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
@@ -95,40 +138,40 @@
 <!-- Modal -->
         
 <!-- Modal -->
-     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-   <div >
-    <form method="POST" enctype="multipart/form-data" action="../xuly/xulysua.php">
-       <input type="text" name="id" id="id" class="id" style="display: none;" class="form-controll" required ><br>
-        <div class="themsp">
-            Mã nhà cung ứng: <span id="id_ncu"></span><br><br>
-          <label >Tên nhà cung ứng</label><br>
-          
-           <input type="text" name="name" id="name"  >  <br><br>
-           <label >Địa chỉ</label><br>
-          
-           <input type="text" name="address" id="address"  >  <br><br>
-     
-         <label >SDT</label><br>
-         
-         <input type="text" name="sdt" id="sdt"  > <br><br>
-     
-   <br> <button type="submit" class="btn btn-primary" name="sub4">Sửa</button>
-         </div>
-    </form>
-</div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div>
+                  <form method="POST" enctype="multipart/form-data" action="../xuly/xulysua.php">
+                     <input type="text" name="id" id="id" class="id" style="display: none;" class="form-controll" required ><br>
+                      <div class="themsp">
+                          Mã nhà cung ứng: <span id="id_ncu"></span><br><br>
+                        <label >Tên nhà cung ứng</label><br>
+
+                         <input type="text" name="name" id="name"  >  <br><br>
+                         <label >Địa chỉ</label><br>
+
+                         <input type="text" name="address" id="address"  >  <br><br>
+
+                       <label >SDT</label><br>
+
+                       <input type="text" name="sdt" id="sdt"  > <br><br>
+
+                          <br> <button type="submit" class="btn btn-primary" name="sub4">Sửa</button>
+                       </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+          </div>
     </div>
-  </div>
 </div>
  <!-- Modal -->       
         <script type="text/javascript">
@@ -139,6 +182,11 @@
                 function statusmacdinh(){
                     var searchinput = document.getElementById("searchinput").value;
                     guiajax(searchinput);
+                }
+                function locbaocaomacdinh(){
+                    var selectedmonth = $("#sortthang").val();
+                    var selectedtype = $("#sorttype").val();
+                    guiajaxbaocao(selectedmonth,selectedtype);
                 }
                 function guiajax(searchinput){
             
@@ -178,9 +226,83 @@
                     var searchinput = document.getElementById("searchinput").value;
                     guiajax(searchinput);
                 }
+                function guiajaxbaocao(selectedmonth,selectedtype){
+                    $.ajax({
+                                method: 'post',
+                                url: '../kho/model/ajaxbaocaoncc.php',
+                                datatype: "JSON",
+                                data: {month: selectedmonth, type: selectedtype},
+                                success: function(response){
+                                    var arrayObj = JSON.parse(response);
+                                    if(selectedmonth == "--" && selectedtype == "--"){
+                                        $("#tablebaocao").find('tbody').empty();
+                                        $("#tablebaocao thead th:eq("+2+")").remove();
+                                        $("#tablebaocao tbody tr").find("td:eq("+2+")").remove();
+                                        $('#tablebaocao').find('thead tr').append('<th>Tổng chi phí nhập</th>');
+                                        $("#tongslhangnhap").text("Tổng lượng hàng nhập theo tháng");
+                                        arrayObj.forEach(function (item,index){
+                                            var row = $('<tr>');
+                                            row.append('<td>' + item.tenncc+'</td>');
+                                            row.append('<td>' + item.tongslnhap+'</td>');
+                                            row.append('<td>' + item.tongtiennhap + '</td>');
+                                            row.append('</tr>');
+                                            $("#tablebaocao").find('tbody').append(row);
+                                        });
+                                    }
+                                    if(selectedtype == "nhapkho"){
+                                        $("#tablebaocao").find('tbody').empty();
+                                        $("#tablebaocao thead th:eq("+2+")").remove();
+                                        $("#tablebaocao tbody tr").find("td:eq("+2+")").remove();
+                                        $('#tablebaocao').find('thead tr').append('<th>Tổng chi phí nhập</th>');
+                                        $("#tongslhangnhap").text("Tổng lượng hàng nhập theo tháng");
+                                        arrayObj.forEach(function (item,index){
+                                            var row = $('<tr>');
+                                            row.append('<td>' + item.tenncc+'</td>');
+                                            row.append('<td>' + item.tongslnhap+'</td>');
+                                            row.append('<td>' + item.tongtiennhap + '</td>');
+                                            row.append('</tr>');
+                                            $("#tablebaocao").find('tbody').append(row);
+                                        });
+                                    }
+                                    if(selectedtype == "xuatkho"){
+                                        $("#tablebaocao").find('tbody').empty();
+                                        $("#tablebaocao thead th:eq("+2+")").remove();
+                                        $("#tablebaocao tbody tr").find("td:eq("+2+")").remove();
+                                        $("#tongslhangnhap").text("Tổng lượng hàng xuất theo tháng");
+                                        arrayObj.forEach(function (item,index){
+                                            var row = $('<tr>');
+                                            row.append('<td>' + item.tenncc+'</td>');
+                                            row.append('<td>' + item.tongslxuat+'</td>');
+                                            row.append('</tr>');
+                                            $("#tablebaocao").find('tbody').append(row);
+                                        });
+                                    }
+                                    //console.log(arrayObj);
+                                }
+                        });
+                }
+                function locbaocao(){
+                    var selectedmonth = $("#sortthang").val();
+                    var selectedtype = $("#sorttype").val();
+                    if(selectedmonth != "--" && selectedtype != "--"){
+                        guiajaxbaocao(selectedmonth,selectedtype);
+                    }
+                    else{
+                        if(selectedmonth != "--" && selectedtype == "--"){
+                            alert("Hãy chọn loại!");
+                        }
+                        if(selectedtype != "--" && selectedmonth == "--"){
+                            alert("Hãy chọn tháng!");
+                        }
+                        if(selectedtype == "--" && selectedmonth == "--"){
+                            guiajaxbaocao(selectedmonth,selectedtype);
+                        }
+                    }
+                }
                 statusmacdinh();
+                locbaocaomacdinh();
                 document.getElementById("searchbtn").onclick = search;
-                
+                document.getElementById("locbaocao").onclick = locbaocao;
             });
             
            $.extend({
@@ -200,20 +322,19 @@
                     }
                 }); 
         $('#exampleModal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var recipient = button.data('whatever') // Extract info from data-* attributes
-  var modal = $(this)
-  modal.find('.modal-title').text('Sửa thông tin nhà cung ứng');
-   
-       var xArrayObj = $.xResponse('../model/ajax_sua_nhacungung.php',{id: recipient});
-       xArrayObj.forEach(function (item,index){   
-         modal.find('#id_ncu').text(item.id);
-         modal.find('#id').val(item.id);
-         modal.find('#name').val(item.name);
-        modal.find('#address').val(item.address);
-        modal.find('#sdt').val(item.sdt);
-                         });
-    })
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var recipient = button.data('whatever') // Extract info from data-* attributes
+            var modal = $(this)
+            modal.find('.modal-title').text('Sửa thông tin nhà cung ứng');
+            var xArrayObj = $.xResponse('../model/ajax_sua_nhacungung.php',{id: recipient});
+            xArrayObj.forEach(function (item,index){   
+                    modal.find('#id_ncu').text(item.id);
+                    modal.find('#id').val(item.id);
+                    modal.find('#name').val(item.name);
+                    modal.find('#address').val(item.address);
+                    modal.find('#sdt').val(item.sdt);
+            });
+        })
            </script> 
        
     </body>
