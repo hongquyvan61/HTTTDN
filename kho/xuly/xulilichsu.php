@@ -1,16 +1,20 @@
-<select id="slboxsort" name="brand" class="s" style="position: absolute;
-   top: 79px;
-    left: 200px;
-     height: 30px;
-     width: 100px;
-     margin-left: 100px;
-      border-radius: 4px;" placeholder="Thương hiệu" >
-  <option value="nhapkho">Nhập kho</option>
-  <option value="xuatkho">Xuất kho</option>
-</select> 
+<div class="form-row col-md-12">
+    <div class="col-md-2" style="margin-bottom: 2%;">
+        <select id="slboxsort" name="brand" class="s" style="
+              height: 140%;
+              width: 80%;
+               border-radius: 4px;
+               font-size: 13px;" placeholder="Thương hiệu" >
+           <option value="nhapkho">Nhập kho</option>
+           <option value="xuatkho">Xuất kho</option>
+        </select>
+    </div>
+     
+</div>
+
 <br><br>
-<div class="col-md-12">
-    <table id="tablehtls" class="table table-bordered table-striped" style=" position:absolute;">
+
+    <table id="tablehtls" class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>Mã nhập kho</th>
@@ -25,7 +29,7 @@
           
        </tbody>
     </table>
-    <table id="tablehtlsx" class="table table-bordered table-striped" style="visibility: hidden; position:absolute;">
+    <table id="tablehtlsx" class="table table-bordered table-striped" style="display: none;">
         <thead>
             <tr>
                 <th>Mã xuất kho</th>
@@ -38,5 +42,4 @@
           
        </tbody>
     </table>
-    
-</div>
+
