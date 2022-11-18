@@ -46,7 +46,6 @@ require '../giaodien/header.php';
                             <th>Payment Date</th>
                             <th>Total</th> 
                             <th>Detail</th>
-                            <th>Print</th>
                         </tr>
                         <tbody>
 
@@ -54,7 +53,7 @@ require '../giaodien/header.php';
 $con = ketnoi();
 //$encrypt = new encrypt();
 $user_id = $_SESSION['id'];
-$sql = "select * from don_hang where user_id=$user_id and tinh_trang='Paid'";
+$sql = "select * from don_hang where user_id=$user_id and (tinh_trang='Paid' or tinh_trang='Shipped')";
 $query = mysqli_query($con, $sql);
 $i = 1;
 while ($row = mysqli_fetch_assoc($query)) {
@@ -66,7 +65,7 @@ while ($row = mysqli_fetch_assoc($query)) {
                                     <td><?php echo $row['ngay_gio_thanh_toan']; ?></td>
                                     <td><?php echo $row['tong_tien']; ?></td>
                                     <td><a href="../giaodien/chitiethd.php?billid=<?php echo $row['ma_don_hang']; ?>">Detail</a></td>
-                                    <th><a href="../giaodien/in_pdf.php?ma_don_hang=<?php echo $row['ma_don_hang']; ?>">Print</a></th
+                                    <!--<th><a href="../giaodien/in_pdf.php?ma_don_hang=<?php echo $row['ma_don_hang']; ?>">Print</a></th-->
 
                                 </tr>
 <?php } ?>

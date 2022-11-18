@@ -214,7 +214,7 @@
                                     });
                                 }
                                 else{
-                                    $("#tablehienthi").hide();
+                                    $("#tablehienthi").css("visibility","collapse");
                                     $("#notfound").show();
                                     $("#notfound").css("display","flex");
                                 }

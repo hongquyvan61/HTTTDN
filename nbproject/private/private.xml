@@ -2,18 +2,18 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="2">
         <file>
-            <url>giaodien/thongtinsp.php</url>
-            <bookmark id="1">
-                <name/>
-                <line>137</line>
-                <key/>
-            </bookmark>
-        </file>
-        <file>
             <url>kho/xuly/xulinhapkho.php</url>
             <bookmark id="2">
                 <name/>
                 <line>0</line>
+                <key/>
+            </bookmark>
+        </file>
+        <file>
+            <url>giaodien/thongtinsp.php</url>
+            <bookmark id="1">
+                <name/>
+                <line>137</line>
                 <key/>
             </bookmark>
         </file>
@@ -22,10 +22,11 @@
         <group>
             <file>file:/C:/xampp/htdocs/HTTTDN/kho/giaodien/xuatkho.php</file>
             <file>file:/C:/xampp/htdocs/HTTTDN/kho/xuly/xulixuatkho.php</file>
-            <file>file:/C:/xampp/htdocs/HTTTDN/kho/giaodien/nhacungung.php</file>
-            <file>file:/C:/xampp/htdocs/HTTTDN/kho/xuly/xulincc.php</file>
-            <file>file:/C:/xampp/htdocs/HTTTDN/kho/model/ajaxbaocaoncc.php</file>
-            <file>file:/C:/xampp/htdocs/HTTTDN/kho/giaodien/chitietls.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/kho/xuly/xulilichsu.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/xuly/xulysua.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/giaodien/sua.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/kho/model/ajaxxuatkho.php</file>
+            <file>file:/C:/xampp/htdocs/HTTTDN/giaodien/a.php</file>
         </group>
     </open-files>
 </project-private>
