@@ -58,14 +58,14 @@
                         }
                         $updatesl2="UPDATE giay SET so_luong_ton_kho_ban=$sl2+$slxuat WHERE id_giay ='$idsp' ;";
                     mysqli_query($con, $updatesl2);
-                     $querytangsl1 = "select so_luong_ton_kho_ban from kich_co where id_giay='$idsp'";
+                     $querytangsl1 = "select so_luong_ton_kho_ban from kich_co where id_giay='$idsp' and size=$sizesp";
                     $tangslresult1 = mysqli_query($con, $querytangsl1);
                     $sl3 = 0;
                         while($row = mysqli_fetch_assoc($tangslresult1)){
                         $sl3 = (int)$row['so_luong_ton_kho_ban'];
                         break;
                         }
-                        $updatesl3="UPDATE kich_co SET so_luong_ton_kho_ban=$sl3+$slxuat WHERE id_giay ='$idsp' ;";
+                        $updatesl3="UPDATE kich_co SET so_luong_ton_kho_ban=$sl3+$slxuat WHERE id_giay ='$idsp' and size=$sizesp;";
                     mysqli_query($con, $updatesl3);
                 }
                 if(mysqli_affected_rows($con) != 0){
