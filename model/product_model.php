@@ -103,8 +103,8 @@
             $query=mysqli_query($this->con,$sql2);
             return $query;
     }
-      function Sua_ncc($id,$name,$address,$sdt){
-     $sql2="UPDATE nha_cung_cap SET ten_nha_cung_cap='$name', sdt='$sdt',dia_chi='$address' WHERE ma_nha_cung_cap =$id";
+      function Sua_ncc($id,$address,$sdt){
+     $sql2="UPDATE nha_cung_cap SET sdt='$sdt',dia_chi='$address' WHERE ma_nha_cung_cap =$id";
             $query=mysqli_query($this->con,$sql2);
             return $query;
     }
