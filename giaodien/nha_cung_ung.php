@@ -152,9 +152,9 @@
                      <input type="text" name="id" id="id" class="id" style="display: none;" class="form-controll" required ><br>
                       <div class="themsp">
                           Mã nhà cung ứng: <span id="id_ncu"></span><br><br>
-                        <label >Tên nhà cung ứng</label><br>
+                        <!--<label >Tên nhà cung ứng</label><br>
 
-                         <input type="text" name="name" id="name"  >  <br><br>
+                         <input type="text" name="name" id="name"  >  <br><br>-->
                          <label >Địa chỉ</label><br>
 
                          <input type="text" name="address" id="address"  >  <br><br>
@@ -198,7 +198,7 @@
                             success: function(response){
                                 var arrayObj = JSON.parse(response);
                                 if(arrayObj.length != 0){
-                                    $("#tablehienthi").show();
+                                    $("#tablehienthi").css("visibility","visible");
                                     $("#notfound").hide();
                                     $("#tablehienthi").find('tbody').empty();
                                     arrayObj.forEach(function (item,index){

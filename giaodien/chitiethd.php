@@ -45,6 +45,7 @@ require '../giaodien/header.php';
                             <th>STT</th>
                             <th>Name</th>
                             <th>Brand</th>
+                            <th>Size</th>
                             <th>Quantity</th>
                             <th>Price</th>
                         </tr>
@@ -54,7 +55,7 @@ require '../giaodien/header.php';
 $con = ketnoi();
 $encrypt = new encrypt();
 $billid = $_GET['billid'];
-$sql = "select g.ten, ncc.ten_nha_cung_cap, ct.so_luong, ct.don_gia
+$sql = "select g.ten, ncc.ten_nha_cung_cap, ct.so_luong, ct.don_gia, ct.size
         from chi_tiet_don_hang as ct 
         join giay as g
         on ct.id_giay = g.id_giay
@@ -70,6 +71,7 @@ while ($row = mysqli_fetch_assoc($query)) {
                                     <td><?php echo $i++; ?></td>
                                     <td><?php echo $row['ten']; ?></td>
                                     <td><?php echo $row['ten_nha_cung_cap']; ?></td>
+                                    <td><?php echo $row['size']; ?></td>
                                     <td><?php echo $row['so_luong']; ?></td>
                                     <td><?php echo $row['don_gia']; ?></td>
                                     
