@@ -20,3 +20,12 @@
 <ul list-style-type="circle">
   <li>Home Page</li>
 </ul>
+<img src="../develop/img/screenshot/index.png" style="max-width: 100%;">
+<ul list-style-type="circle">
+  <li>Products Page</li>
+</ul>
+<img src="../develop/img/screenshot/products.png" style="max-width: 100%;">
+<ul list-style-type="circle">
+  <li>Product's Information Page</li>
+</ul>
+<img src="../develop/img/screenshot/productinfo.png" style="max-width: 100%;">
