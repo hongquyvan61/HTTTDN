@@ -29,3 +29,11 @@
   <li>Product's Information Page</li>
 </ul>
 <img src="../develop/img/screenshot/productinfo.png" style="max-width: 100%;">
+<ul list-style-type="circle">
+  <li>Manage Store Page (Admin Page)</li>
+</ul>
+<img src="../develop/img/screenshot/admin.png" style="max-width: 100%;">
+<ul list-style-type="circle">
+  <li>Manage Warehouse Page</li>
+</ul>
+<img src="../develop/img/screenshot/kho.png" style="max-width: 100%;">
